@@ -4,17 +4,10 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   font-family: 'Cormorant Garamond', serif;
-
   background: #F5F0E8;
-
   color: #1A1612;
-
   overflow-x: hidden;
 }
 
@@ -24,322 +17,214 @@ a {
 }
 
 button {
+  background: none; 
   border: none;
   outline: none;
   cursor: pointer;
 }
 
-/* =========================
-    GLOBAL COLORS
+/* Ketentuan colors 
+   #F5F0E8 = Krem Sevilla
+   #1A1612 = Hitam Andalusia
+   #C0392B = Merah Flamenco
+   #8C7B5E = Tanah Liat */
 
-    #F5F0E8 = KREM SEVILLA
-    #1A1612 = HITAM ANDALUSIA
-    #C0392B = MERAH FLAMENCO
-    #8C7B5E = TANAH LIAT
-
-========================== */
-
-/* =========================
-    HEADER
-========================== */
-
+/* Header */
 header {
   position: fixed;
-
   top: 0;
   left: 0;
-
   width: 100%;
-
   z-index: 1000;
 }
 
-/* =========================
-    NAVBAR
-========================== */
-
+/* Navbar */
 .navbar {
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: 24px 24px;
-
   background: rgba(255, 255, 255, 0.01);
-
   backdrop-filter: blur(12px);
 }
 
-/* =========================
-    LOGO
-========================== */
-
+/* Logo */
 .logo {
   font-family: 'Playfair Display', serif;
-
-  font-size: 1.5rem;
-
+  font-size: 24px;
   font-weight: 600;
-
   color: #ffffff;
 }
 
-/* =========================
-    DESKTOP NAVIGATION
-========================== */
-
+/* Desktop navigation - Default sembunyi di HP */
 .nav-menu {
   display: none;
 }
 
 .nav-menu a {
   font-family: 'Lato', sans-serif;
-
-  font-size: 0.75rem;
-
+  font-size: 12px;
   letter-spacing: 1.5px;
-
   text-transform: uppercase;
-
   color: #ffffff;
-
   transition: 0.3s ease;
 }
 
 .nav-menu a:hover {
-  color: #C0392B;
+  color: #1A1612;
 }
 
-/* =========================
-    MOBILE BUTTON
-========================== */
+/* Efek scroll navbar */
 
+/* Efek transisi untuk header dan elemen di dalamnya */
+header, .logo, .nav-menu a, .menu-btn {
+  transition: 0.4s ease;
+}
+
+/* Gaya header saat di-scroll */
+header.scrolled {
+  background-color: #F5F0E8; /* Berubah jadi Krem Sevilla */
+}
+
+/* Menghilangkan efek blur bawaan saat di-scroll agar warna Krem Sevilla solid */
+header.scrolled .navbar {
+  background: transparent;
+  backdrop-filter: none;
+}
+
+/* Mengubah warna komponen teks menjadi Hitam Andalusia saat di scroll */
+header.scrolled .logo {
+  color: #1A1612;
+}
+
+header.scrolled .nav-menu a {
+  color: #1A1612;
+}
+/* Tombol menu mobile juga berubah warna */
+header.scrolled .menu-btn {
+  color: #1A1612; 
+}
+
+/* Warna hover link saat navbar sudah di scroll */
+header.scrolled .nav-menu a:hover {
+  color: #C0392B; /* Berubah jadi Merah Flamenco saat di hover */
+}
+
+/* Tombol Hamburger */
 .menu-btn {
-  font-size: 2rem;
-
+  font-size: 32px;
   color: #ffffff;
-
-  cursor: pointer;
-
   z-index: 1001;
 }
 
-/* =========================
-    MOBILE NAVIGATION
-========================== */
-
+/* Kotak Menu Mobile - Default Sembunyi Pakai display: none */
 .mobile-nav {
-
   position: absolute;
-
   top: 100%;
   left: 0;
-
   width: 100%;
-
-  background: rgba(26, 22, 18, 0.96);
-
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(12px);
-
-  display: flex;
-  flex-direction: column;
-
   padding: 24px;
-
   gap: 20px;
-
-  opacity: 0;
-
-  visibility: hidden;
-
-  transform: translateY(-10px);
-
-  transition: 0.4s ease;
-
   z-index: 999;
+  display: none; 
 }
-
-/* ACTIVE */
 
 .mobile-nav.active {
-
-  opacity: 1;
-
-  visibility: visible;
-
-  transform: translateY(0);
+  display: flex;
+  flex-direction: column;
 }
 
-/* LINKS */
-
+/* Gaya Tautan Link di dalamnya */
 .mobile-nav a {
-
   font-family: 'Lato', sans-serif;
-
-  font-size: 0.82rem;
-
+  font-size: 13px;
   letter-spacing: 1px;
-
   text-transform: uppercase;
-
-  color: #F5F0E8;
-
+  color: #ffffff;
   padding: 12px 0;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
-  transition: 0.3s ease;
 }
 
 .mobile-nav a:hover {
-
   color: #C0392B;
 }
 
-/* =========================
-    HERO
-========================== */
-
+/* Hero */
 .hero {
   position: relative;
-
   width: 100%;
   height: 100vh;
 }
 
-/* =========================
-    HERO BACKGROUND
-========================== */
-
+/* Hero background */
 .hero-bg {
   position: absolute;
-
   top: 0;
   left: 0;
-
   width: 100%;
   height: 100%;
-
   background-image: url("../image/bg1.jpg");
-
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* =========================
-    OVERLAY
-========================== */
-
-.overlay {
-  position: absolute;
-  inset: 0;
-
-  background:
-    linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.55),
-      rgba(0, 0, 0, 0.35));
-}
-
-/* =========================
-    HERO CONTENT
-========================== */
-
+/* Hero content */
 .hero-content {
   position: relative;
-
   z-index: 2;
-
   width: 100%;
   height: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   text-align: center;
-
   padding: 20px;
-
   color: #ffffff;
 }
 
-/* =========================
-    HERO TAG
-========================== */
-
+/* Hero tag */
 .hero-tag {
   font-family: 'Lato', sans-serif;
-
-  font-size: 0.72rem;
-
+  font-size: 11.5px;
   letter-spacing: 2px;
-
   text-transform: uppercase;
-
   color: white;
-
   margin-bottom: 18px;
 }
 
-/* =========================
-    HERO TITLE
-========================== */
-
+/* Hero title - Ukuran Default HP */
 .hero-title {
   font-family: 'Playfair Display', serif;
-
-  font-size: clamp(3.5rem, 10vw, 8rem);
-
   font-weight: 600;
-
   line-height: 0.95;
-
   letter-spacing: -2px;
-
   margin-bottom: 24px;
+  font-size: 56px;
 }
 
-/* =========================
-    HERO DESCRIPTION
-========================== */
-
+/* Hero description */
 .hero-description {
   max-width: 720px;
-
-  font-size: 1.35rem;
-
+  font-size: 21.6px;
   line-height: 1.6;
-
   color: rgba(255, 255, 255, 0.9);
-
   margin-bottom: 36px;
 }
 
-/* =========================
-    HERO BUTTON
-========================== */
-
+/* Hero button */
 .hero-btn {
   background: #C0392B;
-
   color: #ffffff;
-
   padding: 16px 34px;
-
   font-family: 'Lato', sans-serif;
-
-  font-size: 0.78rem;
-
+  font-size: 12.5px;
   font-weight: 700;
-
   letter-spacing: 1px;
-
   text-transform: uppercase;
-
   transition: 0.4s ease;
 }
 
@@ -347,104 +232,67 @@ header {
   background: #a93226;
 }
 
-/* =========================
-    ABOUT SECTION
-========================== */
-
+/* About section */
 .about {
   width: 100%;
-
   padding: 80px 24px;
-
   background: #F5F0E8;
 }
 
-/* =========================
-    ABOUT CONTAINER
-========================== */
-
+/* About container */
 .about-container {
   max-width: 1400px;
-
   margin: auto;
-
-  display: flex;
-  flex-direction: column;
-
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+    "gambar"
+    "teks";
   gap: 48px;
 }
 
-/* =========================
-    SECTION TAG
-========================== */
-
+/* Section tag */
 .section-tag {
   font-family: 'Lato', sans-serif;
-
-  font-size: 0.72rem;
-
+  font-size: 11.5px;
   letter-spacing: 2px;
-
   text-transform: uppercase;
-
   color: #8C7B5E;
-
   margin-bottom: 18px;
 }
 
-/* =========================
-    ABOUT TITLE
-========================== */
+/* About title */
+.about-text {
+  grid-area: teks;
+}
 
 .about-text h2 {
   font-family: 'Playfair Display', serif;
-
-  font-size: 3rem;
-
+  font-size: 48px;
   font-weight: 600;
-
   line-height: 1.05;
-
   color: #1A1612;
-
   margin-bottom: 24px;
 }
 
-/* =========================
-    ABOUT DESCRIPTION
-========================== */
-
+/* About description */
 .about-description {
-  font-size: 1.4rem;
-
+  font-size: 22.4px;
   line-height: 1.7;
-
   color: #5c5248;
-
   margin-bottom: 32px;
 }
 
-/* =========================
-    ABOUT BUTTON
-========================== */
-
+/* About button */
 .about-btn {
   background: #1A1612;
-
   color: #ffffff;
-
   padding: 16px 30px;
-
   font-family: 'Lato', sans-serif;
-
-  font-size: 0.78rem;
-
+  font-size: 12.5px;
   font-weight: 700;
-
   letter-spacing: 1px;
-
   text-transform: uppercase;
-
   transition: 0.4s ease;
 }
 
@@ -452,89 +300,100 @@ header {
   background: #C0392B;
 }
 
-/* =========================
-    ABOUT IMAGE
-========================== */
+/* About image */
+.about-image {
+  grid-area: gambar;
+}
 
 .about-image img {
   width: 100%;
-
   height: 100%;
-
   object-fit: cover;
-
   border-radius: 8px;
 }
 
-/* =========================
-    TABLET
-========================== */
-
-@media(min-width:768px) {
-
+/* TABLET (Mulai ukuran layar 768px ke atas) */
+@media(min-width: 768px) {
   .navbar {
     padding: 28px 40px;
   }
 
+  /* Munculkan kembali navbar */
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  header .navbar .menu-btn, 
+  header .mobile-nav,
+  header .mobile-nav.active {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 88px;
+  }
+
   .hero-description {
-    font-size: 1.5rem;
+    font-size: 24px;
   }
 
   .about {
     padding: 120px 40px;
   }
 
+  .about-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "teks gambar";
+  }
+
   .about-text h2 {
-    font-size: 4.5rem;
+    font-size: 72px;
   }
 
   .about-description {
-    font-size: 1.6rem;
+    font-size: 25.6px;
   }
 }
 
-/* =========================
-    DESKTOP
-========================== */
-
-@media(min-width:1100px) {
-
+/* DESKTOP (Mulai ukuran layar 1100px ke atas) */
+@media(min-width: 1100px) {
   .navbar {
     width: 100%;
-
     padding: 32px 80px;
   }
 
-  .menu-btn {
-    display: none;
-  }
-
-  .mobile-nav {
-    display: none;
-  }
-
   .nav-menu {
-    display: flex;
-    align-items: center;
-
     gap: 42px;
   }
 
+  .hero-title {
+    font-size: 128px;
+  }
+
   .about-container {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    align-items: center;
-
     gap: 80px;
   }
 
   .about-text h2 {
-    font-size: 5.5rem;
+    font-size: 88px;
   }
 
   .about-description {
     max-width: 580px;
   }
+}
+
+/* --- KHUSUS SUB-PAGE UTK NAVBAR --- */
+.page-budaya .navbar, 
+.page-festival .navbar,
+.page-jelajahi .navbar,
+.page-sejarah .navbar {
+    background-color: #1A1612;
+}
+
+/* --- KHUSUS HALAMAN KULINER SAJA --- */
+.page-kuliner .navbar {
+  background-color: #a93226;
 }
