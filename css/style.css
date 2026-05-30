@@ -397,3 +397,142 @@ header.scrolled .nav-menu a:hover {
 .page-kuliner .navbar {
   background-color: #a93226;
 }
+
+/* Kotak pembungkus utama dengan gambar background arsitektur Sevilla */
+.preview-section {
+  width: 100%;
+  position: relative;
+  background-image: url("../image/bg-preview.jpg"); /* Ganti dengan nama file fotomu */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 100px 24px;
+  z-index: 1;
+}
+
+/* Lapisan hitam Andalusia transparan agar pola background arsitektur tidak bikin pusing */
+.preview-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(47, 41, 35, 0.5); /* Meredupkan gambar latar sebesar 88% */
+  z-index: -1;
+}
+
+/* Container utama grid kartu */
+.preview-container {
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Gaya dasar kartu: Dibuat semi-transparan dengan border tipis agar tidak tenggelam */
+.preview-card {
+  position: relative;
+  height: 350px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 32px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.02); /* Transparansi boks kosong */
+  transition: all 0.4s ease;
+}
+
+/* Efek hover: Kartu terangkat dan garis tepi berubah menjadi Merah Flamenco */
+.preview-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Lapisan gelap di dalam kartu agar teks putih di bawahnya menonjol tajam */
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 20%, rgba(0, 0, 0, 0.2) 100%);
+  z-index: 1;
+}
+
+/* Area konten teks di dalam kartu */
+.card-content {
+  position: relative;
+  z-index: 2;
+  color: #F5F0E8;
+}
+
+.card-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.card-content p {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+/* Tombol link di dalam kartu */
+.card-btn {
+  display: inline-block;
+  border: 1px solid #F5F0E8;
+  padding: 10px 24px;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.card-btn:hover {
+  background: #C0392B;
+  border-color: #C0392B;
+  color: #ffffff;
+}
+
+/* Jalur file gambar masing-masing kartu */
+.card-culture { background-image: url("../image/preview-flamenco.jpg"); }
+.card-festival { background-image: url("../image/preview-festival2.jpg"); }
+.card-culinary { background-image: url("../image/preview-cullinery.jpg"); }
+.card-explore { background-image: url("../image/preview-explore.jpg"); }
+
+/* MEDIA QUERY TABLET (768px ke atas) */
+@media(min-width: 768px) {
+  .preview-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  /* Sembunyikan navigasi mobile bawaan agar tidak bocor */
+  header .navbar .menu-btn, 
+  header .mobile-nav,
+  header .mobile-nav.active {
+    display: none;
+  }
+}
+
+/* MEDIA QUERY DESKTOP / LAPTOP (1100px ke atas) */
+@media(min-width: 1100px) {
+  .preview-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  
+  .preview-card {
+    height: 450px;
+  }
+}
