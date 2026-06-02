@@ -17,7 +17,7 @@ a {
 }
 
 button {
-  background: none; 
+  background: none;
   border: none;
   outline: none;
   cursor: pointer;
@@ -78,13 +78,17 @@ header {
 /* Efek scroll navbar */
 
 /* Efek transisi untuk header dan elemen di dalamnya */
-header, .logo, .nav-menu a, .menu-btn {
+header,
+.logo,
+.nav-menu a,
+.menu-btn {
   transition: 0.4s ease;
 }
 
 /* Gaya header saat di-scroll */
 header.scrolled {
-  background-color: #F5F0E8; /* Berubah jadi Krem Sevilla */
+  background-color: #F5F0E8;
+  /* Berubah jadi Krem Sevilla */
 }
 
 /* Menghilangkan efek blur bawaan saat di-scroll agar warna Krem Sevilla solid */
@@ -101,14 +105,16 @@ header.scrolled .logo {
 header.scrolled .nav-menu a {
   color: #1A1612;
 }
+
 /* Tombol menu mobile juga berubah warna */
 header.scrolled .menu-btn {
-  color: #1A1612; 
+  color: #1A1612;
 }
 
 /* Warna hover link saat navbar sudah di scroll */
 header.scrolled .nav-menu a:hover {
-  color: #C0392B; /* Berubah jadi Merah Flamenco saat di hover */
+  color: #C0392B;
+  /* Berubah jadi Merah Flamenco saat di hover */
 }
 
 /* Tombol Hamburger */
@@ -129,7 +135,7 @@ header.scrolled .nav-menu a:hover {
   padding: 24px;
   gap: 20px;
   z-index: 999;
-  display: none; 
+  display: none;
 }
 
 .mobile-nav.active {
@@ -165,11 +171,12 @@ header.scrolled .nav-menu a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../image/bg1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-image: url("../image/bg1.jpg");
 }
+
 
 /* Hero content */
 .hero-content {
@@ -245,7 +252,7 @@ header.scrolled .nav-menu a:hover {
   margin: auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-areas: 
+  grid-template-areas:
     "gambar"
     "teks";
   gap: 48px;
@@ -325,7 +332,7 @@ header.scrolled .nav-menu a:hover {
     gap: 24px;
   }
 
-  header .navbar .menu-btn, 
+  header .navbar .menu-btn,
   header .mobile-nav,
   header .mobile-nav.active {
     display: none;
@@ -386,11 +393,11 @@ header.scrolled .nav-menu a:hover {
 }
 
 /* --- KHUSUS SUB-PAGE UTK NAVBAR --- */
-.page-budaya .navbar, 
+.page-budaya .navbar,
 .page-festival .navbar,
 .page-jelajahi .navbar,
 .page-sejarah .navbar {
-    background-color: #1A1612;
+  background-color: #1A1612;
 }
 
 /* --- KHUSUS HALAMAN KULINER SAJA --- */
@@ -402,7 +409,8 @@ header.scrolled .nav-menu a:hover {
 .preview-section {
   width: 100%;
   position: relative;
-  background-image: url("../image/bg-preview.jpg"); /* Ganti dengan nama file fotomu */
+  background-image: url("../image/bg-preview.jpg");
+  /* Ganti dengan nama file fotomu */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -418,7 +426,8 @@ header.scrolled .nav-menu a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(47, 41, 35, 0.5); /* Meredupkan gambar latar sebesar 88% */
+  background-color: rgba(47, 41, 35, 0.5);
+  /* Meredupkan gambar latar sebesar 88% */
   z-index: -1;
 }
 
@@ -444,7 +453,8 @@ header.scrolled .nav-menu a:hover {
   padding: 32px;
   background-size: cover;
   background-position: center;
-  background-color: rgba(255, 255, 255, 0.02); /* Transparansi boks kosong */
+  background-color: rgba(255, 255, 255, 0.02);
+  /* Transparansi boks kosong */
   transition: all 0.4s ease;
 }
 
@@ -506,19 +516,30 @@ header.scrolled .nav-menu a:hover {
 }
 
 /* Jalur file gambar masing-masing kartu */
-.card-culture { background-image: url("../image/preview-flamenco.jpg"); }
-.card-festival { background-image: url("../image/preview-festival2.jpg"); }
-.card-culinary { background-image: url("../image/preview-cullinery.jpg"); }
-.card-explore { background-image: url("../image/preview-explore.jpg"); }
+.card-culture {
+  background-image: url("../image/preview-flamenco.jpg");
+}
+
+.card-festival {
+  background-image: url("../image/preview-festival2.jpg");
+}
+
+.card-culinary {
+  background-image: url("../image/preview-cullinery.jpg");
+}
+
+.card-explore {
+  background-image: url("../image/preview-explore.jpg");
+}
 
 /* MEDIA QUERY TABLET (768px ke atas) */
 @media(min-width: 768px) {
   .preview-container {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   /* Sembunyikan navigasi mobile bawaan agar tidak bocor */
-  header .navbar .menu-btn, 
+  header .navbar .menu-btn,
   header .mobile-nav,
   header .mobile-nav.active {
     display: none;
@@ -531,7 +552,7 @@ header.scrolled .nav-menu a:hover {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 24px;
   }
-  
+
   .preview-card {
     height: 450px;
   }
