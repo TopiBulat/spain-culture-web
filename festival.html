@@ -1,53 +1,1564 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Festival — Alma de Sevilla</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
 
+    <style>
+        /* ============================================================
+           ROOT VARIABLES — Alma de Sevilla Design System
+        ============================================================ */
+        :root {
+            --krem:       #F5F0E8;
+            --hitam:      #1A1612;
+            --merah:      #C0392B;
+            --merah-gelap:#a93226;
+            --tanah:      #8C7B5E;
+            --krem-muda:  #E8E0D0;
+            --krem-gelap: #DDD5C2;
+        }
 
+        /* ============================================================
+           BASE STYLES
+        ============================================================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--krem);
+            color: var(--hitam);
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            background: none;
+            border: none;
+            font: inherit;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Utility Container */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        @media (min-width: 768px) { .container { padding: 0 40px; } }
+        @media (min-width: 1100px) { .container { padding: 0 80px; } }
+
+        /* ============================================================
+           NAVBAR (SINKRONISASI TOTAL DENGAN MAIN PAGE & KULINER)
+        ============================================================ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            transition: 0.4s ease;
+        }
+
+        .navbar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 24px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(1px);
+            transition: 0.4s ease;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--krem);
+            transition: 0.4s ease;
+        }
+
+        .nav-menu {
+            display: none;
+        }
+
+        .nav-menu a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff;
+            transition: 0.3s ease;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--merah);
+        }
+
+        .menu-btn {
+            font-size: 32px;
+            color: #ffffff;
+            z-index: 1001;
+            transition: 0.4s ease;
+            line-height: 1;
+        }
+
+        .mobile-nav {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 24px;
+            gap: 20px;
+            z-index: 999;
+            display: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-nav a {
+            font-family: 'EB Garamond', serif;
+            font-size: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ffffff;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-nav a:last-child { border-bottom: none; }
+        .mobile-nav a:hover, .mobile-nav a.active { color: var(--merah); }
+
+        /* GAYA NAVBAR SAAT DI-SCROLL */
+        header.scrolled {
+            background-color: var(--krem);
+        }
+
+        header.scrolled .navbar {
+            background: transparent;
+            backdrop-filter: none;
+            padding: 16px 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        header.scrolled .logo { color: var(--hitam); }
+        header.scrolled .menu-btn { color: var(--hitam); }
+        header.scrolled .nav-menu a { color: var(--hitam); }
+        header.scrolled .nav-menu a:hover { color: var(--merah); }
+        header.scrolled .nav-menu a.active { color: var(--merah); }
+
+        @media(min-width: 768px) {
+            .navbar { padding: 28px 40px; }
+            header.scrolled .navbar { padding: 18px 40px; }
+            .nav-menu { display: flex; align-items: center; gap: 24px; }
+            .menu-btn, .mobile-nav, .mobile-nav.active { display: none !important; }
+        }
+
+        @media(min-width: 1100px) {
+            .navbar { padding: 32px 80px; }
+            header.scrolled .navbar { padding: 20px 80px; }
+            .nav-menu { gap: 42px; }
+        }
+
+        /* Mobile Overlay */
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ============================================================
+           HERO SECTION
+        ============================================================ */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url("image/preview-festival2.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transform: scale(1.08);
+            animation: zoomHero 18s ease-out forwards;
+        }
+
+        @keyframes zoomHero {
+            to { transform: scale(1); }
+        }
+
+        .hero-veil {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                rgba(26,22,18,.95) 0%,
+                rgba(26,22,18,.45) 50%,
+                rgba(169,50,38,.15) 100%);
+        }
+
+        .hero-body {
+            position: relative;
+            z-index: 2;
+            padding-bottom: 80px;
+            max-width: 820px;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: .32em;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, .5);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hero-h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            line-height: 1.05;
+            color: var(--krem);
+            margin-bottom: 24px;
+        }
+
+        .hero-lead {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.85;
+            color: rgba(245, 240, 232, .75);
+            max-width: 580px;
+        }
+
+        /* ============================================================
+           INTRO STRIP
+        ============================================================ */
+        .intro-strip {
+            background-color: var(--merah-gelap);
+            color: var(--krem);
+            padding: 40px 0;
+        }
+
+        .strip-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .strip-text {
+            font-family: 'Lato', sans-serif;
+            font-size: 11px;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, .6);
+        }
+
+        .strip-stats {
+            display: flex;
+            gap: 48px;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            line-height: 1;
+            color: var(--krem);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-family: 'Lato', sans-serif;
+            font-size: 9px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, .5);
+        }
+
+        /* ============================================================
+           FILTER CONTROLS
+        ============================================================ */
+        .filter-section {
+            padding: 80px 0 40px;
+        }
+
+        .filter-label {
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--tanah);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .filter-controls {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-list {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .filter-btn {
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            padding: 10px 24px;
+            border: 1px solid var(--krem-gelap);
+            color: var(--tanah);
+            transition: all .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--hitam);
+            color: var(--hitam);
+        }
+
+        .filter-btn.active {
+            background-color: var(--merah);
+            color: var(--krem);
+            border-color: var(--merah);
+        }
+
+        /* ============================================================
+           SECTION GENERAL DIVIDER
+        ============================================================ */
+        .section-divider {
+            width: 48px;
+            height: 2px;
+            background: var(--merah);
+        }
+
+        /* ============================================================
+           FESTIVAL CARDS GRID
+        ============================================================ */
+        .cards-section {
+            padding-bottom: 100px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        @media (min-width: 768px) {
+            .cards-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1200px) {
+            .cards-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .fest-card {
+            background-color: var(--krem-muda);
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 30px rgba(26,22,18, 0.02);
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fest-card.hidden {
+            display: none;
+        }
+
+        .fest-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(26,22,18, 0.08);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 65%;
+            overflow: hidden;
+            background-color: var(--hitam);
+        }
+
+        .card-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.1) brightness(0.9);
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .fest-card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background-color: rgba(26,22,18,0.85);
+            backdrop-filter: blur(4px);
+            color: var(--krem);
+            font-family: 'Lato', sans-serif;
+            font-size: 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 2px;
+        }
+
+        .card-body {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-meta {
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--merah);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            color: var(--hitam);
+        }
+
+        .card-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(26,22,18,0.75);
+            margin-bottom: 24px;
+            display: -webkit-box;
+            display: -moz-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .action-btn {
+            align-self: flex-start;
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--hitam);
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--krem-gelap);
+            transition: all 0.3s ease;
+        }
+
+        .fest-card:hover .action-btn {
+            border-color: var(--merah);
+            color: var(--merah);
+            padding-right: 8px;
+        }
+
+        /* ============================================================
+           INTERACTIVE TIMELINE SECTION
+        ============================================================ */
+        .timeline-section {
+            background-color: var(--hitam);
+            color: var(--krem);
+            padding: 100px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .timeline-tag {
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--merah);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .timeline-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+        }
+
+        .timeline-header h2 em {
+            font-style: italic;
+            color: var(--krem-muda);
+        }
+
+        /* Horizontal Track System */
+        .timeline-track-container {
+            position: relative;
+            width: 100%;
+            overflow-x: auto;
+            padding: 40px 0;
+            scrollbar-width: none;
+        }
+        .timeline-track-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .timeline-track {
+            display: flex;
+            position: relative;
+            padding-left: 50px;
+            padding-right: 200px;
+            min-width: max-content;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 24px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(245, 240, 232, 0.15);
+            z-index: 1;
+        }
+
+        .timeline-node {
+            position: relative;
+            width: 280px;
+            margin-right: 48px;
+            z-index: 2;
+        }
+
+        .node-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background-color: var(--hitam);
+            border: 2px solid var(--tanah);
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            left: 2px;
+            top: 20px;
+        }
+
+        .timeline-node.highlight .node-dot {
+            background-color: var(--merah);
+            border-color: var(--merah);
+            box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.3);
+        }
+
+        .node-month {
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--merah);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .node-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--krem);
+        }
+
+        .node-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(245, 240, 232, 0.6);
+            font-weight: 300;
+        }
+
+        /* ============================================================
+           TRAVEL TIPS SECTION
+        ============================================================ */
+        .tips-festival-section {
+            background-color: var(--krem);
+            padding: 100px 0;
+            border-bottom: 1px solid var(--krem-muda);
+        }
+
+        .tips-festival-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+        @media (min-width: 992px) {
+            .tips-festival-wrapper {
+                grid-template-columns: 35% 65%;
+            }
+        }
+
+        .tips-festival-tag {
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--merah);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .tips-festival-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--hitam);
+        }
+
+        .tips-festival-header h2 em {
+            font-style: italic;
+            color: var(--tanah);
+        }
+
+        .tips-festival-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tips-festival-list li {
+            display: flex;
+            gap: 24px;
+            padding: 32px 0;
+            border-bottom: 1px solid var(--krem-gelap);
+            align-items: flex-start;
+        }
+        .tips-festival-list li:first-child {
+            padding-top: 0;
+        }
+        .tips-festival-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .tips-festival-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--krem-gelap);
+            min-width: 44px;
+            transition: all 0.3s ease;
+        }
+
+        .tips-festival-list li:hover .tips-festival-num {
+            -webkit-text-stroke: 1px var(--merah);
+            color: var(--merah);
+        }
+
+        .tips-festival-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--hitam);
+        }
+
+        .tips-festival-content p {
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(26,22,18,0.75);
+            font-weight: 300;
+        }
+
+        /* ============================================================
+           PULL QUOTE SECTION
+        ============================================================ */
+        .pull-quote {
+            padding: 100px 0;
+            text-align: center;
+            background-color: var(--krem);
+            border-bottom: 1px solid var(--krem-muda);
+        }
+
+        .pq-mark {
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            line-height: 0.5;
+            color: var(--merah);
+            opacity: 0.2;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .pq-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+            font-style: italic;
+            line-height: 1.55;
+            max-width: 800px;
+            margin: 0 auto 24px;
+            color: var(--hitam);
+        }
+
+        .pq-text em {
+            font-style: italic;
+        }
+
+        .pq-attr {
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--tanah);
+        }
+        .pq-attr::before {
+            content: '';
+            display: inline-block;
+            width: 32px;
+            height: 1px;
+            background-color: var(--merah);
+            vertical-align: middle;
+            margin-right: 12px;
+        }
+
+        /* ============================================================
+           MODAL DIALOG POPUP (STABIL BERDAMPIINGAN & GAMBAR FULL)
+        ============================================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(26, 22, 18, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-wrapper {
+            background-color: var(--krem);
+            max-width: 850px;
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            transform: translateY(30px) scale(0.98);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+        }
+        @media (min-width: 768px) {
+            .modal-wrapper { 
+                flex-direction: row;
+                align-items: stretch;
+            }
+        }
+
+        .modal-overlay.active .modal-wrapper {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-img-side {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            background-color: var(--hitam);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        @media (min-width: 768px) {
+            .modal-img-side { 
+                width: 45%; 
+                height: auto;
+                min-height: 100%;
+            }
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.9) sepia(0.1);
+        }
+
+        .modal-content-side {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        @media (min-width: 768px) {
+            .modal-content-side { 
+                width: 55%;
+                padding: 45px; 
+            }
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 32px;
+            line-height: 1;
+            color: var(--hitam);
+            transition: color 0.2s;
+            z-index: 10;
+        }
+        @media (max-width: 767px) {
+            .modal-close-btn { 
+                color: var(--hitam); 
+                background: var(--krem-muda); 
+                width: 36px; 
+                height: 36px; 
+                border-radius: 50%; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                top: 12px; 
+                right: 12px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+        }
+        .modal-close-btn:hover {
+            color: var(--merah);
+        }
+
+        .modal-meta {
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--merah);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 18px;
+            color: var(--hitam);
+        }
+
+        .modal-full-desc p {
+            font-size: 15.5px;
+            line-height: 1.65;
+            color: rgba(26,22,18,0.8);
+            font-weight: 300;
+        }
+
+        /* Style Tombol Tiket Premium */
+        .modal-ticket-btn {
+            display: inline-block;
+            background-color: var(--merah);
+            color: #ffffff !important;
+            font-family: 'Lato', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 14px 28px;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            margin-top: 24px;
+            text-align: center;
+            align-self: flex-start;
+            box-shadow: 0 4px 15px rgba(192, 57, 43, 0.2);
+        }
+
+        .modal-ticket-btn:hover {
+            background-color: var(--merah-gelap);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(192, 57, 43, 0.3);
+        }
+
+        /* ============================================================
+           MEGA FOOTER
+        ============================================================ */
+        .mega-footer {
+            width: 100%;
+            background-color: var(--hitam);
+            color: var(--krem);
+            padding: 80px 24px 24px 24px;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .mega-container {
+            max-width: 1400px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .mega-left { max-width: 420px; }
+
+        .mega-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .mega-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.7;
+            margin-bottom: 32px;
+        }
+
+        .mega-subscribe {
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.04);
+            border-radius: 50px;
+            padding: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mega-subscribe input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--krem);
+            padding: 10px 20px;
+            font-family: 'Lato', sans-serif;
+            font-size: 14px;
+        }
+
+        .mega-subscribe input::placeholder { color: rgba(245, 240, 232, 0.4); }
+
+        .mega-subscribe button {
+            background-color: var(--merah);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 32px;
+            font-family: 'Lato', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .mega-subscribe button:hover { background-color: var(--merah-gelap); }
+
+        .mega-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .mega-col { display: flex; flex-direction: column; gap: 16px; }
+
+        .mega-col h4 {
+            font-family: 'Lato', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.5;
+            margin-bottom: 8px;
+        }
+
+        .mega-col a {
+            font-size: 14.5px;
+            color: var(--krem);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .mega-col a:hover { opacity: 1; color: var(--merah); }
+
+        .mega-bottom {
+            max-width: 1400px;
+            margin: 80px auto 0 auto;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.5;
+        }
+
+        @media(min-width: 768px) {
+            .mega-footer { padding: 100px 40px 30px 40px; }
+            .mega-container { flex-direction: row; justify-content: space-between; }
+            .mega-brand { font-size: 56px; }
+            .mega-right { gap: 80px; }
+            .mega-bottom { text-align: left; }
+        }
+
+        @media(min-width: 1100px) {
+            .mega-footer { padding: 120px 80px 40px 80px; }
+            .mega-right { gap: 120px; }
+        }
+
+        /* ============================================================
+           BACK TO TOP UI
+        ============================================================ */
+        .back-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            background-color: var(--hitam);
+            color: var(--krem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-top:hover {
+            background-color: var(--merah);
+            color: #ffffff;
+        }
+    </style>
 </head>
 <body class="page-festival">
-	<header>
-		<div class="navbar">
-			<!-- LOGO -->
-			<a href="index.html" class="logo">Alma de Sevilla</a>
 
-			<!-- DESKTOP NAVIGATION -->
+    <!-- OVERLAYS -->
+    <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
 
-			<nav class="nav-menu">
+    <!-- NAVBAR -->
+    <header id="siteHeader">
+        <div class="navbar">
+            <a href="index.html" class="logo">Alma de Sevilla</a>
 
-				<a href="budaya.html">Culture</a>
+            <nav class="nav-menu">
+                <a href="budaya.html">Culture</a>
+                <a href="festival.html" class="active">Festival</a>
+                <a href="kuliner.html">Culinary</a>
+                <a href="jelajahi.html">Explore</a>
+                <a href="about.html">About Us</a>
+            </nav>
 
-				<a href="festival.html">Festival</a>
+            <button class="menu-btn" id="menuBtn" aria-label="Buka Menu" aria-expanded="false">&#9776;</button>
+        </div>
 
-				<a href="kuliner.html" >Culinary</a>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="budaya.html" onclick="toggleMenu(false)">Culture</a>
+            <a href="festival.html" class="active" onclick="toggleMenu(false)">Festival</a>
+            <a href="kuliner.html" onclick="toggleMenu(false)">Culinary</a>
+            <a href="jelajahi.html" onclick="toggleMenu(false)">Explore</a>
+            <a href="about.html" onclick="toggleMenu(false)">About Us</a>
+        </div>
+    </header>
 
-				<a href="jelajahi.html">Explore</a>
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-veil"></div>
+            <div class="container">
+                <div class="hero-body">
+                    <span class="hero-eyebrow">Fiestas y Tradiciones</span>
+                    <h1 class="hero-h1">Ritme Hidup<br><em>Andalusia</em></h1>
+                    <p class="hero-lead">
+                        Dari kekhusyukan prosesi lilin malam hari hingga ledakan warna gaun flamenco di bawah sinar matahari musim semi, festival Sevilla adalah perayaan jiwa manusia yang tak tertandingi.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-				<a href="#">About Us</a>
+        <!-- INTRO STRIP -->
+        <div class="intro-strip">
+            <div class="container">
+                <div class="strip-wrapper">
+                    <p class="strip-text">Kalender Perayaan Akbar Tahunan</p>
+                    <div class="strip-stats">
+                        <div class="stat-item">
+                            <span class="stat-num">4</span>
+                            <span class="stat-label">Musim Perayaan</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">15+</span>
+                            <span class="stat-label">Prosesi Besar</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">1847</span>
+                            <span class="stat-label">Tahun Tradisi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-			</nav>
+        <!-- MAIN FILTERS & GRID CARD SECTION -->
+        <section class="filter-section">
+            <div class="container">
+                <span class="filter-label">Saring Berdasarkan Musim</span>
+                <div class="filter-controls">
+                    <ul class="filter-list" id="filterList">
+                        <li><button class="filter-btn active" data-filter="all">Semua Perayaan</button></li>
+                        <li><button class="filter-btn" data-filter="spring">Musim Semi (Primavera)</button></li>
+                        <li><button class="filter-btn" data-filter="autumn">Musim Gugur (Otoño)</button></li>
+                        <li><button class="filter-btn" data-filter="winter">Musim Dingin (Invierno)</button></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-			<!-- MOBILE BUTTON -->
+        <section class="cards-section">
+            <div class="container">
+                <div class="cards-grid" id="cardsGrid">
+                    <!-- Dinamis Di-render Melalui Vanilla Javascript client loop -->
+                </div>
+            </div>
+        </section>
 
-			<div class="menu-btn">&#9776;</div>
+        <!-- INTERACTIVE HORIZONTAL TIMELINE SECTION -->
+        <section class="timeline-section">
+            <div class="container">
+                <div class="timeline-header">
+                    <span class="timeline-tag">Cronología</span>
+                    <h2>Alur Festival <em>Sepanjang Tahun</em></h2>
+                </div>
+            </div>
 
-		</div>
+            <div class="timeline-track-container" id="timelineTrackContainer">
+                <div class="timeline-track" id="timelineTrack">
+                    <div class="timeline-line"></div>
+                    <!-- Node Garis Waktu Dinamis Diturunkan dari JS Array -->
+                </div>
+            </div>
+        </section>
 
-		<!-- MOBILE NAVIGATION -->
+        <!-- TRAVEL TIPS SECTION -->
+        <section class="tips-festival-section">
+            <div class="container">
+                <div class="tips-festival-wrapper">
+                    <div class="tips-festival-header">
+                        <span class="tips-festival-tag">Guía del Viajero</span>
+                        <h2>Panduan Penting<br>Menghadiri <em>Fiesta</em></h2>
+                        <div class="section-divider" style="margin: 24px 0 0 0;"></div>
+                    </div>
 
-		<div class="mobile-nav">
-			<a href="budaya.html" onclick="tutupMenu()">Culture</a>
-			<a href="festival.html" onclick="tutupMenu()">Festival</a>
-			<a href="kuliner.html" onclick="tutupMenu()">Culinary</a>
-			<a href="jelajahi.html" onclick="tutupMenu()">Explore</a>
-			<a href="#" onclick="tutupMenu()">About Us</a>
+                    <ul class="tips-festival-list">
+                        <li>
+                            <span class="tips-festival-num">01</span>
+                            <div class="tips-festival-content">
+                                <h4>Reservasi Akomodasi Jauh Hari</h4>
+                                <p>Saat Semana Santa dan Feria de Abril berlangsung, ratusan ribu turis memadati Sevilla. Pesan hotel atau apartemen minimal 4–6 bulan sebelum festival dimulai karena harga bisa melonjak hingga tiga kali lipat.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tips-festival-num">02</span>
+                            <div class="tips-festival-content">
+                                <h4>Pahami Aturan Berpakaian (Dress Code)</h4>
+                                <p>Menghadiri Semana Santa menuntut rasa hormat yang tinggi. Warga lokal biasanya mengenakan pakaian formal atau rapi (setelan jas atau gaun gelap). Hindari memakai celana pendek atau pakaian kasual yang terlalu santai saat prosesi suci.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tips-festival-num">03</span>
+                            <div class="tips-festival-content">
+                                <h4>Manfaatkan Transportasi Publik</h4>
+                                <p>Banyak area jalanan di pusat kota tua akan ditutup total selama festival untuk rute parade. Menggunakan taksi atau menyewa mobil sangat tidak disarankan. Manfaatkan jaringan Metro Sevilla yang beroperasi 24 jam penuh selama pekan Feria.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-		</div>
+        <!-- PULL QUOTE SECTION -->
+        <section class="pull-quote">
+            <div class="container">
+                <span class="pq-mark">"</span>
+                <p class="pq-text">Untuk memahami orang Sevilla, kamu harus melihat mereka merayakan festivalnya. Di sana, batas antara kedukaan religius dan sukacita duniawi menguap begitu saja.</p>
+                <p class="pq-attr">Antonio Machado, Pujangga Klasik Andalusia</p>
+            </div>
+        </section>
+    </main>
 
-	</header>
+    <!-- POPUP MODAL DIALOG DETAIL -->
+    <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true">
+        <div class="modal-wrapper">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Tutup Detail">&times;</button>
+            <div class="modal-img-side">
+                <img class="modal-img" id="modalImg" src="" alt="" />
+            </div>
+            <div class="modal-content-side">
+                <span class="modal-meta" id="modalMeta"></span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-full-desc" id="modalFullDesc"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MEGA FOOTER -->
+    <footer class="mega-footer">
+        <div class="mega-container">
+            <div class="mega-left">
+                <h2 class="mega-brand">Alma de Sevilla</h2>
+                <p class="mega-desc">
+                    Stay informed about the latest festivals, culinary secrets, and cultural developments in the heart of Andalusia.
+                </p>
+                <form class="mega-subscribe" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+
+            <div class="mega-right">
+                <div class="mega-col">
+                    <h4>Navigation</h4>
+                    <a href="index.html">Home</a>
+                    <a href="budaya.html">Culture</a>
+                    <a href="festival.html" style="color: var(--merah); font-weight: 700;">Festival</a>
+                    <a href="kuliner.html">Culinary</a>
+                    <a href="jelajahi.html">Explore</a>
+                </div>
+                <div class="mega-col">
+                    <h4>Information</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-bottom">
+            <p>&copy; 2026 Alma de Sevilla. Tugas Besar Pemrograman Web.</p>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-top" id="backTop" aria-label="Kembali ke atas">▲</button>
+
+    <!-- ============================================================
+         JAVASCRIPT PROCESSING LOGIC
+    ============================================================ -->
+    <script>
+        // =============================================================
+        // DATABASE ARRAY OF OBJECTS (Local Client Memory)
+        // =============================================================
+        const datasetFestival = [
+            {
+                id: "semana-santa",
+                title: "Semana Santa",
+                meta: "Maret / April — Pekan Suci",
+                season: "spring",
+                tag: "Religius & Sakral",
+                desc: "Prosesi spiritual agung yang menggerakkan seluruh kota, menampilkan boks-boks suci (pasos) antik abad pertengahan yang diusung mengitari kota lama.",
+                fullDesc: "Semana Santa (Pekan Suci) di Sevilla adalah salah satu perayaan keagamaan paling terkenal di dunia. Selama seminggu penuh menjelang Paskah, lebih dari 60 persaudaraan keagamaan (cofradías) melakukan prosesi dari gereja masing-masing menuju Katedral Sevilla. Mereka mengusung 'pasos'—tandu kayu raksasa yang memuat patung-patung Yesus dan Bunda Maria yang sangat indah dan antik. Prosesi ini diiringi oleh para 'nazarenos' yang mengenakan jubah bertudung khas serta musik tiup lambat yang menciptakan atmosfer mistis tak terlupakan.",
+                image: "image/sevilla-semana-santa.webp",
+                ticketUrl: "https://www.ticketmaster.es"
+            },
+            {
+                id: "feria-abril",
+                title: "Feria de Abril",
+                meta: "April — Dua Minggu Pasca Paskah",
+                season: "spring",
+                tag: "Sukacita & Budaya",
+                desc: "Pekan kegembiraan Sevilla dengan ribuan tenda (casetas), gaun flamenco tradisional, parade kuda megah, dan tarian sevillanas tiada henti.",
+                fullDesc: "Dimulai pertama kali pada tahun 1847 sebagai pameran ternak, Feria de Abril kini telah berevolusi menjadi festival perayaan budaya terbesar di Sevilla. Sebuah area raksasa di distrik Los Remedios disulap menjadi kompleks berisi lebih dari 1.000 'casetas' (tenda privat dan publik). Di sini, warga lokal dan pengunjung berdansa Sevillanas sepanjang hari dan malam, mengenakan busana Flamenco berwarna-warni, menikmati hidangan lokal, dan meminum Rebujito dalam atmosfer kegembiraan murni.",
+                image: "image/feria-de-abril.jpg",
+                ticketUrl: "https://www.viagogo.com"
+            },
+            {
+                id: "corpus-christi",
+                title: "Corpus Christi",
+                meta: "Juni — Perayaan Monstrans Bunga",
+                season: "spring",
+                tag: "Religius & Seni",
+                desc: "Jalanan berbatu Sevilla berubah menjadi mahakarya hamparan bunga raksasa dalam prosesi sakral yang menghormati tradisi ekaristi.",
+                fullDesc: "Perayaan Corpus Christi di Sevilla merupakan salah satu tradisi tertua peninggalan abad ke-13 yang sangat megah. Sehari sebelum prosesi, warga bergotong royong menghiasi jalanan kota tua dengan kelopak bunga berwarna-warni, dedaunan rosemary, dan serbuk kayu wangi. Monstrans perak raksasa (Custodia) abad ke-16 diarak mengelilingi pusat kota lama diiringi orkestra katedral, menciptakan harmoni iman dan visual seni jalanan yang memukau.",
+                image: "image/corpus.jpg",
+                ticketUrl: "https://www.ticketmaster.es"
+            },
+            {
+                id: "bienal-flamenco",
+                title: "Bienal di Flamenco",
+                meta: "September / Oktober — Dua Tahunan",
+                season: "autumn",
+                tag: "Seni Musik & Tari",
+                desc: "Festival seni tari dan musik gitar Flamenco paling bergengsi di dunia, mengumpulkan maestro global di panggung teater kuno Sevilla.",
+                fullDesc: "Bienal di Flamenco adalah festival seni Flamenco paling terkemuka di dunia yang diadakan setiap dua tahun sekali pada musim gugur. Selama sebulan penuh, teater-teater besar, istana kuno, dan ruang terbuka di seluruh penjuru kota Sevilla berubah menjadi panggung pementasan bagi para penari (bailaores), penyanyi (cantaores), dan gitaris Flamenco terbaik dari seluruh dunia untuk mementaskan karya klasik maupun kontemporer.",
+                image: "image/bienal-de-flamenco.webp",
+                ticketUrl: "https://www.ticketmaster.es"
+            },
+            {
+                id: "navidad-sevilla",
+                title: "Navidad en Sevilla",
+                meta: "Desember — Perayaan Natal",
+                season: "winter",
+                tag: "Tradisi Musim Dingin",
+                desc: "Sevilla bersinar dalam magis lampu jutaan watt, pameran belén kuno, dan nyanyian paduan suara jalanan yang menghangatkan musim dingin.",
+                fullDesc: "Natal di Sevilla (Navidad Sevillana) menghadirkan transformasi visual yang luar biasa di pusat kota. Area Avenida de la Constitución dan Plaza Nueva dihiasi instalasi lampu spektakuler bertema arsitektur katedral gothik. Sepanjang bulan Desember, warga merayakannya dengan membuka pasar loak seni kuno 'Feria de Belenes', menikmati kue madu tradisional buatan biara, serta mendengarkan grup musik jalanan menyanyikan lagu natal Andalusia (Villancicos) dengan instrumen rebana instan.",
+                image: "image/navidad.jpg",
+                ticketUrl: "https://www.ticketmaster.es"
+            }
+        ];
+
+        // =============================================================
+        // RENDER CARDS VIA FOREACH LOOP
+        // =============================================================
+        const cardsGrid = document.getElementById('cardsGrid');
+
+        function renderCards() {
+            cardsGrid.innerHTML = '';
+            datasetFestival.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `fest-card`;
+                card.setAttribute('data-season', item.season);
+                card.setAttribute('id', `card-${item.id}`);
+                
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <img src="${item.image}" alt="${item.title}" class="card-img" loading="lazy" />
+                        <span class="card-tag">${item.tag}</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-meta">${item.meta}</span>
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="card-desc">${item.desc}</p>
+                        <button class="action-btn" aria-label="Pelajari selengkapnya tentang ${item.title}">Lihat Detail →</button>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => openModal(item));
+                cardsGrid.appendChild(card);
+            });
+        }
+
+        // =============================================================
+        // RENDER TIMELINE TRACK NODES
+        // =============================================================
+        const timelineTrack = document.getElementById('timelineTrack');
+
+        function renderTimeline() {
+            const urutanBulan = [
+                { month: "Maret / April", title: "Semana Santa", desc: "Kekhusyukan spiritual, bau dupa pekat, dan lilin menyelimuti kota tua.", refId: "semana-santa" },
+                { month: "April", title: "Feria de Abril", desc: "Kompleks casetas dibuka, gaun flamenco, musik, dan tarian rakyat sevillanas.", refId: "feria-abril" },
+                { month: "Juni", title: "Corpus Christi", desc: "Parade keagamaan sakral menghias jalanan dengan wewangian kelopak bunga.", refId: "corpus-christi" },
+                { month: "September", title: "Bienal di Flamenco", desc: "Panggung maestro dunia unjuk bakat petikan gitar dan hentakan kaki.", refId: "bienal-flamenco" },
+                { month: "Desember", title: "Navidad en Sevilla", desc: "Pasar natal antik dibuka di sekitar katedral diselimuti cahaya lampu ornamen.", refId: "navidad-sevilla" }
+            ];
+
+            timelineTrack.innerHTML = '';
+            urutanBulan.forEach(node => {
+                const nodeElement = document.createElement('div');
+                nodeElement.className = 'timeline-node';
+                if(node.refId !== "") nodeElement.classList.add('highlight');
+
+                nodeElement.innerHTML = `
+                    <div class="node-dot"></div>
+                    <span class="node-month">${node.month}</span>
+                    <h4 class="node-title">${node.title}</h4>
+                    <p class="node-desc">${node.desc}</p>
+                `;
+
+                if(node.refId !== "") {
+                    nodeElement.style.cursor = 'pointer';
+                    nodeElement.addEventListener('click', () => {
+                        const targetData = datasetFestival.find(f => f.id === node.refId);
+                        if(targetData) openModal(targetData);
+                    });
+                }
+
+                timelineTrack.appendChild(nodeElement);
+            });
+        }
+
+        // =============================================================
+        // CONDITIONAL FILTER CONTROLS
+        // =============================================================
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filterValue = this.getAttribute('data-filter');
+                const cards = document.querySelectorAll('.fest-card');
+
+                cards.forEach(card => {
+                    const cardSeason = card.getAttribute('data-season');
+                    
+                    if (filterValue === 'all' || cardSeason === filterValue) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // =============================================================
+        // MODAL SYSTEM
+        // =============================================================
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalImg     = document.getElementById('modalImg');
+        const modalMeta    = document.getElementById('modalMeta');
+        const modalTitle   = document.getElementById('modalTitle');
+        const modalFullDesc= document.getElementById('modalFullDesc');
+        const modalCloseBtn= document.getElementById('modalCloseBtn');
+
+        function openModal(item) {
+            modalImg.src = item.image;
+            modalImg.alt = item.title;
+            modalMeta.textContent = item.meta;
+            modalTitle.textContent = item.title;
+            
+            modalFullDesc.innerHTML = `
+                <p>${item.fullDesc}</p>
+                <a href="${item.ticketUrl}" target="_blank" class="modal-ticket-btn">
+                    Pesan Tiket Resmi via Platform →
+                </a>
+            `;
+
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        // =============================================================
+        // GLOBAL SINKRON NAVBAR EFFECT ON SCROLL
+        // =============================================================
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('siteHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // HAMBURGER MENU CONTROL
+        const menuBtn  = document.getElementById('menuBtn');
+        const mobileNav    = document.getElementById('mobileNav');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        function toggleMenu(force) {
+            const isOpen = force !== undefined ? force : !mobileNav.classList.contains('active');
+            mobileNav.classList.toggle('active', isOpen);
+            mobileOverlay.classList.toggle('active', isOpen);
+            menuBtn.innerHTML = mobileNav.classList.contains('active') ? "&#10006;" : "&#9776;";
+            menuBtn.setAttribute('aria-expanded', isOpen);
+        }
+
+        menuBtn.addEventListener('click', () => toggleMenu());
+        mobileOverlay.addEventListener('click', () => toggleMenu(false));
+
+        // =============================================================
+        // BACK TO TOP
+        // =============================================================
+        const backTop = document.getElementById('backTop');
+        window.addEventListener('scroll', () => {
+            backTop.classList.toggle('visible', window.scrollY > 400);
+        }, { passive: true });
+        backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // =============================================================
+        // INITIALIZATION
+        // =============================================================
+        renderCards();
+        renderTimeline();
+    </script>
 </body>
 </html>
