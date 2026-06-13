@@ -1,16 +1,16 @@
-/* NAVBAR SCROLL */
-const navbar = document.getElementById('navbar');
+const navToggle = document.getElementById('navToggle');
+const navMobile = document.getElementById('navMobile');
 
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('solid', window.scrollY > 60);
-});
+navToggle.addEventListener('click', () => {
 
-/* MOBILE MENU */
-const toggle = document.getElementById('navToggle');
-const mobile = document.getElementById('navMobile');
+    navMobile.classList.toggle('open');
 
-toggle.addEventListener('click', () => {
-  mobile.classList.toggle('open');
+    if(navMobile.classList.contains('open')){
+        navToggle.innerHTML = '&times;';
+    }else{
+        navToggle.innerHTML = '☰';
+    }
+
 });
 
 /* REVEAL */
