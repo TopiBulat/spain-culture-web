@@ -10,6 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Lato:wght@300;400;700;900&display=swap"
     rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --cream: #F5F0E8;
@@ -63,144 +64,190 @@
     }
 
     /* NAVBAR */
-    .navbar {
+    header {
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      z-index: 50;
-      transition: all 0.5s ease;
+      width: 100%;
+      z-index: 1000;
       background: transparent;
+      transition: 0.4s ease;
     }
 
-    .navbar.solid {
-      background: rgba(245, 240, 232, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--cream-light);
-    }
-
-    .nav-inner {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 80px;
+    .navbar {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 24px 24px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(1px);
+      transition: 0.4s ease;
     }
 
-    @media (min-width: 1024px) {
-      .nav-inner {
-        padding: 0 48px;
-      }
-    }
-
-    .nav-logo {
+    .logo {
       font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 26px;
+      font-size: 24px;
+      font-weight: 600;
       color: var(--cream);
-      transition: color 0.4s ease;
+      transition: 0.4s ease;
     }
 
-    .navbar.solid .nav-logo {
-      color: var(--black);
-    }
-
-    .nav-links {
+    .nav-menu {
       display: none;
-      gap: 40px;
-      list-style: none;
     }
 
-    @media (min-width: 768px) {
-      .nav-links {
-        display: flex;
-      }
-    }
-
-    .nav-link {
+    .nav-menu a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #ffffff;
+      transition: 0.3s ease;
       position: relative;
       padding-bottom: 4px;
-      color: var(--cream);
-      transition: color 0.4s ease;
     }
 
-    .navbar.solid .nav-link {
-      color: var(--black);
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: var(--red);
     }
 
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--red);
-      transition: width 0.4s ease;
-    }
-
-    .nav-link:hover::after,
-    .nav-link.active::after {
-      width: 100%;
-    }
-
-    .nav-toggle {
-      display: block;
+    .menu-btn {
       background: none;
       border: none;
+      outline: none;
       cursor: pointer;
-      color: var(--cream);
-      font-size: 38px;
+
+      font-size: 32px;
+      color: #ffffff;
+      line-height: 1;
+
+      z-index: 1001;
+      transition: 0.4s ease;
     }
 
-    .navbar.solid .nav-toggle {
-      color: var(--black);
-    }
-
-    @media (min-width: 768px) {
-      .nav-toggle {
-        display: none;
-      }
-    }
-
-    .nav-mobile {
+    .mobile-nav {
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
-      display: none;
-      flex-direction: column;
-      background: rgba(0, 0, 0, .92);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      padding: 25px 30px;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 24px;
+      gap: 20px;
       z-index: 999;
-      border-top: 1px solid rgba(255, 255, 255, .08);
+      display: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .nav-mobile.open {
+    .mobile-nav.active {
       display: flex;
+      flex-direction: column;
     }
 
-    .nav-mobile a {
-      color: #fff;
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      letter-spacing: 2px;
+    .mobile-nav a {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      padding: 22px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, .08);
-      transition: .3s;
+      color: #ffffff;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .nav-mobile a:hover {
-      color: #C0392B;
-    }
-
-    .nav-mobile a:last-child {
+    .mobile-nav a:last-child {
       border-bottom: none;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      color: var(--red);
+    }
+
+    /* GAYA NAVBAR SAAT DI-SCROLL */
+    header.scrolled {
+      background-color: var(--cream);
+    }
+
+    header.scrolled .navbar {
+      background: transparent;
+      backdrop-filter: none;
+      padding: 16px 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    header.scrolled .logo {
+      color: var(--black);
+    }
+
+    header.scrolled .menu-btn {
+      color: var(--black);
+    }
+
+    header.scrolled .nav-menu a {
+      color: var(--black);
+    }
+
+    header.scrolled .nav-menu a:hover {
+      color: var(--red);
+    }
+
+    header.scrolled .nav-menu a.active {
+      color: var(--red);
+    }
+
+    @media(min-width: 768px) {
+      .navbar {
+        padding: 28px 40px;
+      }
+
+      header.scrolled .navbar {
+        padding: 18px 40px;
+      }
+
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .menu-btn,
+      .mobile-nav,
+      .mobile-nav.active {
+        display: none !important;
+      }
+    }
+
+    @media(min-width: 1100px) {
+      .navbar {
+        padding: 32px 80px;
+      }
+
+      header.scrolled .navbar {
+        padding: 20px 80px;
+      }
+
+      .nav-menu {
+        gap: 42px;
+      }
+    }
+
+    /* Mobile Overlay */
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .mobile-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     /* HERO*/
@@ -496,120 +543,183 @@
     }
 
     /* FOOTER */
-    .footer {
-      background: var(--black);
-      color: var(--cream);
-      padding: 96px 24px 40px;
+    .mega-footer {
+      width: 100%;
+      background-color: #1A1612;
+      /* Warna dasar Hitam Andalusia */
+      color: #F5F0E8;
+      /* Warna teks Krem Sevilla */
+      padding: 80px 24px 24px 24px;
+      font-family: 'Lato', sans-serif;
     }
 
-    @media (min-width: 1024px) {
-      .footer {
-        padding: 96px 48px 40px;
-      }
+    .mega-container {
+      max-width: 1400px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
     }
 
-    .footer-inner {
-      max-width: 1440px;
-      margin: 0 auto;
-      display: grid;
-      gap: 48px;
-      grid-template-columns: 1fr;
+    /* --- BAGIAN KIRI (Brand, Deskripsi, & Form) --- */
+    .mega-left {
+      max-width: 420px;
     }
 
-    @media (min-width: 1024px) {
-      .footer-inner {
-        grid-template-columns: 6fr 3fr 3fr;
-      }
-    }
-
-    .footer-brand h3 {
+    .mega-brand {
       font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(40px, 5vw, 60px);
+      font-size: 48px;
+      /* Teks besar nan elegan */
+      font-weight: 600;
+      letter-spacing: -1px;
       margin-bottom: 24px;
     }
 
-    .footer-brand p {
-      font-size: 18px;
-      color: rgba(245, 240, 232, 0.7);
-      max-width: 420px;
+    .mega-desc {
+      font-size: 15px;
       line-height: 1.6;
+      opacity: 0.7;
       margin-bottom: 32px;
     }
 
-    .newsletter {
+    /* Desain Form Subscribe (Bentuk Kapsul Gelap) */
+    .mega-subscribe {
       display: flex;
-      align-items: center;
-      background: #2a221c;
-      border-radius: 999px;
-      padding: 4px 4px 4px 24px;
-      max-width: 420px;
+      background-color: rgba(255, 255, 255, 0.04);
+      /* Kotak abu-abu transparan super tipis */
+      border-radius: 50px;
+      /* Membuat bentuk kapsul sempurna */
+      padding: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .newsletter input {
+    .mega-subscribe input {
       flex: 1;
       background: transparent;
       border: none;
       outline: none;
-      color: var(--cream);
+      color: #F5F0E8;
+      padding: 10px 20px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+    }
+
+    .mega-subscribe input::placeholder {
+      color: rgba(245, 240, 232, 0.4);
+      /* Placeholder sedikit memudar */
+    }
+
+    .mega-subscribe button {
+      background-color: #C0392B;
+      /* Tombol Merah Flamenco */
+      color: #ffffff;
+      border: none;
+      /* Menghilangkan garis tepi bawaan tombol */
+      border-radius: 50px;
+      /* Tombol kapsul menyesuaikan kotaknya */
+      padding: 12px 32px;
       font-family: 'Lato', sans-serif;
       font-size: 13px;
-      padding: 12px 0;
-    }
-
-    .newsletter input::placeholder {
-      color: rgba(245, 240, 232, 0.4);
-    }
-
-    .newsletter button {
-      background: var(--red);
-      color: var(--cream);
-      border: none;
-      border-radius: 999px;
-      padding: 12px 24px;
+      font-weight: 700;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .mega-subscribe button:hover {
+      background-color: #a93226;
+    }
+
+    /* --- BAGIAN KANAN (2 Kolom Navigasi Utama) --- */
+    .mega-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      /* Membagi otomatis menjadi 2 kolom rapi */
+      gap: 40px;
+    }
+
+    .mega-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mega-col h4 {
       font-family: 'Lato', sans-serif;
       font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      transition: background 0.3s ease;
+      letter-spacing: 1.5px;
+      opacity: 0.5;
+      /* Dibuat pudar agar menjadi pemisah judul yang elegan */
+      margin-bottom: 8px;
     }
 
-    .newsletter button:hover {
-      background: #a02f23;
+    .mega-col a {
+      font-size: 14.5px;
+      color: #F5F0E8;
+      opacity: 0.8;
+      transition: all 0.3s ease;
     }
 
-    .footer-col h4 {
-      color: var(--clay);
-      margin-bottom: 24px;
+    .mega-col a:hover {
+      opacity: 1;
+      color: #C0392B;
+      /* Hover teks berubah warna kemerahan */
     }
 
-    .footer-col ul {
-      list-style: none;
+    /* --- BAGIAN BAWAH (Garis Pembatas & Copyright) --- */
+    .mega-bottom {
+      max-width: 1400px;
+      margin: 80px auto 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      /* Garis batas tipis */
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.5;
     }
 
-    .footer-col li {
-      font-size: 18px;
-      margin-bottom: 16px;
+    /* ==========================================================================
+   MEDIA QUERY DESKTOP / LAPTOP (768px ke atas)
+   ========================================================================== */
+    @media(min-width: 768px) {
+      .mega-footer {
+        padding: 100px 40px 30px 40px;
+      }
+
+      .mega-container {
+        flex-direction: row;
+        /* Berubah jadi format berjejer Kiri-Kanan di Laptop */
+        justify-content: space-between;
+      }
+
+      .mega-brand {
+        font-size: 56px;
+        /* Ukuran font judul brand membesar */
+      }
+
+      .mega-right {
+        gap: 80px;
+        /* Jarak celah antar 2 kolom navigasi sedikit dilebarkan */
+      }
+
+      .mega-bottom {
+        text-align: left;
+        /* Teks copyright bergeser ke pinggir kiri agar lebih rapi di monitor lebar */
+      }
     }
 
-    .footer-col a {
-      transition: color 0.3s ease;
-    }
+    /* ==========================================================================
+   MEDIA QUERY MONITOR LEBAR (1100px ke atas)
+   ========================================================================== */
+    @media(min-width: 1100px) {
+      .mega-footer {
+        padding: 120px 80px 40px 80px;
+      }
 
-    .footer-col a:hover {
-      color: var(--red);
-    }
-
-    .footer-bottom {
-      max-width: 1440px;
-      margin: 80px auto 0;
-      padding-top: 32px;
-      border-top: 1px solid rgba(245, 240, 232, 0.1);
-    }
-
-    .footer-bottom p {
-      color: rgba(245, 240, 232, 0.4);
+      .mega-right {
+        gap: 120px;
+        /* Jarak maksimal antar kolom jika layar sangat lebar */
+      }
     }
 
     /* REVEAL ANIMATION  */
@@ -713,286 +823,283 @@
 </head>
 
 <body>
-  <! navbar >
-  <header class="navbar" id="navbar">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">Alma de Sevilla</a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="culture.html" class="nav-link font-label active">Culture</a></li>
-          <li><a href="festival.html" class="nav-link font-label">Festival</a></li>
-          <li><a href="culinary.html" class="nav-link font-label">Culinary</a></li>
-          <li><a href="explore.html" class="nav-link font-label">Explore</a></li>
-          <li><a href="about.html" class="nav-link font-label">About Us</a></li>
-        </ul>
-      </nav>
-      <button class="nav-toggle" id="navToggle">
-        ☰
-      </button>
-    </div>
-    <div class="nav-mobile" id="navMobile">
-      <a href="culture.html" class="font-label">Culture</a>
-      <a href="festival.html" class="font-label">Festival</a>
-      <a href="culinary.html" class="font-label">Culinary</a>
-      <a href="explore.html" class="font-label">Explore</a>
-      <a href="about.html" class="font-label">About Us</a>
-    </div>
-  </header>
+  <! navbar>
+    <header>
+      <div class="navbar">
+        <a href="index.html" class="logo">Alma de Sevilla</a>
+        <nav class="nav-menu">
+          <a href="index.html">Home</a>
+          <a href="budaya.html">Culture</a>
+          <a href="festival.html">Festival</a>
+          <a href="kuliner.html">Culinary</a>
+          <a href="jelajahi.html">Explore</a>
+          <a href="about.html">About Us</a>
+        </nav>
 
-  <! hero>
-
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="font-label hero-eyebrow">Jiwa Andalusia</p>
-      <h1>Budaya<br /><span class="accent">&amp;</span> Warisan</h1>
-      <p>
-        Empat pilar yang membentuk jiwa Sevilla — terjalin dari
-        berabad-abad sejarah, seni, tradisi, dan warna kehidupan
-        masyarakat Andalusia.
-      </p>
-    </div>
-  </section>
-
-  <! editorial intro >
-
-  <section class="editorial">
-    <div class="editorial-grid reveal">
-      <div class="editorial-left">
-        <p class="font-label red-label">Pengantar </p>
-        <h2>Kota yang<br />bernyanyi dalam <em>warna</em>.</h2>
-      </div>
-      <div></div>
-      <div class="editorial-right">
-        <p>
-          Sevilla bukan sekadar kota yang dikunjungi — Sevilla adalah
-          kota yang dirasakan. Di balik harum bunga jeruk yang memenuhi
-          alun-alunnya dan alunan gitar yang terdengar dari halaman-halaman
-          tua, terdapat identitas budaya yang telah terjaga selama berabad-abad.
-          <span class="italic-red">Andalusia</span> menjadi tempat bertemunya
-          tradisi Kristen, Moor, dan Romani yang kemudian berpadu menjadi
-          sebuah harmoni budaya yang unik.
-        </p>
-
-        <p>
-          Pada halaman ini, kita akan mengenal empat pilar utama budaya
-          Sevilla: semangat penuh emosi dari <em>Flamenco</em>, keindahan
-          geometris <em>Arsitektur Moor</em>, kebanggaan masyarakat melalui
-          <em>Pakaian Tradisional Andalusia</em>, serta alunan
-          <em>Musik Andalusia</em> yang terus hidup hingga kini.
-        </p>
-
+        <button class="menu-btn">&#9776;</button>
       </div>
 
-    </div>
+      <div class="mobile-nav">
+        <a href="budaya.html" onclick="tutupMenu()">Culture</a>
+        <a href="festival.html" onclick="tutupMenu()">Festival</a>
+        <a href="kuliner.html" onclick="tutupMenu()">Culinary</a>
+        <a href="jelajahi.html" onclick="tutupMenu()">Explore</a>
+        <a href="about.html" onclick="tutupMenu()">About Us</a>
+      </div>
+    </header>
 
-  </section>
+    <! hero>
 
-  <! pillars >
-  <section class="pillars-section">
-    <div class="pillars-inner">
-      <div class="pillars-header">
-        <div>
-          <p class="font-label label">
-            Empat Pilar Budaya
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="font-label hero-eyebrow">Jiwa Andalusia</p>
+          <h1>Budaya<br /><span class="accent">&amp;</span> Warisan</h1>
+          <p>
+            Empat pilar yang membentuk jiwa Sevilla — terjalin dari
+            berabad-abad sejarah, seni, tradisi, dan warna kehidupan
+            masyarakat Andalusia.
           </p>
-          <h2>
-            Warisan budaya<br>
-            dalam empat kisah
-          </h2>
         </div>
-      </div>
-      <div class="chapters-grid">
+      </section>
 
-        <! pillar 01 >
-        <article class="chapter-card">
-          <img src="image/flamenco.jpg" alt="Flamenco">
-          <div class="chapter-content">
-            <span class="font-label chapter-number">
-              01 — FLAMENCO
-            </span>
-            <p class="chapter-desc">
-              Lahir di Andalusia, Flamenco merupakan perpaduan emosional
-              antara nyanyian, permainan gitar, dan tarian. Seni ini menjadi
-              simbol budaya paling ikonik di Sevilla dan Spanyol.
-            </p>
-            <ul>
-              <li>Warisan Budaya Takbenda UNESCO</li>
-              <li>Berasal dari komunitas Romani Andalusia</li>
-              <li>Terdiri dari cante, toque, dan baile</li>
-            </ul>
-          </div>
-        </article>
+      <! editorial intro>
 
-        <! pillar 02 >
-        <article class="chapter-card">
-          <img src="image/arsitektur_moor.jpg" alt="Arsitektur Moor">
-          <div class="chapter-content">
-            <span class="font-label chapter-number">
-              02 — ARSITEKTUR MOOR
-            </span>
-            <p class="chapter-desc">
-              Pengaruh Moor selama berabad-abad membentuk wajah Sevilla,
-              menghadirkan pola geometris yang rumit, halaman terbuka,
-              lengkungan khas, dan bangunan bersejarah yang masih berdiri hingga kini.
-            </p>
-            <ul>
-              <li>Istana Real Alcázar</li>
-              <li>Menara La Giralda</li>
-              <li>Gaya arsitektur Mudéjar</li>
-            </ul>
-          </div>
-        </article>
+        <section class="editorial">
+          <div class="editorial-grid reveal">
+            <div class="editorial-left">
+              <p class="font-label red-label">Pengantar </p>
+              <h2>Kota yang<br />bernyanyi dalam <em>warna</em>.</h2>
+            </div>
+            <div></div>
+            <div class="editorial-right">
+              <p>
+                Sevilla bukan sekadar kota yang dikunjungi — Sevilla adalah
+                kota yang dirasakan. Di balik harum bunga jeruk yang memenuhi
+                alun-alunnya dan alunan gitar yang terdengar dari halaman-halaman
+                tua, terdapat identitas budaya yang telah terjaga selama berabad-abad.
+                <span class="italic-red">Andalusia</span> menjadi tempat bertemunya
+                tradisi Kristen, Moor, dan Romani yang kemudian berpadu menjadi
+                sebuah harmoni budaya yang unik.
+              </p>
 
-        <! pillar 03 >
-        <article class="chapter-card">
-          <img src="image/pakaian_tradisional.jpg" alt="Pakaian Tradisional">
-          <div class="chapter-content">6
-            <span class="font-label chapter-number">
-              03 — PAKAIAN TRADISIONAL
-            </span>
-            <p class="chapter-desc">
-              Traje de Flamenca menjadi simbol identitas masyarakat Sevilla.
-              Dengan warna-warna cerah dan rumbai khas, pakaian ini selalu
-              hadir dalam berbagai perayaan budaya Andalusia.
-            </p>
-            <ul>
-              <li>Terinspirasi Andalusia abad ke-19</li>
-              <li>Ciri khas rumbai berlapis</li>
-              <li>Digunakan saat Feria de Abril</li>
-            </ul>
-          </div>
-        </article>
+              <p>
+                Pada halaman ini, kita akan mengenal empat pilar utama budaya
+                Sevilla: semangat penuh emosi dari <em>Flamenco</em>, keindahan
+                geometris <em>Arsitektur Moor</em>, kebanggaan masyarakat melalui
+                <em>Pakaian Tradisional Andalusia</em>, serta alunan
+                <em>Musik Andalusia</em> yang terus hidup hingga kini.
+              </p>
 
-        <! pillar 04 >
-        <article class="chapter-card">
-          <img src="image/music.jpg" alt="Musik Andalusia">
-          <div class="chapter-content">
-            <span class="font-label chapter-number"> 04 — MUSIK ANDALUSIA </span>
-            <p class="chapter-desc">
-              Selain Flamenco, Andalusia memiliki berbagai tradisi musik
-              seperti Sevillanas dan Fandangos yang dipengaruhi budaya
-              Arab-Andalusia selama berabad-abad.
-            </p>
-            <ul>
-              <li>Tradisi rakyat Sevillanas</li>
-              <li>Pengaruh musik Arab-Andalusia</li>
-              <li>Musik yang hidup di plaza dan festival</li>
-            </ul>
+            </div>
 
           </div>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <! quote >
-  <section class="quote-section">
-    <div class="quote-overlay"></div>
-    <div class="quote-inner reveal">
-      <p class="font-label quote-eyebrow">— Sebuah Kutipan dari Federico García Lorca</p>
-      <blockquote class="quote-text">
-        "Duende adalah sebuah kekuatan, bukan karya.
-        Ia adalah perjuangan, bukan sekadar pemikiran."
-      </blockquote>
-      <p class="quote-caption">
-        Semangat Andalusia — <em>el duende</em> — tidak dapat diajarkan.<br />
-        Ia hanya dapat dirasakan ketika senar gitar mulai bergetar.
-      </p>
-    </div>
+        </section>
 
-  </section>
+        <! pillars>
+          <section class="pillars-section">
+            <div class="pillars-inner">
+              <div class="pillars-header">
+                <div>
+                  <p class="font-label label">
+                    Empat Pilar Budaya
+                  </p>
+                  <h2>
+                    Warisan budaya<br>
+                    dalam empat kisah
+                  </h2>
+                </div>
+              </div>
+              <div class="chapters-grid">
 
-  <! timeline >
-  <section class="timeline-section">
-    <div class="timeline-inner reveal">
-      <p class="font-label timeline-label">Perjalanan Waktu</p>
-      <h2>Tujuh abad, satu jiwa.</h2>
-      <div class="timeline-grid">
-        <div class="timeline-item">
-          <p class="timeline-year">711</p>
-          <h4 class="font-label timeline-title">
-            Kedatangan Bangsa Moor
-          </h4>
-          <p class="timeline-text">
-            Al-Andalus lahir dan Sevilla berkembang menjadi salah satu
-            kota terpenting di wilayah Islam Spanyol.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <p class="timeline-year">1248</p>
-          <h4 class="font-label timeline-title">
-            Reconquista
-          </h4>
-          <p class="timeline-text">
-            Sevilla direbut oleh Kerajaan Kastilia dan melahirkan
-            perpaduan budaya yang unik melalui gaya Mudéjar.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <p class="timeline-year">1492</p>
-          <h4 class="font-label timeline-title">era Penjelajahan Dunia</h4>
-          <p class="timeline-text">
-            Sevilla menjadi gerbang utama Spanyol menuju Benua Amerika.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <p class="timeline-year">1842</p>
-          <h4 class="font-label timeline-title">Lahirnya Flamenco Modern</h4>
-          <p class="timeline-text">
-            Café Cantante menjadi panggung yang memperkenalkan Flamenco
-            kepada dunia modern.
-          </p>
-        </div>
-      </div>
-    </div>
+                <! pillar 01>
+                  <article class="chapter-card">
+                    <img src="image/flamenco.jpg" alt="Flamenco">
+                    <div class="chapter-content">
+                      <span class="font-label chapter-number">
+                        01 — FLAMENCO
+                      </span>
+                      <p class="chapter-desc">
+                        Lahir di Andalusia, Flamenco merupakan perpaduan emosional
+                        antara nyanyian, permainan gitar, dan tarian. Seni ini menjadi
+                        simbol budaya paling ikonik di Sevilla dan Spanyol.
+                      </p>
+                      <ul>
+                        <li>Warisan Budaya Takbenda UNESCO</li>
+                        <li>Berasal dari komunitas Romani Andalusia</li>
+                        <li>Terdiri dari cante, toque, dan baile</li>
+                      </ul>
+                    </div>
+                  </article>
 
-  </section>
+                  <! pillar 02>
+                    <article class="chapter-card">
+                      <img src="image/arsitektur_moor.jpg" alt="Arsitektur Moor">
+                      <div class="chapter-content">
+                        <span class="font-label chapter-number">
+                          02 — ARSITEKTUR MOOR
+                        </span>
+                        <p class="chapter-desc">
+                          Pengaruh Moor selama berabad-abad membentuk wajah Sevilla,
+                          menghadirkan pola geometris yang rumit, halaman terbuka,
+                          lengkungan khas, dan bangunan bersejarah yang masih berdiri hingga kini.
+                        </p>
+                        <ul>
+                          <li>Istana Real Alcázar</li>
+                          <li>Menara La Giralda</li>
+                          <li>Gaya arsitektur Mudéjar</li>
+                        </ul>
+                      </div>
+                    </article>
+
+                    <! pillar 03>
+                      <article class="chapter-card">
+                        <img src="image/pakaian_tradisional.jpg" alt="Pakaian Tradisional">
+                        <div class="chapter-content">6
+                          <span class="font-label chapter-number">
+                            03 — PAKAIAN TRADISIONAL
+                          </span>
+                          <p class="chapter-desc">
+                            Traje de Flamenca menjadi simbol identitas masyarakat Sevilla.
+                            Dengan warna-warna cerah dan rumbai khas, pakaian ini selalu
+                            hadir dalam berbagai perayaan budaya Andalusia.
+                          </p>
+                          <ul>
+                            <li>Terinspirasi Andalusia abad ke-19</li>
+                            <li>Ciri khas rumbai berlapis</li>
+                            <li>Digunakan saat Feria de Abril</li>
+                          </ul>
+                        </div>
+                      </article>
+
+                      <! pillar 04>
+                        <article class="chapter-card">
+                          <img src="image/music.jpg" alt="Musik Andalusia">
+                          <div class="chapter-content">
+                            <span class="font-label chapter-number"> 04 — MUSIK ANDALUSIA </span>
+                            <p class="chapter-desc">
+                              Selain Flamenco, Andalusia memiliki berbagai tradisi musik
+                              seperti Sevillanas dan Fandangos yang dipengaruhi budaya
+                              Arab-Andalusia selama berabad-abad.
+                            </p>
+                            <ul>
+                              <li>Tradisi rakyat Sevillanas</li>
+                              <li>Pengaruh musik Arab-Andalusia</li>
+                              <li>Musik yang hidup di plaza dan festival</li>
+                            </ul>
+
+                          </div>
+                        </article>
+              </div>
+            </div>
+          </section>
+
+          <! quote>
+            <section class="quote-section">
+              <div class="quote-overlay"></div>
+              <div class="quote-inner reveal">
+                <p class="font-label quote-eyebrow">— Sebuah Kutipan dari Federico García Lorca</p>
+                <blockquote class="quote-text">
+                  "Duende adalah sebuah kekuatan, bukan karya.
+                  Ia adalah perjuangan, bukan sekadar pemikiran."
+                </blockquote>
+                <p class="quote-caption">
+                  Semangat Andalusia — <em>el duende</em> — tidak dapat diajarkan.<br />
+                  Ia hanya dapat dirasakan ketika senar gitar mulai bergetar.
+                </p>
+              </div>
+
+            </section>
+
+            <! timeline>
+              <section class="timeline-section">
+                <div class="timeline-inner reveal">
+                  <p class="font-label timeline-label">Perjalanan Waktu</p>
+                  <h2>Tujuh abad, satu jiwa.</h2>
+                  <div class="timeline-grid">
+                    <div class="timeline-item">
+                      <p class="timeline-year">711</p>
+                      <h4 class="font-label timeline-title">
+                        Kedatangan Bangsa Moor
+                      </h4>
+                      <p class="timeline-text">
+                        Al-Andalus lahir dan Sevilla berkembang menjadi salah satu
+                        kota terpenting di wilayah Islam Spanyol.
+                      </p>
+                    </div>
+                    <div class="timeline-item">
+                      <p class="timeline-year">1248</p>
+                      <h4 class="font-label timeline-title">
+                        Reconquista
+                      </h4>
+                      <p class="timeline-text">
+                        Sevilla direbut oleh Kerajaan Kastilia dan melahirkan
+                        perpaduan budaya yang unik melalui gaya Mudéjar.
+                      </p>
+                    </div>
+                    <div class="timeline-item">
+                      <p class="timeline-year">1492</p>
+                      <h4 class="font-label timeline-title">era Penjelajahan Dunia</h4>
+                      <p class="timeline-text">
+                        Sevilla menjadi gerbang utama Spanyol menuju Benua Amerika.
+                      </p>
+                    </div>
+                    <div class="timeline-item">
+                      <p class="timeline-year">1842</p>
+                      <h4 class="font-label timeline-title">Lahirnya Flamenco Modern</h4>
+                      <p class="timeline-text">
+                        Café Cantante menjadi panggung yang memperkenalkan Flamenco
+                        kepada dunia modern.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </section>
 
 
-  <! footer >
-  	<main>
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <h3>Alma de Sevilla</h3>
-        <p>
-          Stay informed about the latest festivals, culinary secrets, and
-          cultural developments in the heart of Andalusia.
-        </p>
-        <form class="newsletter"
-          onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Thank you for subscribing!');">
-          <input type="email" placeholder="Enter your email" required />
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
-      <div class="footer-col">
-        <h4 class="font-label">Navigation</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="culture.html">Culture</a></li>
-          <li><a href="festival.html">Festival</a></li>
-          <li><a href="culinary.html">Culinary</a></li>
-          <li><a href="explore.html">Explore</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4 class="font-label">Information</h4>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="font-label">© 2026 Alma de Sevilla. Tugas Besar Pemrograman Web.</p>
-    </div>
-  </footer>
+              <! footer>
+                <footer class="mega-footer">
+                  <div class="mega-container">
+                    <div class="mega-left">
+                      <h2 class="mega-brand">Alma de Sevilla</h2>
+                      <p class="mega-desc">
+                        Stay informed about the latest festivals, culinary secrets, and cultural developments in the
+                        heart of Andalusia.
+                      </p>
+                      <form class="mega-subscribe" onsubmit="event.preventDefault();">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                      </form>
+                    </div>
 
-  <script src="js/budaya.js"></script>
+                    <div class="mega-right">
+                      <div class="mega-col">
+                        <h4>Navigation</h4>
+                        <a href="index.html">Home</a>
+                        <a href="budaya.html">Culture</a>
+                        <a href="festival.html" style="color: var(--red); font-weight: 700;">Festival</a>
+                        <a href="kuliner.html">Culinary</a>
+                        <a href="jelajahi.html">Explore</a>
+                      </div>
+                      <div class="mega-col">
+                        <h4>Information</h4>
+                        <a href="about.html">About Us</a>
+                        <a href="#">FAQ</a>
+                        <a href="#">Contact</a>
+                      </div>
+                    </div>
+                  </div>
 
+                  <div class="mega-bottom">
+                    <p>&copy; 2026 Alma de Sevilla. Tugas Besar Pemrograman Web.</p>
+                  </div>
+                </footer>
+
+
+                <script src="js/budaya.js"></script>
 </body>
 
 </html>
