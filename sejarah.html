@@ -44,138 +44,169 @@
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 200;
-            transition: background .5s, box-shadow .4s;
-        }
-
-        header.on {
-            background: var(--krem);
-            box-shadow: 0 1px 0 var(--krem-muda);
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            transition: 0.4s ease;
         }
 
         .navbar {
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.5rem 4rem;
-            transition: padding .4s;
+            padding: 24px 24px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(1px);
+            transition: 0.4s ease;
         }
 
-        header.on .navbar {
-            padding: 1rem 4rem
-        }
-
-        /* Logo */
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            letter-spacing: .13em;
-            text-transform: uppercase;
-            color: var(--hitam);
-            text-decoration: none;
-            white-space: nowrap;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--krem);
+            transition: 0.4s ease;
         }
 
-        /* Desktop nav */
         .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 2.4rem;
+            display: none;
         }
 
         .nav-menu a {
-            font-family: 'Lato', sans-serif;
-            font-size: .63rem;
-            letter-spacing: .2em;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--hitam);
-            text-decoration: none;
-            opacity: .65;
-            transition: opacity .25s;
+            color: #ffffff;
+            transition: 0.3s ease;
             position: relative;
-            padding-bottom: 3px;
+            padding-bottom: 4px;
         }
 
-        .nav-menu a:hover {
-            opacity: 1
-        }
-
+        .nav-menu a:hover,
         .nav-menu a.active {
-            opacity: 1;
+            color: var(--merah);
         }
 
-        .nav-menu a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--merah);
-        }
-
-        /* Hamburger */
         .menu-btn {
-            display: none;
-            font-size: 1.3rem;
+            background: none;
+            border: none;
+            outline: none;
             cursor: pointer;
-            color: var(--hitam);
+
+            font-size: 32px;
+            color: #ffffff;
             line-height: 1;
-            padding: 4px;
+
+            z-index: 1001;
+            transition: 0.4s ease;
         }
 
-        /* Mobile nav panel */
         .mobile-nav {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 24px;
+            gap: 20px;
+            z-index: 999;
             display: none;
-            flex-direction: column;
-            background: var(--krem);
-            border-top: .5px solid var(--krem-muda);
-            padding: 1.2rem 2rem 1.8rem;
-            gap: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .mobile-nav.open {
-            display: flex
+        .mobile-nav.active {
+            display: flex;
+            flex-direction: column;
         }
 
         .mobile-nav a {
-            font-family: 'Lato', sans-serif;
-            font-size: .7rem;
-            letter-spacing: .2em;
+            font-family: 'EB Garamond', serif;
+            font-size: 15px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--hitam);
-            text-decoration: none;
-            padding: .85rem 0;
-            border-bottom: .5px solid var(--krem-muda);
-            opacity: .7;
-            transition: opacity .2s, padding-left .2s;
+            color: #ffffff;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .mobile-nav a:last-child {
-            border-bottom: none
+            border-bottom: none;
         }
 
-        .mobile-nav a:hover {
-            opacity: 1;
-            padding-left: .5rem
+        .mobile-nav a:hover,
+        .mobile-nav a.active {
+            color: var(--merah);
         }
 
-        @media(max-width:767px) {
-            .nav-menu {
-                display: none
-            }
+        /* GAYA NAVBAR SAAT DI-SCROLL */
+        header.scrolled {
+            background-color: var(--krem);
+        }
 
-            .menu-btn {
-                display: block
-            }
+        header.scrolled .navbar {
+            background: transparent;
+            backdrop-filter: none;
+            padding: 16px 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
 
+        header.scrolled .logo {
+            color: var(--hitam);
+        }
+
+        header.scrolled .menu-btn {
+            color: var(--hitam);
+        }
+
+        header.scrolled .nav-menu a {
+            color: var(--hitam);
+        }
+
+        header.scrolled .nav-menu a:hover {
+            color: var(--merah);
+        }
+
+        header.scrolled .nav-menu a.active {
+            color: var(--merah);
+        }
+
+        @media(min-width: 768px) {
             .navbar {
-                padding: 1.2rem 1.5rem
+                padding: 28px 40px;
             }
 
-            header.on .navbar {
-                padding: .9rem 1.5rem
+            header.scrolled .navbar {
+                padding: 18px 40px;
+            }
+
+            .nav-menu {
+                display: flex;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .menu-btn,
+            .mobile-nav,
+            .mobile-nav.active {
+                display: none !important;
+            }
+        }
+
+        @media(min-width: 1100px) {
+            .navbar {
+                padding: 32px 80px;
+            }
+
+            header.scrolled .navbar {
+                padding: 20px 80px;
+            }
+
+            .nav-menu {
+                gap: 42px;
             }
         }
 
@@ -291,7 +322,7 @@
             }
         }
 
-    
+
 
         @keyframes up {
             from {
@@ -576,7 +607,7 @@
             max-width: 640px;
         }
 
-    
+
         /*  PULL QUOTE */
         .pull-quote {
             padding: 7rem 4rem;
@@ -712,7 +743,9 @@
             gap: 60px;
         }
 
-        .mega-left { max-width: 420px; }
+        .mega-left {
+            max-width: 420px;
+        }
 
         .mega-brand {
             font-family: 'Playfair Display', serif;
@@ -748,7 +781,9 @@
             font-size: 14px;
         }
 
-        .mega-subscribe input::placeholder { color: rgba(245, 240, 232, 0.4); }
+        .mega-subscribe input::placeholder {
+            color: rgba(245, 240, 232, 0.4);
+        }
 
         .mega-subscribe button {
             background-color: var(--merah);
@@ -763,7 +798,9 @@
             transition: background-color 0.3s ease;
         }
 
-        .mega-subscribe button:hover { background-color: var(--merah-gelap); }
+        .mega-subscribe button:hover {
+            background-color: var(--merah-gelap);
+        }
 
         .mega-right {
             display: grid;
@@ -771,7 +808,11 @@
             gap: 40px;
         }
 
-        .mega-col { display: flex; flex-direction: column; gap: 16px; }
+        .mega-col {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
         .mega-col h4 {
             font-family: 'Lato', sans-serif;
@@ -789,7 +830,10 @@
             transition: all 0.3s ease;
         }
 
-        .mega-col a:hover { opacity: 1; color: var(--merah); }
+        .mega-col a:hover {
+            opacity: 1;
+            color: var(--merah);
+        }
 
         .mega-bottom {
             max-width: 1400px;
@@ -802,16 +846,36 @@
         }
 
         @media(min-width: 768px) {
-            .mega-footer { padding: 100px 40px 30px 40px; }
-            .mega-container { flex-direction: row; justify-content: space-between; }
-            .mega-brand { font-size: 56px; }
-            .mega-right { gap: 80px; }
-            .mega-bottom { text-align: left; }
+            .mega-footer {
+                padding: 100px 40px 30px 40px;
+            }
+
+            .mega-container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .mega-brand {
+                font-size: 56px;
+            }
+
+            .mega-right {
+                gap: 80px;
+            }
+
+            .mega-bottom {
+                text-align: left;
+            }
         }
 
         @media(min-width: 1100px) {
-            .mega-footer { padding: 120px 80px 40px 80px; }
-            .mega-right { gap: 120px; }
+            .mega-footer {
+                padding: 120px 80px 40px 80px;
+            }
+
+            .mega-right {
+                gap: 120px;
+            }
         }
 
         /* MOBILE */
@@ -864,32 +928,27 @@
 <body>
 
     <div class="cur" id="cur"></div>
-
-    <header id="siteHeader">
+    <header>
         <div class="navbar">
-            <!-- LOGO -->
             <a href="index.html" class="logo">Alma de Sevilla</a>
-
-            <!-- DESKTOP NAVIGATION -->
             <nav class="nav-menu">
+                <a href="index.html">Home</a>
                 <a href="budaya.html">Culture</a>
                 <a href="festival.html">Festival</a>
                 <a href="kuliner.html">Culinary</a>
                 <a href="jelajahi.html">Explore</a>
-                <a href="#" class="active">About Us</a>
+                <a href="about.html">About Us</a>
             </nav>
 
-            <!-- MOBILE BUTTON -->
-            <div class="menu-btn" id="menuBtn">&#9776;</div>
+            <button class="menu-btn">&#9776;</button>
         </div>
 
-        <!-- MOBILE NAVIGATION -->
-        <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav">
             <a href="budaya.html" onclick="tutupMenu()">Culture</a>
             <a href="festival.html" onclick="tutupMenu()">Festival</a>
             <a href="kuliner.html" onclick="tutupMenu()">Culinary</a>
             <a href="jelajahi.html" onclick="tutupMenu()">Explore</a>
-            <a href="#" onclick="tutupMenu()">About Us</a>
+            <a href="about.html" onclick="tutupMenu()">About Us</a>
         </div>
     </header>
 
@@ -941,8 +1000,7 @@
     <!-- ERA 1 — Fenisia & Romawi  -->
     <div class="era rv">
         <div class="era-img">
-            <img src="image/era1.jpg"
-                alt="Reruntuhan Romawi Italica dekat Sevilla">
+            <img src="image/era1.jpg" alt="Reruntuhan Romawi Italica dekat Sevilla">
             <div class="era-img-overlay"></div>
             <div class="era-year-badge">BC</div>
         </div>
@@ -969,356 +1027,389 @@
         </div>
     </div>
 
-    <! ERA 2 — Visigoth  >
-    <div class="era flip rv">
-        <div class="era-img">
-            <img src="image/era2.jpg"
-                alt="Gereja tua Sevilla era Visigoth">
-            <div class="era-img-overlay"></div>
-            <div class="era-year-badge">400</div>
-        </div>
-        <div class="era-copy">
-            <div class="era-num">Era Kedua</div>
-            <h3 class="era-h3">Kerajaan <em>Visigoth</em><br>& Santo Isidore</h3>
-            <p class="era-p">
-                Ketika kekaisaran Romawi runtuh pada abad ke-5, bangsa Visigoth mengambil alih Hispania. Sevilla — atau
-                <em>Hispalis</em> — sempat menjadi ibu kota sementara kerajaan mereka sebelum dipindahkan ke Toledo.
-                Meski kekuasaan Visigoth terkesan singkat dan bergejolak, era ini meninggalkan warisan intelektual yang
-                luar biasa.
-            </p>
-            <p class="era-p">
-                Uskup Agung Isidore dari Sevilla (560–636 M), yang kemudian digelari santo, menulis <em>Etymologiae</em>
-                — ensiklopedia pertama dunia yang merangkum seluruh pengetahuan zaman kuno. Karya ini menjadi referensi
-                utama seluruh Eropa selama hampir satu milenium. Santo Isidore hingga kini dinobatkan sebagai pelindung
-                internet dan komputer oleh Gereja Katolik.
-            </p>
-            <div class="era-fact">
-                <div class="era-fact-label">Warisan</div>
-                <div class="era-fact-text">"Isidore dari Sevilla menulis ensiklopedia pertama dunia pada abad ke-7 — ia
-                    kini diusulkan sebagai pelindung internet."</div>
+    <! ERA 2 — Visigoth>
+        <div class="era flip rv">
+            <div class="era-img">
+                <img src="image/era2.jpg" alt="Gereja tua Sevilla era Visigoth">
+                <div class="era-img-overlay"></div>
+                <div class="era-year-badge">400</div>
             </div>
-        </div>
-    </div>
-
-
-
-    <!ERA 3 — Al-Andalus>
-    <div class="era rv">
-        <div class="era-img">
-            <img src="image/era3.jpg"
-                alt="Taman Alcazar Sevilla gaya Moor">
-            <div class="era-img-overlay"></div>
-            <div class="era-year-badge">711</div>
-        </div>
-        <div class="era-copy">
-            <div class="era-num">Era Ketiga</div>
-            <h3 class="era-h3"><em>Isbiliya</em> — Permata<br>Al-Andalus</h3>
-            <p class="era-p">
-                Pada 711 M, pasukan Muslim dari Afrika Utara menyeberangi Selat Gibraltar dan dalam waktu tujuh tahun
-                menguasai hampir seluruh Semenanjung Iberia. Hispalis berganti nama menjadi <em>Isbiliya</em>, and kota
-                ini memasuki era keemasannya yang paling gemilang.
-            </p>
-            <p class="era-p">
-                Di bawah Kekhalifahan Umayyah dan kemudian Dinasti Abbadid, Isbiliya tumbuh menjadi pusat ilmu
-                pengetahuan, sastra, matematika, astronomi, dan filosofi. Perpustakaan besar berdiri, taman-taman megah
-                dibangun di tepi sungai, dan para sarjana Yunani kuno diterjemahkan ke dalam bahasa Arab — lalu Latin —
-                menyelamatkan pengetahuan yang hampir hilang dari Eropa gelap.
-            </p>
-            <p class="era-p">
-                Warisan terbesar era ini adalah arsitektur yang masih bisa dilihat hari ini: <strong>Real
-                    Alcázar</strong> dengan taman airnya yang memukau, dan menara <strong>La Giralda</strong> yang
-                awalnya adalah menara masjid agung, dibangun antara 1184–1198 M.
-            </p>
-            <div class="era-fact">
-                <div class="era-fact-label">Fakta</div>
-                <div class="era-fact-text">"La Giralda dibangun sebagai menara adzan masjid terbesar di dunia barat pada
-                    1184 M — kini menjadi menara lonceng katedral."</div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- ERA 4 — Reconquista -->
-    <div class="era flip rv">
-        <div class="era-img">
-            <img src="image/era4.jpg"
-                alt="Katedral Sevilla gotik">
-            <div class="era-img-overlay"></div>
-            <div class="era-year-badge">1248</div>
-        </div>
-        <div class="era-copy">
-            <div class="era-num">Era Keempat</div>
-            <h3 class="era-h3"><em>Reconquista</em> &<br>Kemenangan Kastilia</h3>
-            <p class="era-p">
-                Pada 23 November 1248, Raja Ferdinand III dari Kastilia — kemudian digelari "El Santo" (yang kudus) —
-                memasuki Sevilla setelah pengepungan panjang. Penaklukan ini menandai akhir kekuasaan Islam di kota ini,
-                meski warisan Moor tetap terpahat dalam setiap batu dan taman.
-            </p>
-            <p class="era-p">
-                Para penakluk Kristen tidak menghancurkan keindahan yang ada; mereka mengadaptasinya. La Giralda diubah
-                menjadi menara lonceng, masjid agung dijadikan katedral, dan Alcázar tetap dipertahankan sebagai istana
-                kerajaan — bahkan diperluas dengan sentuhan Mudéjar yang memadukan estetika Islam dan Eropa.
-            </p>
-            <p class="era-p">
-                Di sini lahir gaya arsitektur unik bernama <strong>Mudéjar</strong> — karya pengrajin Muslim yang
-                bekerja untuk penguasa Kristen, menciptakan sintesis visual yang tak tertandingi dan kini menjadi
-                warisan UNESCO.
-            </p>
-            <div class="era-fact">
-                <div class="era-fact-label">Warisan UNESCO</div>
-                <div class="era-fact-text">"Katedral, Alcázar, dan Arsip Hindia Sevilla masuk dalam Daftar Warisan Dunia
-                    UNESCO sejak 1987."</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ERA 5 — Dunia Baru -->
-    <div class="era rv">
-        <div class="era-img">
-            <img src="image/era5.jpg"
-                alt="Menara emas Torre del Oro Sevilla">
-            <div class="era-img-overlay"></div>
-            <div class="era-year-badge">1492</div>
-        </div>
-        <div class="era-copy">
-            <div class="era-num">Era Kelima</div>
-            <h3 class="era-h3">Pintu Gerbang<br><em>Dunia Baru</em></h3>
-            <p class="era-p">
-                Ketika Columbus kembali dari pelayaran pertamanya pada 1493, ia melapor langsung kepada Raja Ferdinand
-                dan Ratu Isabella di Sevilla. Kota ini lalu ditetapkan sebagai satu-satunya pelabuhan resmi perdagangan
-                dengan Amerika — monopoli yang berlangsung selama hampir dua abad.
-            </p>
-            <p class="era-p">
-                Emas, perak, tembakau, kakao, tomat, kentang, dan ratusan komoditas baru mengalir masuk melalui dermaga
-                Guadalquivir. <strong>Torre del Oro</strong> — Menara Emas yang dibangun bangsa Moor — berfungsi sebagai
-                penjaga gudang emas kerajaan. Sevilla menjadi kota terkaya di dunia, dan salah satu yang paling
-                kosmopolitan.
-            </p>
-            <p class="era-p">
-                Dari sini pula Ferdinand Magellan berangkat pada 1519 untuk ekspedisi pertama mengelilingi bumi — dan
-                tiga tahun kemudian, satu-satunya kapal yang selamat kembali berlabuh di dermaga yang sama.
-            </p>
-            <div class="era-fact">
-                <div class="era-fact-label">Monopoli Perdagangan</div>
-                <div class="era-fact-text">"Selama hampir 200 tahun, semua perdagangan antara Eropa dan Amerika hanya
-                    boleh melalui pelabuhan Sevilla."</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ERA 6 — Modern -->
-    <div class="era flip rv">
-        <div class="era-img">
-            <img src="image/era6.jpg"
-                alt="Metropol Parasol Setas de Sevilla modern">
-            <div class="era-img-overlay"></div>
-            <div class="era-year-badge">HOY</div>
-        </div>
-        <div class="era-copy">
-            <div class="era-num">Era Modern</div>
-            <h3 class="era-h3">Sevilla Hari Ini —<br><em>Jiwa yang Abadi</em></h3>
-            <p class="era-p">
-                Sevilla modern adalah paradoks yang indah: kota yang merayakan masa lalunya dengan penuh kebanggaan
-                sembari menatap masa depan dengan berani. Di pusat kota, di atas reruntuhan pasar Romawi kuno, berdiri
-                <strong>Metropol Parasol</strong> — struktur kayu terbesar di dunia yang selesai dibangun 2011, dijuluki
-                <em>Las Setas</em> (Jamur).
-            </p>
-            <p class="era-p">
-                Setiap April, kota ini meledak dalam kemegahan <em>Feria de Abril</em> — festival perayaan kemenangan
-                atas waktu dengan tarian, pakaian tradisional, dan anggur Manzanilla. Setiap Paskah, rimba orang
-                berbaris dalam prosesi diam <em>Semana Santa</em> yang mengguncang jiwa.
-            </p>
-            <p class="era-p">
-                Dan di balik semua itu, di gang-gang sempit Barrio Santa Cruz, di bar tapas berusia seabad, di panggung
-                flamenco malam hari — <em>duende</em> Sevilla masih bisa dirasakan oleh siapa saja yang mau berhenti dan
-                mendengarkan.
-            </p>
-            <div class="era-fact">
-                <div class="era-fact-label">Sevilla Hari Ini</div>
-                <div class="era-fact-text">"Dengan 700.000 jiwa, Sevilla adalah kota terbesar keempat di Spanyol — dan
-                    mungkin yang paling berjiwa."</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TIMELINE -->
-    <section class="timeline-section">
-        <div class="tl-header rv">
-            <h2>Garis Waktu<br><em>Sevilla</em></h2>
-            <span>3.000 tahun dalam<br>satu garis</span>
-        </div>
-        <div class="tl-line">
-            <div class="tl-item major">
-                <div class="tl-dot"></div>
-                <div class="tl-year">± 1000 SM</div>
-                <div class="tl-title">Fenisia Mendirikan <em>Spal</em></div>
-                <div class="tl-desc">Pedagang Fenisia dari Timur Tengah mendirikan pos dagang di mulut Sungai
-                    Guadalquivir, cikal bakal kota Sevilla.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-year">45 SM</div>
-                <div class="tl-title">Julius Caesar & <em>Hispalis</em></div>
-                <div class="tl-desc">Julius Caesar menjadikan Hispalis koloni Romawi resmi. Infrastruktur besar-besaran
-                    dibangun di seluruh kota.</div>
-            </div>
-            <div class="tl-item major">
-                <div class="tl-dot"></div>
-                <div class="tl-year">98 M & 117 M</div>
-                <div class="tl-title">Lahir Dua Kaisar Roma</div>
-                <div class="tl-desc">Kaisar Trajan (98 M) dan Hadrian (117 M) lahir di Italica, kota satelit Hispalis.
-                    Dua pemimpin terbesar Roma dari tanah Andalusia.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-year">560–636 M</div>
-                <div class="tl-title">Santo Isidore & Ensiklopedia Pertama</div>
-                <div class="tl-desc">Uskup Agung Isidore menulis <em>Etymologiae</em>, ensiklopedia pertama dalam
-                    sejarah manusia, dari kota Sevilla.</div>
-            </div>
-            <div class="tl-item major">
-                <div class="tl-dot"></div>
-                <div class="tl-year">711 M</div>
-                <div class="tl-title">Penaklukan Islam — <em>Isbiliya</em></div>
-                <div class="tl-desc">Pasukan Thariq ibn Ziyad menaklukkan Semenanjung Iberia. Sevilla memasuki era
-                    keemasan Al-Andalus selama lebih dari 500 tahun.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-year">1184–1198 M</div>
-                <div class="tl-title">La Giralda Dibangun</div>
-                <div class="tl-desc">Dinasti Almohad membangun menara masjid agung setinggi 104 meter — La Giralda —
-                    yang kini menjadi ikon Sevilla.</div>
-            </div>
-            <div class="tl-item major">
-                <div class="tl-dot"></div>
-                <div class="tl-year">1248 M</div>
-                <div class="tl-title">Reconquista — Ferdinand III</div>
-                <div class="tl-desc">Raja Ferdinand III dari Kastilia merebut kembali Sevilla dari kekuasaan Islam. Era
-                    baru dimulai — kota bertransformasi menjadi pusat Kerajaan Kastilia.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-year">1401 M</div>
-                <div class="tl-title">Katedral Sevilla Dibangun</div>
-                <div class="tl-desc">Di atas fondasi masjid agung Isbiliya, dibangun Katedral Sevilla — yang hingga kini
-                    menjadi katedral Gotik terbesar di dunia.</div>
-            </div>
-            <div class="tl-item major">
-                <div class="tl-dot"></div>
-                <div class="tl-year">1492 M</div>
-                <div class="tl-title">Columbus Berangkat — Dunia Baru</div>
-                <div class="tl-desc">Christopher Columbus berlayar dari pelabuhan Palos de la Frontera dekat Sevilla.
-                    Semua emas dan rempah dari Amerika mengalir masuk melalui kota ini.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-year">1519–1522 M</div>
-                <div class="tl-title">Magellan — Keliling Dunia Pertama</div>
-                <div class="tl-desc">Ekspedisi Ferdinand Magellan bertolak dari Sevilla dan kembali ke Sevilla setelah
-                    berhasil mengelilingi bumi untuk pertama kalinya dalam sejarah.</div>
-            </div>
-            <div class="tl-item major">
-                <div class="tl-dot"></div>
-                <div class="tl-year">1929 M</div>
-                <div class="tl-title">Exposición Iberoamericana</div>
-                <div class="tl-desc">Sevilla menjadi tuan rumah pameran dunia besar yang mengubah wajah kota: Plaza de
-                    España dan seluruh kawasan Parque María Luisa dibangun untuk acara ini.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-year">1992 M</div>
-                <div class="tl-title">Expo '92 & Modernisasi</div>
-                <div class="tl-desc">Perayaan 500 tahun penemuan Amerika. Sevilla menjadi kota modern dengan
-                    infrastruktur baru, jembatan-jembatan ikonik, dan jalur kereta cepat pertama Spanyol.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PULL QUOTE  -->
-    <div class="pull-quote rv">
-        <span class="pq-mark">"</span>
-        <p class="pq-text">Sevilla telah mengalami lebih banyak kejayaan dan lebih banyak kehancuran dari kota mana pun
-            di Eropa — dan tetap berdiri, lebih cantik dari sebelumnya.</p>
-        <p class="pq-attr">Catatan seorang pejalan Abad Pertengahan</p>
-    </div>
-
-
-    <!--  GALERI FOTO -->
-    <section class="photo-grid-section rv">
-        <div class="pg-label">Wajah-Wajah Sevilla Sepanjang Masa</div>
-        <div class="photo-grid">
-            <div class="pg-item span2">
-                <img src="image/sevilla_night.jpg"
-                    alt="Sevilla malam panorama">
-                <div class="pg-caption"><span>Sevilla di malam hari · Guadalquivir</span></div>
-            </div>
-            <div class="pg-item">
-                <img src="image/Barrio.jpg"
-                    alt="Gang sempit Barrio Santa Cruz">
-                <div class="pg-caption"><span>Barrio Santa Cruz · Abad ke-13</span></div>
-            </div>
-            <div class="pg-item">
-                <img src="image/azulejo.jpg"
-                    alt="Azulejo ubin Moor Sevilla">
-                <div class="pg-caption"><span>Azulejo · Kerajinan Moor</span></div>
-            </div>
-            <div class="pg-item">
-                <img src="image/jeruk_sevilla.jpg"
-                    alt="Buah jeruk Sevilla">
-                <div class="pg-caption"><span>Naranjas · Jeruk Pahit Sevilla</span></div>
-            </div>
-            <div class="pg-item span2">
-                <img src="image/taman.jpg"
-                    alt="Taman Alcazar air mancur">
-                <div class="pg-caption"><span>Taman Real Alcázar · Era Moor-Kastilia</span></div>
-            </div>
-            <div class="pg-item">
-                <img src="image/metropol.jpg"
-                    alt="Metropol Parasol modern Sevilla">
-                <div class="pg-caption"><span>Las Setas · Metropol Parasol 2011</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MEGA FOOTER (GABUNGAN ALA MONARQUE SINKRON TOTAL) -->
-    <footer class="mega-footer">
-        <div class="mega-container">
-            <div class="mega-left">
-                <h2 class="mega-brand">Alma de Sevilla</h2>
-                <p class="mega-desc">
-                    Stay informed about the latest festivals, culinary secrets, and cultural developments in the heart of Andalusia.
+            <div class="era-copy">
+                <div class="era-num">Era Kedua</div>
+                <h3 class="era-h3">Kerajaan <em>Visigoth</em><br>& Santo Isidore</h3>
+                <p class="era-p">
+                    Ketika kekaisaran Romawi runtuh pada abad ke-5, bangsa Visigoth mengambil alih Hispania. Sevilla —
+                    atau
+                    <em>Hispalis</em> — sempat menjadi ibu kota sementara kerajaan mereka sebelum dipindahkan ke Toledo.
+                    Meski kekuasaan Visigoth terkesan singkat dan bergejolak, era ini meninggalkan warisan intelektual
+                    yang
+                    luar biasa.
                 </p>
-                <form class="mega-subscribe" onsubmit="event.preventDefault();">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-
-            <div class="mega-right">
-                <div class="mega-col">
-                    <h4>Navigation</h4>
-                    <a href="index.html">Home</a>
-                    <a href="budaya.html">Culture</a>
-                    <a href="festival.html">Festival</a>
-                    <a href="kuliner.html">Culinary</a>
-                    <a href="jelajahi.html">Explore</a>
-                </div>
-                <div class="mega-col">
-                    <h4>Information</h4>
-                    <a href="#">About Us</a>
-                    <a href="#">FAQ</a>
-                    <a href="#">Contact</a>
+                <p class="era-p">
+                    Uskup Agung Isidore dari Sevilla (560–636 M), yang kemudian digelari santo, menulis
+                    <em>Etymologiae</em>
+                    — ensiklopedia pertama dunia yang merangkum seluruh pengetahuan zaman kuno. Karya ini menjadi
+                    referensi
+                    utama seluruh Eropa selama hampir satu milenium. Santo Isidore hingga kini dinobatkan sebagai
+                    pelindung
+                    internet dan komputer oleh Gereja Katolik.
+                </p>
+                <div class="era-fact">
+                    <div class="era-fact-label">Warisan</div>
+                    <div class="era-fact-text">"Isidore dari Sevilla menulis ensiklopedia pertama dunia pada abad ke-7 —
+                        ia
+                        kini diusulkan sebagai pelindung internet."</div>
                 </div>
             </div>
         </div>
 
-        <div class="mega-bottom">
-            <p>&copy; 2026 Alma de Sevilla. Tugas Besar Pemrograman Web.</p>
-        </div>
-    </footer>
 
-    <script src="js/sejarah.js"></script>
+
+        <!ERA 3 — Al-Andalus>
+            <div class="era rv">
+                <div class="era-img">
+                    <img src="image/era3.jpg" alt="Taman Alcazar Sevilla gaya Moor">
+                    <div class="era-img-overlay"></div>
+                    <div class="era-year-badge">711</div>
+                </div>
+                <div class="era-copy">
+                    <div class="era-num">Era Ketiga</div>
+                    <h3 class="era-h3"><em>Isbiliya</em> — Permata<br>Al-Andalus</h3>
+                    <p class="era-p">
+                        Pada 711 M, pasukan Muslim dari Afrika Utara menyeberangi Selat Gibraltar dan dalam waktu tujuh
+                        tahun
+                        menguasai hampir seluruh Semenanjung Iberia. Hispalis berganti nama menjadi <em>Isbiliya</em>,
+                        and kota
+                        ini memasuki era keemasannya yang paling gemilang.
+                    </p>
+                    <p class="era-p">
+                        Di bawah Kekhalifahan Umayyah dan kemudian Dinasti Abbadid, Isbiliya tumbuh menjadi pusat ilmu
+                        pengetahuan, sastra, matematika, astronomi, dan filosofi. Perpustakaan besar berdiri,
+                        taman-taman megah
+                        dibangun di tepi sungai, dan para sarjana Yunani kuno diterjemahkan ke dalam bahasa Arab — lalu
+                        Latin —
+                        menyelamatkan pengetahuan yang hampir hilang dari Eropa gelap.
+                    </p>
+                    <p class="era-p">
+                        Warisan terbesar era ini adalah arsitektur yang masih bisa dilihat hari ini: <strong>Real
+                            Alcázar</strong> dengan taman airnya yang memukau, dan menara <strong>La Giralda</strong>
+                        yang
+                        awalnya adalah menara masjid agung, dibangun antara 1184–1198 M.
+                    </p>
+                    <div class="era-fact">
+                        <div class="era-fact-label">Fakta</div>
+                        <div class="era-fact-text">"La Giralda dibangun sebagai menara adzan masjid terbesar di dunia
+                            barat pada
+                            1184 M — kini menjadi menara lonceng katedral."</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ERA 4 — Reconquista -->
+            <div class="era flip rv">
+                <div class="era-img">
+                    <img src="image/era4.jpg" alt="Katedral Sevilla gotik">
+                    <div class="era-img-overlay"></div>
+                    <div class="era-year-badge">1248</div>
+                </div>
+                <div class="era-copy">
+                    <div class="era-num">Era Keempat</div>
+                    <h3 class="era-h3"><em>Reconquista</em> &<br>Kemenangan Kastilia</h3>
+                    <p class="era-p">
+                        Pada 23 November 1248, Raja Ferdinand III dari Kastilia — kemudian digelari "El Santo" (yang
+                        kudus) —
+                        memasuki Sevilla setelah pengepungan panjang. Penaklukan ini menandai akhir kekuasaan Islam di
+                        kota ini,
+                        meski warisan Moor tetap terpahat dalam setiap batu dan taman.
+                    </p>
+                    <p class="era-p">
+                        Para penakluk Kristen tidak menghancurkan keindahan yang ada; mereka mengadaptasinya. La Giralda
+                        diubah
+                        menjadi menara lonceng, masjid agung dijadikan katedral, dan Alcázar tetap dipertahankan sebagai
+                        istana
+                        kerajaan — bahkan diperluas dengan sentuhan Mudéjar yang memadukan estetika Islam dan Eropa.
+                    </p>
+                    <p class="era-p">
+                        Di sini lahir gaya arsitektur unik bernama <strong>Mudéjar</strong> — karya pengrajin Muslim
+                        yang
+                        bekerja untuk penguasa Kristen, menciptakan sintesis visual yang tak tertandingi dan kini
+                        menjadi
+                        warisan UNESCO.
+                    </p>
+                    <div class="era-fact">
+                        <div class="era-fact-label">Warisan UNESCO</div>
+                        <div class="era-fact-text">"Katedral, Alcázar, dan Arsip Hindia Sevilla masuk dalam Daftar
+                            Warisan Dunia
+                            UNESCO sejak 1987."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ERA 5 — Dunia Baru -->
+            <div class="era rv">
+                <div class="era-img">
+                    <img src="image/era5.jpg" alt="Menara emas Torre del Oro Sevilla">
+                    <div class="era-img-overlay"></div>
+                    <div class="era-year-badge">1492</div>
+                </div>
+                <div class="era-copy">
+                    <div class="era-num">Era Kelima</div>
+                    <h3 class="era-h3">Pintu Gerbang<br><em>Dunia Baru</em></h3>
+                    <p class="era-p">
+                        Ketika Columbus kembali dari pelayaran pertamanya pada 1493, ia melapor langsung kepada Raja
+                        Ferdinand
+                        dan Ratu Isabella di Sevilla. Kota ini lalu ditetapkan sebagai satu-satunya pelabuhan resmi
+                        perdagangan
+                        dengan Amerika — monopoli yang berlangsung selama hampir dua abad.
+                    </p>
+                    <p class="era-p">
+                        Emas, perak, tembakau, kakao, tomat, kentang, dan ratusan komoditas baru mengalir masuk melalui
+                        dermaga
+                        Guadalquivir. <strong>Torre del Oro</strong> — Menara Emas yang dibangun bangsa Moor — berfungsi
+                        sebagai
+                        penjaga gudang emas kerajaan. Sevilla menjadi kota terkaya di dunia, dan salah satu yang paling
+                        kosmopolitan.
+                    </p>
+                    <p class="era-p">
+                        Dari sini pula Ferdinand Magellan berangkat pada 1519 untuk ekspedisi pertama mengelilingi bumi
+                        — dan
+                        tiga tahun kemudian, satu-satunya kapal yang selamat kembali berlabuh di dermaga yang sama.
+                    </p>
+                    <div class="era-fact">
+                        <div class="era-fact-label">Monopoli Perdagangan</div>
+                        <div class="era-fact-text">"Selama hampir 200 tahun, semua perdagangan antara Eropa dan Amerika
+                            hanya
+                            boleh melalui pelabuhan Sevilla."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ERA 6 — Modern -->
+            <div class="era flip rv">
+                <div class="era-img">
+                    <img src="image/era6.jpg" alt="Metropol Parasol Setas de Sevilla modern">
+                    <div class="era-img-overlay"></div>
+                    <div class="era-year-badge">HOY</div>
+                </div>
+                <div class="era-copy">
+                    <div class="era-num">Era Modern</div>
+                    <h3 class="era-h3">Sevilla Hari Ini —<br><em>Jiwa yang Abadi</em></h3>
+                    <p class="era-p">
+                        Sevilla modern adalah paradoks yang indah: kota yang merayakan masa lalunya dengan penuh
+                        kebanggaan
+                        sembari menatap masa depan dengan berani. Di pusat kota, di atas reruntuhan pasar Romawi kuno,
+                        berdiri
+                        <strong>Metropol Parasol</strong> — struktur kayu terbesar di dunia yang selesai dibangun 2011,
+                        dijuluki
+                        <em>Las Setas</em> (Jamur).
+                    </p>
+                    <p class="era-p">
+                        Setiap April, kota ini meledak dalam kemegahan <em>Feria de Abril</em> — festival perayaan
+                        kemenangan
+                        atas waktu dengan tarian, pakaian tradisional, dan anggur Manzanilla. Setiap Paskah, rimba orang
+                        berbaris dalam prosesi diam <em>Semana Santa</em> yang mengguncang jiwa.
+                    </p>
+                    <p class="era-p">
+                        Dan di balik semua itu, di gang-gang sempit Barrio Santa Cruz, di bar tapas berusia seabad, di
+                        panggung
+                        flamenco malam hari — <em>duende</em> Sevilla masih bisa dirasakan oleh siapa saja yang mau
+                        berhenti dan
+                        mendengarkan.
+                    </p>
+                    <div class="era-fact">
+                        <div class="era-fact-label">Sevilla Hari Ini</div>
+                        <div class="era-fact-text">"Dengan 700.000 jiwa, Sevilla adalah kota terbesar keempat di Spanyol
+                            — dan
+                            mungkin yang paling berjiwa."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIMELINE -->
+            <section class="timeline-section">
+                <div class="tl-header rv">
+                    <h2>Garis Waktu<br><em>Sevilla</em></h2>
+                    <span>3.000 tahun dalam<br>satu garis</span>
+                </div>
+                <div class="tl-line">
+                    <div class="tl-item major">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">± 1000 SM</div>
+                        <div class="tl-title">Fenisia Mendirikan <em>Spal</em></div>
+                        <div class="tl-desc">Pedagang Fenisia dari Timur Tengah mendirikan pos dagang di mulut Sungai
+                            Guadalquivir, cikal bakal kota Sevilla.</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">45 SM</div>
+                        <div class="tl-title">Julius Caesar & <em>Hispalis</em></div>
+                        <div class="tl-desc">Julius Caesar menjadikan Hispalis koloni Romawi resmi. Infrastruktur
+                            besar-besaran
+                            dibangun di seluruh kota.</div>
+                    </div>
+                    <div class="tl-item major">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">98 M & 117 M</div>
+                        <div class="tl-title">Lahir Dua Kaisar Roma</div>
+                        <div class="tl-desc">Kaisar Trajan (98 M) dan Hadrian (117 M) lahir di Italica, kota satelit
+                            Hispalis.
+                            Dua pemimpin terbesar Roma dari tanah Andalusia.</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">560–636 M</div>
+                        <div class="tl-title">Santo Isidore & Ensiklopedia Pertama</div>
+                        <div class="tl-desc">Uskup Agung Isidore menulis <em>Etymologiae</em>, ensiklopedia pertama
+                            dalam
+                            sejarah manusia, dari kota Sevilla.</div>
+                    </div>
+                    <div class="tl-item major">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">711 M</div>
+                        <div class="tl-title">Penaklukan Islam — <em>Isbiliya</em></div>
+                        <div class="tl-desc">Pasukan Thariq ibn Ziyad menaklukkan Semenanjung Iberia. Sevilla memasuki
+                            era
+                            keemasan Al-Andalus selama lebih dari 500 tahun.</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">1184–1198 M</div>
+                        <div class="tl-title">La Giralda Dibangun</div>
+                        <div class="tl-desc">Dinasti Almohad membangun menara masjid agung setinggi 104 meter — La
+                            Giralda —
+                            yang kini menjadi ikon Sevilla.</div>
+                    </div>
+                    <div class="tl-item major">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">1248 M</div>
+                        <div class="tl-title">Reconquista — Ferdinand III</div>
+                        <div class="tl-desc">Raja Ferdinand III dari Kastilia merebut kembali Sevilla dari kekuasaan
+                            Islam. Era
+                            baru dimulai — kota bertransformasi menjadi pusat Kerajaan Kastilia.</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">1401 M</div>
+                        <div class="tl-title">Katedral Sevilla Dibangun</div>
+                        <div class="tl-desc">Di atas fondasi masjid agung Isbiliya, dibangun Katedral Sevilla — yang
+                            hingga kini
+                            menjadi katedral Gotik terbesar di dunia.</div>
+                    </div>
+                    <div class="tl-item major">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">1492 M</div>
+                        <div class="tl-title">Columbus Berangkat — Dunia Baru</div>
+                        <div class="tl-desc">Christopher Columbus berlayar dari pelabuhan Palos de la Frontera dekat
+                            Sevilla.
+                            Semua emas dan rempah dari Amerika mengalir masuk melalui kota ini.</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">1519–1522 M</div>
+                        <div class="tl-title">Magellan — Keliling Dunia Pertama</div>
+                        <div class="tl-desc">Ekspedisi Ferdinand Magellan bertolak dari Sevilla dan kembali ke Sevilla
+                            setelah
+                            berhasil mengelilingi bumi untuk pertama kalinya dalam sejarah.</div>
+                    </div>
+                    <div class="tl-item major">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">1929 M</div>
+                        <div class="tl-title">Exposición Iberoamericana</div>
+                        <div class="tl-desc">Sevilla menjadi tuan rumah pameran dunia besar yang mengubah wajah kota:
+                            Plaza de
+                            España dan seluruh kawasan Parque María Luisa dibangun untuk acara ini.</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">1992 M</div>
+                        <div class="tl-title">Expo '92 & Modernisasi</div>
+                        <div class="tl-desc">Perayaan 500 tahun penemuan Amerika. Sevilla menjadi kota modern dengan
+                            infrastruktur baru, jembatan-jembatan ikonik, dan jalur kereta cepat pertama Spanyol.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PULL QUOTE  -->
+            <div class="pull-quote rv">
+                <span class="pq-mark">"</span>
+                <p class="pq-text">Sevilla telah mengalami lebih banyak kejayaan dan lebih banyak kehancuran dari kota
+                    mana pun
+                    di Eropa — dan tetap berdiri, lebih cantik dari sebelumnya.</p>
+                <p class="pq-attr">Catatan seorang pejalan Abad Pertengahan</p>
+            </div>
+
+
+            <!--  GALERI FOTO -->
+            <section class="photo-grid-section rv">
+                <div class="pg-label">Wajah-Wajah Sevilla Sepanjang Masa</div>
+                <div class="photo-grid">
+                    <div class="pg-item span2">
+                        <img src="image/sevilla_night.jpg" alt="Sevilla malam panorama">
+                        <div class="pg-caption"><span>Sevilla di malam hari · Guadalquivir</span></div>
+                    </div>
+                    <div class="pg-item">
+                        <img src="image/Barrio.jpg" alt="Gang sempit Barrio Santa Cruz">
+                        <div class="pg-caption"><span>Barrio Santa Cruz · Abad ke-13</span></div>
+                    </div>
+                    <div class="pg-item">
+                        <img src="image/azulejo.jpg" alt="Azulejo ubin Moor Sevilla">
+                        <div class="pg-caption"><span>Azulejo · Kerajinan Moor</span></div>
+                    </div>
+                    <div class="pg-item">
+                        <img src="image/jeruk_sevilla.jpg" alt="Buah jeruk Sevilla">
+                        <div class="pg-caption"><span>Naranjas · Jeruk Pahit Sevilla</span></div>
+                    </div>
+                    <div class="pg-item span2">
+                        <img src="image/taman.jpg" alt="Taman Alcazar air mancur">
+                        <div class="pg-caption"><span>Taman Real Alcázar · Era Moor-Kastilia</span></div>
+                    </div>
+                    <div class="pg-item">
+                        <img src="image/metropol.jpg" alt="Metropol Parasol modern Sevilla">
+                        <div class="pg-caption"><span>Las Setas · Metropol Parasol 2011</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MEGA FOOTER (GABUNGAN ALA MONARQUE SINKRON TOTAL) -->
+            <footer class="mega-footer">
+                <div class="mega-container">
+                    <div class="mega-left">
+                        <h2 class="mega-brand">Alma de Sevilla</h2>
+                        <p class="mega-desc">
+                            Stay informed about the latest festivals, culinary secrets, and cultural developments in the
+                            heart of Andalusia.
+                        </p>
+                        <form class="mega-subscribe" onsubmit="event.preventDefault();">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+
+                    <div class="mega-right">
+                        <div class="mega-col">
+                            <h4>Navigation</h4>
+                            <a href="index.html">Home</a>
+                            <a href="budaya.html">Culture</a>
+                            <a href="festival.html">Festival</a>
+                            <a href="kuliner.html">Culinary</a>
+                            <a href="jelajahi.html">Explore</a>
+                        </div>
+                        <div class="mega-col">
+                            <h4>Information</h4>
+                            <a href="#">About Us</a>
+                            <a href="#">FAQ</a>
+                            <a href="#">Contact</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mega-bottom">
+                    <p>&copy; 2026 Alma de Sevilla. Tugas Besar Pemrograman Web.</p>
+                </div>
+            </footer>
+
+            <script src="js/sejarah.js"></script>
 </body>
 
 </html>
