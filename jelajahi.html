@@ -1,58 +1,779 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore — Alma de Sevilla</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
 
+    <style>
+        /* ============================================================
+           ROOT VARIABLES — Alma de Sevilla Design System
+        ============================================================ */
+        :root {
+            --krem:       #F5F0E8;
+            --hitam:      #1A1612;
+            --merah:      #C0392B;
+            --merah-gelap:#a93226;
+            --tanah:      #8C7B5E;
+            --krem-muda:  #E8E0D0;
+            --krem-gelap: #DDD5C2;
+        }
+
+        /* ============================================================
+           BASE STYLES
+        ============================================================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--krem);
+            color: var(--hitam);
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            background: none;
+            border: none;
+            font: inherit;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Utility Container */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        @media (min-width: 768px) { .container { padding: 0 40px; } }
+        @media (min-width: 1100px) { .container { padding: 0 80px; } }
+
+        /* ============================================================
+           NAVBAR (SINKRON DENGAN HALAMAN LAINNYA)
+        ============================================================ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            transition: 0.4s ease;
+        }
+
+        .navbar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 24px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(1px);
+            transition: 0.4s ease;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--krem);
+            transition: 0.4s ease;
+        }
+
+        .nav-menu {
+            display: none;
+        }
+
+        .nav-menu a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff;
+            transition: 0.3s ease;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--merah);
+        }
+
+        .menu-btn {
+            font-size: 32px;
+            color: #ffffff;
+            z-index: 1001;
+            transition: 0.4s ease;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .mobile-nav {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 24px;
+            gap: 20px;
+            z-index: 999;
+            display: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-nav a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ffffff;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .mobile-nav a:last-child { border-bottom: none; }
+        .mobile-nav a:hover, .mobile-nav a.active { color: var(--merah); }
+
+        /* NAVBAR SCROLLED STATE */
+        header.scrolled {
+            background-color: var(--krem);
+        }
+
+        header.scrolled .navbar {
+            background: transparent;
+            padding: 16px 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        header.scrolled .logo { color: var(--hitam); }
+        header.scrolled .menu-btn { color: var(--hitam); }
+        header.scrolled .nav-menu a { color: var(--hitam); }
+        header.scrolled .nav-menu a.active { color: var(--merah); }
+
+        @media(min-width: 768px) {
+            .navbar { padding: 28px 40px; }
+            header.scrolled .navbar { padding: 18px 40px; }
+            .nav-menu { display: flex; align-items: center; gap: 24px; }
+            .menu-btn, .mobile-nav, .mobile-nav.active { display: none !important; }
+        }
+        @media(min-width: 1100px) {
+            .navbar { padding: 32px 80px; }
+            header.scrolled .navbar { padding: 20px 80px; }
+            .nav-menu { gap: 42px; }
+        }
+
+        /* ============================================================
+           HERO SECTION
+        ============================================================ */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url("image/metropol.jpg");
+            background-size: cover;
+            background-position: center;
+            transform: scale(1.05);
+        }
+
+        .hero-veil {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,22,18,1) 0%, rgba(26,22,18,0.4) 100%);
+        }
+
+        .hero-body {
+            position: relative;
+            z-index: 2;
+            padding-bottom: 60px;
+            max-width: 800px;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: .32em;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, .5);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hero-h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            color: var(--krem);
+            margin-bottom: 20px;
+        }
+
+        .hero-lead {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(245, 240, 232, .75);
+        }
+
+        /* ============================================================
+           EXPLORE CARDS GRID
+        ============================================================ */
+        .explore-section {
+            padding: 100px 0;
+            background-color: var(--krem);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header span {
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--merah);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            color: var(--hitam);
+        }
+
+        .explore-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        @media (min-width: 768px) {
+            .explore-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .explore-card {
+            background-color: var(--krem-muda);
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.02);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .explore-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(26,22,18,0.08);
+        }
+
+        .card-img-side {
+            position: relative;
+            width: 100%;
+            padding-top: 60px;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .card-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .explore-card:hover .card-img {
+            transform: scale(1.03);
+        }
+
+        .explore-card-body {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .explore-card-tag {
+            font-family: 'Lato', sans-serif;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--merah);
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .explore-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--hitam);
+        }
+
+        .explore-card-desc {
+            font-size: 15.5px;
+            line-height: 1.65;
+            color: rgba(26,22,18,0.75);
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .maps-btn {
+            align-self: flex-start;
+            font-family: 'Lato', sans-serif;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: var(--hitam);
+            padding: 12px 24px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .explore-card:hover .maps-btn {
+            background-color: var(--merah);
+        }
+
+        /* ============================================================
+           SEASONAL TIPS (KONTEN TAMBAHAN BROWSER ITINERARY)
+        ============================================================ */
+        .seasonal-tips {
+            background-color: var(--hitam);
+            color: var(--krem);
+            padding: 100px 0;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-top: 48px;
+        }
+        @media (min-width: 992px) {
+            .tips-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .tips-box {
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 32px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .tips-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--merah);
+        }
+
+        .tips-box p {
+            font-size: 14.5px;
+            line-height: 1.6;
+            opacity: 0.7;
+        }
+
+        /* ============================================================
+           MEGA FOOTER
+        ============================================================ */
+        .mega-footer {
+            width: 100%;
+            background-color: #1A1612;
+            /* Warna dasar Hitam Andalusia */
+            color: #F5F0E8;
+            /* Warna teks Krem Sevilla */
+            padding: 80px 24px 24px 24px;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .mega-container {
+            max-width: 1400px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        /* --- BAGIAN KIRI (Brand, Deskripsi, & Form) --- */
+        .mega-left {
+            max-width: 420px;
+        }
+
+        .mega-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            /* Teks besar nan elegan */
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .mega-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.7;
+            margin-bottom: 32px;
+        }
+
+        /* Desain Form Subscribe (Bentuk Kapsul Gelap) */
+        .mega-subscribe {
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.04);
+            /* Kotak abu-abu transparan super tipis */
+            border-radius: 50px;
+            /* Membuat bentuk kapsul sempurna */
+            padding: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mega-subscribe input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #F5F0E8;
+            padding: 10px 20px;
+            font-family: 'Lato', sans-serif;
+            font-size: 14px;
+        }
+
+        .mega-subscribe input::placeholder {
+            color: rgba(245, 240, 232, 0.4);
+            /* Placeholder sedikit memudar */
+        }
+
+        .mega-subscribe button {
+            background-color: #C0392B;
+            /* Tombol Merah Flamenco */
+            color: #ffffff;
+            border: none;
+            /* Menghilangkan garis tepi bawaan tombol */
+            border-radius: 50px;
+            /* Tombol kapsul menyesuaikan kotaknya */
+            padding: 12px 32px;
+            font-family: 'Lato', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .mega-subscribe button:hover {
+            background-color: #a93226;
+        }
+
+        /* --- BAGIAN KANAN (2 Kolom Navigasi Utama) --- */
+        .mega-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Membagi otomatis menjadi 2 kolom rapi */
+            gap: 40px;
+        }
+
+        .mega-col {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .mega-col h4 {
+            font-family: 'Lato', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.5;
+            /* Dibuat pudar agar menjadi pemisah judul yang elegan */
+            margin-bottom: 8px;
+        }
+
+        .mega-col a {
+            font-size: 14.5px;
+            color: #F5F0E8;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .mega-col a:hover {
+            opacity: 1;
+            color: #C0392B;
+            /* Hover teks berubah warna kemerahan */
+        }
+
+        /* --- BAGIAN BAWAH (Garis Pembatas & Copyright) --- */
+        .mega-bottom {
+            max-width: 1400px;
+            margin: 80px auto 0 auto;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            /* Garis batas tipis */
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.5;
+        }
+
+        /* ==========================================================================
+   MEDIA QUERY DESKTOP / LAPTOP (768px ke atas)
+   ========================================================================== */
+        @media(min-width: 768px) {
+            .mega-footer {
+                padding: 100px 40px 30px 40px;
+            }
+
+            .mega-container {
+                flex-direction: row;
+                /* Berubah jadi format berjejer Kiri-Kanan di Laptop */
+                justify-content: space-between;
+            }
+
+            .mega-brand {
+                font-size: 56px;
+                /* Ukuran font judul brand membesar */
+            }
+
+            .mega-right {
+                gap: 80px;
+                /* Jarak celah antar 2 kolom navigasi sedikit dilebarkan */
+            }
+
+            .mega-bottom {
+                text-align: left;
+                /* Teks copyright bergeser ke pinggir kiri agar lebih rapi di monitor lebar */
+            }
+        }
+
+        /* ==========================================================================
+   MEDIA QUERY MONITOR LEBAR (1100px ke atas)
+   ========================================================================== */
+        @media(min-width: 1100px) {
+            .mega-footer {
+                padding: 120px 80px 40px 80px;
+            }
+
+            .mega-right {
+                gap: 120px;
+                /* Jarak maksimal antar kolom jika layar sangat lebar */
+            }
+        }
+        
+    </style>
 </head>
-<body class="page-jelajahi">
-    <header>
+<body>
 
-		<div class="navbar">
+    <header id="siteHeader">
+        <div class="navbar">
+            <a href="index.html" class="logo">Alma de Sevilla</a>
+            <nav class="nav-menu">
+                <a href="budaya.html">Culture</a>
+                <a href="festival.html">Festival</a>
+                <a href="kuliner.html">Culinary</a>
+                <a href="jelajahi.html" class="active">Explore</a>
+                <a href="about.html">About Us</a>
+            </nav>
+            <button class="menu-btn" id="menuBtn">&#9776;</button>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="budaya.html">Culture</a>
+            <a href="festival.html">Festival</a>
+            <a href="kuliner.html">Culinary</a>
+            <a href="jelajahi.html" class="active">Explore</a>
+            <a href="about.html">About Us</a>
+        </div>
+    </header>
 
-			<!-- LOGO -->
+    <main>
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-veil"></div>
+            <div class="container">
+                <div class="hero-body">
+                    <span class="hero-eyebrow">Rutas y Monumentos</span>
+                    <h1 class="hero-h1">Jelajahi Sudut<br>Kota Klasik</h1>
+                    <p class="hero-lead">Panduan rute perjalanan kurasi untuk menyusuri jejak peradaban, bangunan arsitektur megah, dan tempat lahirnya mahakarya seni asli Sevilla.</p>
+                </div>
+            </div>
+        </section>
 
-			<a href="index.html" class="logo">
-				Alma de Sevilla
-			</a>
+        <section class="explore-section">
+            <div class="container">
+                <div class="section-header">
+                    <span>Lugares Históricos</span>
+                    <h2>4 Destinasi Pusat Peradaban Budaya</h2>
+                </div>
 
-			<!-- DESKTOP NAVIGATION -->
+                <div class="explore-grid">
+                    <div class="explore-card">
+                        <div class="card-img-side">
+                            <img src="image/LaGiralda.jpg" alt="Catedral de Sevilla" class="card-img">
+                        </div>
+                        <div class="explore-card-body">
+                            <span class="explore-card-tag">Arsitektur & Religi</span>
+                            <h3 class="explore-card-title">Catedral de Sevilla & La Giralda</h3>
+                            <p class="explore-card-desc">Katedral Gotik terbesar di dunia sekaligus tempat peristirahatan terakhir Christopher Columbus. Menara loncengnya, La Giralda, dulunya adalah menara masjid peradaban Islam Almohad yang mencerminkan asimilasi budaya megah Spanyol.</p>
+                            <a href="https://maps.app.goo.gl/wJm86Z9L7YgZ8uRz8" target="_blank" class="maps-btn">Buka Google Maps →</a>
+                        </div>
+                    </div>
 
-			<nav class="nav-menu">
+                    <div class="explore-card">
+                        <div class="card-img-side">
+                            <img src="image/RealAlcázar.jpg" alt="Real Alcázar" class="card-img">
+                        </div>
+                        <div class="explore-card-body">
+                            <span class="explore-card-tag">Istana Kerajaan Kuno</span>
+                            <h3 class="explore-card-title">Real Alcázar de Sevilla</h3>
+                            <p class="explore-card-desc">Kompleks istana kerajaan tertua di Eropa yang menggabungkan gaya arsitektur Mudéjar (perpaduan Islam dan Kristen). Taman-taman labirinnya yang indah menjadi saksi bisu perkembangan tata kota kuno wilayah Andalusia.</p>
+                            <a href="https://maps.app.goo.gl/9R6VAnE4G1Fh5kKj9" target="_blank" class="maps-btn">Buka Google Maps →</a>
+                        </div>
+                    </div>
 
-				<a href="budaya.html">Culture</a>
+                    <div class="explore-card">
+                        <div class="card-img-side">
+                            <img src="image/PlazadeEspaña.jpg" alt="Plaza de España" class="card-img">
+                        </div>
+                        <div class="explore-card-body">
+                            <span class="explore-card-tag">Landmark Kebanggaan</span>
+                            <h3 class="explore-card-title">Plaza de España</h3>
+                            <p class="explore-card-desc">Alun-alun raksasa berbentuk setengah lingkaran megah dengan kanal air di tengahnya. Dindingnya dihiasi oleh ubin keramik (Azulejos) yang menceritakan sejarah dari setiap provinsi yang ada di Spanyol.</p>
+                            <a href="https://maps.app.goo.gl/pXg3eP4EUPyDkYp4A" target="_blank" class="maps-btn">Buka Google Maps →</a>
+                        </div>
+                    </div>
 
-				<a href="festival.html">Festival</a>
+                    <div class="explore-card">
+                        <div class="card-img-side">
+                            <img src="image/BarrioTriana.webp" alt="Barrio Triana" class="card-img">
+                        </div>
+                        <div class="explore-card-body">
+                            <span class="explore-card-tag">Tempat Lahir Flamenco</span>
+                            <h3 class="explore-card-title">Barrio Triana (Distrik Triana)</h3>
+                            <p class="explore-card-desc">Terletak di seberang Sungai Guadalquivir, lingkungan legendaris ini adalah tempat lahirnya para maestro musik gitar, seni keramik, dan tarian rakyat Flamenco asli Sevilla. Pusat budaya otentik lokal berada di sini.</p>
+                            <a href="https://maps.app.goo.gl/2L4C6V4vEwA5vPpA8" target="_blank" class="maps-btn">Buka Google Maps →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-				<a href="kuliner.html" >Culinary</a>
+        <section class="seasonal-tips">
+            <div class="container">
+                <div class="section-header">
+                    <span style="color: var(--merah)">Consejos Estacionales</span>
+                    <h2 style="color: var(--krem)">Tips Eksplorasi Berdasarkan Musim</h2>
+                </div>
 
-				<a href="jelajahi.html">Explore</a>
+                <div class="tips-grid">
+                    <div class="tips-box">
+                        <h3>Musim Semi (Primavera)</h3>
+                        <p>Jalanan di sekitar Katedral akan ditutup total karena digunakan sebagai jalur utama parade Semana Santa. Disarankan menjelajah dengan berjalan kaki dan memesan tiket masuk istana 3 bulan sebelum kedatangan.</p>
+                    </div>
+                    <div class="tips-box">
+                        <h3>Musim Gugur (Otoño)</h3>
+                        <p>Waktu terbaik untuk mengunjungi Distrik Triana karena udara malam yang sangat sejuk. Banyak pementasan teater tari jalanan terbuka sebagai bagian dari perayaan festival Bienal de Flamenco.</p>
+                    </div>
+                    <div class="tips-box">
+                        <h3>Musim Dingin (Invierno)</h3>
+                        <p>Fokuskan eksplorasi malam hari menyusuri sepanjang jalur Avenida de la Constitución. Seluruh pusat kota lama akan bermandikan cahaya instalasi lampu raksasa menyambut perayaan festival Natal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-				<a href="about.html">About Us</a>
+    <footer class="mega-footer">
+        <div class="mega-container">
+            <div class="mega-left">
+                <h2 class="mega-brand">Alma de Sevilla</h2>
+                <p class="mega-desc">
+                    Stay informed about the latest festivals, culinary secrets, and cultural developments in the heart
+                    of Andalusia.
+                </p>
+                <form class="mega-subscribe" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
 
-			</nav>
+            <div class="mega-right">
+                <div class="mega-col">
+                    <h4>Navigation</h4>
+                    <a href="index.html">Home</a>
+                    <a href="budaya.html">Culture</a>
+                    <a href="festival.html" style="color: var(--red); font-weight: 700;">Festival</a>
+                    <a href="kuliner.html">Culinary</a>
+                    <a href="jelajahi.html">Explore</a>
+                </div>
+                <div class="mega-col">
+                    <h4>Information</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
 
-			<!-- MOBILE BUTTON -->
+        <div class="mega-bottom">
+            <p>&copy; 2026 Alma de Sevilla. Tugas Besar Pemrograman Web.</p>
+        </div>
+    </footer>
 
-			<div class="menu-btn">&#9776;</div>
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('siteHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
 
-		</div>
-
-		<!-- MOBILE NAVIGATION -->
-
-		<div class="mobile-nav">
-			<a href="budaya.html" onclick="tutupMenu()">Culture</a>
-			<a href="festival.html" onclick="tutupMenu()">Festival</a>
-			<a href="kuliner.html" onclick="tutupMenu()">Culinary</a>
-			<a href="jelajahi.html" onclick="tutupMenu()">Explore</a>
-			<a href="about.html" onclick="tutupMenu()">About Us</a>
-
-		</div>
-
-	</header>
-    
+        // Hamburger Menu & Logic Interaction
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        menuBtn.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+            
+            if (mobileNav.classList.contains('active')) {
+                menuBtn.innerHTML = "&#10006;"; // Simbol Silang (✖)
+            } else {
+                menuBtn.innerHTML = "&#9776;"; // Simbol Hamburger (☰)
+            }
+        });
+    </script>
 </body>
 </html>
