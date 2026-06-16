@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alma de Sevilla</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Alma de Sevilla</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-  	<header>
+	<header>
 		<div class="navbar">
 			<a href="index.html" class="logo">Alma de Sevilla</a>
 			<nav class="nav-menu">
@@ -29,16 +33,17 @@
 			<a href="jelajahi.html" onclick="tutupMenu()">Explore</a>
 			<a href="about.html" onclick="tutupMenu()">About Us</a>
 		</div>
-  	</header>
+	</header>
 
-  	<main>
+	<main>
 		<section class="hero">
 			<div class="hero-bg"></div>
 			<div class="hero-content">
-					<p class="hero-tag">SEVILLA • ANDALUSIA • ESPAÑA</p>
-					<h1 class="hero-title">Alma de Sevilla</h1>
-					<p class="hero-description">
-						Discover the timeless beauty of flamenco, Andalusian architecture, traditional festivals, and culinary heritage from southern Spain.</p>
+				<p class="hero-tag">SEVILLA • ANDALUSIA • ESPAÑA</p>
+				<h1 class="hero-title">Alma de Sevilla</h1>
+				<p class="hero-description">
+					Discover the timeless beauty of flamenco, Andalusian architecture, traditional festivals, and
+					culinary heritage from southern Spain.</p>
 			</div>
 		</section>
 
@@ -52,7 +57,8 @@
 					<p class="section-tag">FLAVORS OF ANDALUSIA</p>
 					<h2>history of seville</h2>
 					<p class="about-description">
-						The city of Seville is estimated to have been founded in the 8th century BC (around 2,700 years ago).
+						The city of Seville is estimated to have been founded in the 8th century BC (around 2,700 years
+						ago).
 					</p>
 					<a href="sejarah.html" class="about-btn">Explore History</a>
 				</div>
@@ -61,7 +67,7 @@
 
 		<section class="preview-section">
 			<div class="preview-container">
-				
+
 				<div class="preview-card card-culture">
 					<div class="card-overlay"></div>
 					<div class="card-content">
@@ -100,8 +106,44 @@
 
 			</div>
 		</section>
-  	</main>
+	</main>
 
-  <script src="js/index.js"></script>
+	<footer class="mega-footer">
+		<div class="mega-container">
+			<div class="mega-left">
+				<h2 class="mega-brand">Alma de Sevilla</h2>
+				<p class="mega-desc">
+					Stay informed about the latest festivals, culinary secrets, and cultural developments in the heart
+					of Andalusia.
+				</p>
+				<form class="mega-subscribe" onsubmit="event.preventDefault();">
+					<input type="email" placeholder="Enter your email" required>
+					<button type="submit">Subscribe</button>
+				</form>
+			</div>
+
+			<div class="mega-right">
+				<div class="mega-col">
+					<h4>Navigation</h4>
+					<a href="index.html" style="color: var(--merah); font-weight: 700;">Home</a>
+					<a href="budaya.html">Culture</a>
+					<a href="festival.html">Festival</a>
+					<a href="kuliner.html">Culinary</a>
+					<a href="jelajahi.html">Explore</a>
+				</div>
+				<div class="mega-col">
+					<h4>Information</h4>
+					<a href="about.html">About Us</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="mega-bottom">
+			<p>&copy; 2026 Alma de Sevilla. Tugas Besar Pemrograman Web.</p>
+		</div>
+	</footer>
+	
+	<script src="js/index.js"></script>
 </body>
+
 </html>
