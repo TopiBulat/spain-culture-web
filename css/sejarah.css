@@ -938,3 +938,19 @@
 .nav-menu a:hover {
     text-decoration: none !important;
 }
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none !important;
+}
+
+.mobile-nav a,
+.mobile-nav a:link,
+.mobile-nav a:visited,
+.mobile-nav a:hover,
+.mobile-nav a:active {
+    text-decoration: none !important;
+}
