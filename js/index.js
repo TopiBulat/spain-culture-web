@@ -28,7 +28,6 @@ function tutupMenu() {
     menuBtn.innerHTML = "&#9776;";
 }
 
-// Memasang pengawas aktivitas guliran layar pada jendela browser
 window.addEventListener("scroll", function() {
     
     // Mengambil elemen header untuk memanipulasi saat layar di scroll

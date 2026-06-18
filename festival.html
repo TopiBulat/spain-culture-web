@@ -103,27 +103,72 @@
         <section class="cards-section">
             <div class="container">
                 <div class="cards-grid" id="cardsGrid">
-                    <!-- Dinamis Di-render Melalui Vanilla Javascript client loop -->
+
+                    <div class="fest-card" data-season="spring">
+                        <div class="card-img-wrapper">
+                            <img src="image/sevilla-semana-santa.webp" alt="Semana Santa" class="card-img">
+                            <span class="card-tag">Religius & Sakral</span>
+                        </div>
+
+                        <div class="card-body">
+                            <span class="card-meta">Maret / April — Pekan Suci</span>
+                            <h3 class="card-title">Semana Santa</h3>
+                            <p class="card-desc">
+                                Prosesi spiritual agung yang menggerakkan seluruh kota, menampilkan boks-boks suci antik abad pertengahan.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="fest-card" data-season="spring">
+                        <div class="card-img-wrapper">
+                            <img src="image/feria-de-abril.jpg" alt="Feria de Abril" class="card-img">
+                            <span class="card-tag">Sukacita & Budaya</span>
+                        </div>
+
+                        <div class="card-body">
+                            <span class="card-meta">April — Dua Minggu Pasca Paskah</span>
+                            <h3 class="card-title">Feria de Abril</h3>
+                            <p class="card-desc">
+                                Pekan kegembiraan Sevilla dengan ribuan tenda, gaun flamenco tradisional, dan tarian sevillanas.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="fest-card" data-season="autumn">
+                        <div class="card-img-wrapper">
+                            <img src="image/bienal-de-flamenco.webp" alt="Bienal di Flamenco" class="card-img">
+                            <span class="card-tag">Seni Musik & Tari</span>
+                        </div>
+
+                        <div class="card-body">
+                            <span class="card-meta">September / Oktober — Dua Tahunan</span>
+                            <h3 class="card-title">Bienal di Flamenco</h3>
+                            <p class="card-desc">
+                                Festival seni tari dan musik gitar Flamenco paling bergengsi di dunia.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="fest-card" data-season="winter">
+                        <div class="card-img-wrapper">
+                            <img src="image/navidad.jpg" alt="Navidad en Sevilla" class="card-img">
+                            <span class="card-tag">Tradisi Musim Dingin</span>
+                        </div>
+
+                        <div class="card-body">
+                            <span class="card-meta">Desember — Perayaan Natal</span>
+                            <h3 class="card-title">Navidad en Sevilla</h3>
+                            <p class="card-desc">
+                                Sevilla bersinar dalam magis lampu natal, pasar tradisional, dan nyanyian jalanan.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- INTERACTIVE HORIZONTAL TIMELINE SECTION -->
-        <section class="timeline-section">
-            <div class="container">
-                <div class="timeline-header">
-                    <span class="timeline-tag">Cronología</span>
-                    <h2>Alur Festival <em>Sepanjang Tahun</em></h2>
-                </div>
-            </div>
 
-            <div class="timeline-track-container" id="timelineTrackContainer">
-                <div class="timeline-track" id="timelineTrack">
-                    <div class="timeline-line"></div>
-                    <!-- Node Garis Waktu Dinamis Diturunkan dari JS Array -->
-                </div>
-            </div>
-        </section>
 
         <!-- TRAVEL TIPS SECTION -->
         <section class="tips-festival-section">
@@ -178,21 +223,6 @@
             </div>
         </section>
     </main>
-
-    <!-- POPUP MODAL DIALOG DETAIL -->
-    <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true">
-        <div class="modal-wrapper">
-            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Tutup Detail">&times;</button>
-            <div class="modal-img-side">
-                <img class="modal-img" id="modalImg" src="" alt="" />
-            </div>
-            <div class="modal-content-side">
-                <span class="modal-meta" id="modalMeta"></span>
-                <h2 class="modal-title" id="modalTitle"></h2>
-                <div class="modal-full-desc" id="modalFullDesc"></div>
-            </div>
-        </div>
-    </div>
 
     <!-- MEGA FOOTER -->
     <footer class="mega-footer">

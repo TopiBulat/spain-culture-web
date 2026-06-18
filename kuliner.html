@@ -75,39 +75,107 @@
             </div>
         </div>
 
-        <!-- FILTER & DROPDOWN -->
-        <div class="filter-section">
-            <span class="filter-label">Jelajahi Menu</span>
-            <div class="filter-controls">
-                <ul class="filter-list" id="filterList">
-                    <li><button class="aktif" data-filter="semua" onclick="filterKuliner(this)">Semua</button></li>
-                    <li><button data-filter="camilan" onclick="filterKuliner(this)">Camilan</button></li>
-                    <li><button data-filter="makanan-berat" onclick="filterKuliner(this)">Makanan Berat</button></li>
-                    <li><button data-filter="minuman" onclick="filterKuliner(this)">Minuman</button></li>
-                </ul>
-
-                <div class="filter-divider"></div>
-
-                <div class="dropdown-wrapper" id="dropdownWrapper">
-                    <button class="dropdown-trigger" id="dropdownTrigger" onclick="toggleDropdown()">
-                        <span id="dropdownLabel">Urutkan</span>
-                        <span class="arrow">▼</span>
-                    </button>
-                    <div class="dropdown-menu" id="dropdownMenu">
-                        <ul>
-                            <li><button class="dipilih" onclick="sortKuliner('default', this)">Default</button></li>
-                            <li><button onclick="sortKuliner('az', this)">A → Z</button></li>
-                            <li><button onclick="sortKuliner('za', this)">Z → A</button></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- GRID KULINER -->
         <section class="kuliner-section">
-            <p class="kuliner-count" id="kulinerCount"></p>
-            <div class="kuliner-grid" id="kulinerGrid"></div>
+            <div class="kuliner-grid" id="kulinerGrid">
+
+                <div class="food-card" data-kategori="camilan">
+                    <img class="food-card-img" src="image/tapas.jpg" alt="Tapas">
+                    <div class="food-card-overlay"></div>
+                    <div class="food-card-body">
+                        <span class="food-card-tag">Camilan</span>
+                        <h3 class="food-card-name">Tapas</h3>
+                        <p class="food-card-desc">
+                            Gigitan kecil penuh rasa dari jamón ibérico hingga patatas bravas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="food-card" data-kategori="camilan">
+                    <img class="food-card-img" src="image/gazpacho.jpg" alt="Gazpacho">
+                    <div class="food-card-overlay"></div>
+                    <div class="food-card-body">
+                        <span class="food-card-tag">Camilan</span>
+                        <h3 class="food-card-name">Gazpacho</h3>
+                        <p class="food-card-desc">
+                            Sup tomat dingin khas Andalusia.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="food-card" data-kategori="camilan">
+                    <img class="food-card-img" src="image/salmorejo.jpg" alt="Salmorejo">
+                    <div class="food-card-overlay"></div>
+                    <div class="food-card-body">
+                        <span class="food-card-tag">Camilan</span>
+                        <h3 class="food-card-name">Salmorejo</h3>
+                        <p class="food-card-desc">
+                            Krim tomat padat dengan telur rebus dan jamón.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="food-card" data-kategori="makanan-berat">
+                    <img class="food-card-img" src="image/paella.jpg" alt="Paella">
+                    <div class="food-card-overlay"></div>
+                    <div class="food-card-body">
+                        <span class="food-card-tag">Makanan Berat</span>
+                        <h3 class="food-card-name">Paella de Mariscos</h3>
+                        <p class="food-card-desc">
+                            Nasi safron dengan udang, kerang dan cumi.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="food-card" data-kategori="makanan-berat">
+                    <img class="food-card-img" src="image/pescaitofrito.jpg" alt="Pescaito Frito">
+                    <div class="food-card-overlay"></div>
+                    <div class="food-card-body">
+                        <span class="food-card-tag">Makanan Berat</span>
+                        <h3 class="food-card-name">Pescaito Frito</h3>
+                        <p class="food-card-desc">
+                            Ikan kecil segar dari Sungai Guadalquivir yang digoreng garing dalam tepung ringan.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="food-card" data-kategori="camilan">
+                    <img class="food-card-img" src="image/churros.jpg" alt="Churros con Chocolate">
+                    <div class="food-card-overlay"></div>
+                    <div class="food-card-body">
+                        <span class="food-card-tag">Camilan</span>
+                        <h3 class="food-card-name">Churros con Chocolate</h3>
+                        <p class="food-card-desc">
+                            Adonan goreng renyah yang dinikmati bersama cokelat panas kental.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="food-card" data-kategori="minuman">
+                    <img class="food-card-img" src="image/rebujito.jpg" alt="Rebujito">
+                    <div class="food-card-overlay"></div>
+                    <div class="food-card-body">
+                        <span class="food-card-tag">Minuman</span>
+                        <h3 class="food-card-name">Rebujito</h3>
+                        <p class="food-card-desc">
+                            Campuran Manzanilla, soda lemon, es batu, dan daun mint yang menyegarkan.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="food-card" data-kategori="minuman">
+                    <img class="food-card-img" src="image/sangria.jpg" alt="Sangria">
+                    <div class="food-card-overlay"></div>
+                    <div class="food-card-body">
+                        <span class="food-card-tag">Minuman</span>
+                        <h3 class="food-card-name">Sangria</h3>
+                        <p class="food-card-desc">
+                            Minuman klasik Spanyol berbasis anggur merah yang dicampur buah-buahan segar.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
         <!-- PULL QUOTE -->

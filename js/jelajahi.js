@@ -21,7 +21,7 @@ menuBtn.addEventListener("click", function () {
     }
 });
 
-// Fungsi untuk menutup menu otomatis saat link diklik (SOLUSI ERROR)
+// Fungsi untuk menutup menu otomatis saat link diklik
 function tutupMenu() {
     mobileNav.classList.remove("active");
     menuBtn.innerHTML = "&#9776;";

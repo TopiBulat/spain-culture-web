@@ -468,7 +468,9 @@
             padding: 1.8rem 1.6rem;
             z-index: 2;
         }
-
+        .food-card.hidden{
+                display:none;
+            }
         .food-card-tag {
             font-family: 'Lato', sans-serif;
             font-size: .52rem;
