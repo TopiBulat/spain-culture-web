@@ -106,14 +106,14 @@
         }
 
         .mobile-nav a {
-            font-family: 'EB Garamond', serif;
-            font-size: 15px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #ffffff;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+        font-family: 'EB Garamond', serif;
+        font-size: 15px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #ffffff;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,.05);
+    }
 
         .mobile-nav a:last-child { border-bottom: none; }
         

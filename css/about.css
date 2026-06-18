@@ -118,7 +118,7 @@
             text-transform: uppercase;
             color: #ffffff;
             padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255,255,255,.05);
         }
 
         .mobile-nav a:last-child {

@@ -7,16 +7,22 @@
             }
         });
 
-        // Hamburger Menu & Logic Interaction
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        
-        menuBtn.addEventListener('click', function() {
-            mobileNav.classList.toggle('active');
-            
-            if (mobileNav.classList.contains('active')) {
-                menuBtn.innerHTML = "&#10006;"; // Simbol Silang (✖)
-            } else {
-                menuBtn.innerHTML = "&#9776;"; // Simbol Hamburger (☰)
-            }
-        });
+        // Mengambil elemen navigasi
+const menuBtn = document.querySelector(".menu-btn");
+const mobileNav = document.querySelector(".mobile-nav");
+
+// Fungsi buka/tutup saat tombol hamburger diklik
+menuBtn.addEventListener("click", function () {
+    mobileNav.classList.toggle("active");
+    if (mobileNav.classList.contains("active")) {
+        menuBtn.innerHTML = "&#10006;"; // Ikon silang
+    } else {
+        menuBtn.innerHTML = "&#9776;"; // Ikon hamburger
+    }
+});
+
+// Fungsi untuk menutup menu otomatis saat link diklik (SOLUSI ERROR)
+function tutupMenu() {
+    mobileNav.classList.remove("active");
+    menuBtn.innerHTML = "&#9776;";
+}

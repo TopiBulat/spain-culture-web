@@ -13,29 +13,30 @@
 
 </head>
 
- <header id="siteHeader">
+<body>
+    <div class="cur" id="cur"></div>
+    <header>
         <div class="navbar">
             <a href="index.html" class="logo">Alma de Sevilla</a>
-
             <nav class="nav-menu">
                 <a href="index.html">Home</a>
                 <a href="budaya.html">Culture</a>
-                <a href="festival.html" >Festival</a>
+                <a href="festival.html">Festival</a>
                 <a href="kuliner.html">Culinary</a>
                 <a href="jelajahi.html">Explore</a>
                 <a href="about.html">About Us</a>
             </nav>
 
-            <button class="menu-btn" id="menuBtn" aria-label="Buka Menu" aria-expanded="false">&#9776;</button>
+            <button class="menu-btn">&#9776;</button>
         </div>
 
-        <div class="mobile-nav" id="mobileNav">
-            <a href="index.html" onclick="tutupMenu(false)">Home</a>
-            <a href="budaya.html" onclick="toggleMenu(false)">Culture</a>
-            <a href="festival.html" toggleMenu(false)">Festival</a>
-            <a href="kuliner.html" onclick="toggleMenu(false)">Culinary</a>
-            <a href="jelajahi.html" onclick="toggleMenu(false)">Explore</a>
-            <a href="about.html" onclick="toggleMenu(false)">About Us</a>
+        <div class="mobile-nav">
+            <a href="index.html" onclick="tutupMenu()">Home</a>
+            <a href="budaya.html" onclick="tutupMenu()">Culture</a>
+            <a href="festival.html" onclick="tutupMenu()">Festival</a>
+            <a href="kuliner.html" onclick="tutupMenu()">Culinary</a>
+            <a href="jelajahi.html" onclick="tutupMenu()">Explore</a>
+            <a href="about.html" onclick="tutupMenu()">About Us</a>
         </div>
     </header>
 
@@ -467,10 +468,6 @@
                             Stay informed about the latest festivals, culinary secrets, and cultural developments in the
                             heart of Andalusia.
                         </p>
-                        <form class="mega-subscribe" onsubmit="event.preventDefault();">
-                            <input type="email" placeholder="Enter your email" required>
-                            <button type="submit">Subscribe</button>
-                        </form>
                     </div>
 
                     <div class="mega-right">
@@ -481,7 +478,6 @@
                             <a href="festival.html">Festival</a>
                             <a href="kuliner.html">Culinary</a>
                             <a href="jelajahi.html">Explore</a>
-                            <a href="sejarah.html" style="color: var(--merah); font-weight: 700;">History</a>
                         </div>
                         <div class="mega-col">
                             <h4>Information</h4>

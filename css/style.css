@@ -1,14 +1,3 @@
-:root {
-  --krem: #F5F0E8;
-  --hitam: #1A1612;
-  --merah: #C0392B;
-  --merah-gelap: #a93226;
-  --tanah: #8C7B5E;
-  --krem-muda: #E8E0D0;
-  --krem-gelap: #DDD5C2;
-}
-
-
 * {
   margin: 0;
   padding: 0;
@@ -38,7 +27,10 @@ button {
    #F5F0E8 = Krem Sevilla
    #1A1612 = Hitam Andalusia
    #C0392B = Merah Flamenco
-   #8C7B5E = Tanah Liat */
+   #8C7B5E = Tanah Liat 
+   #a93226 = Merah Gelap
+   #E8E0D0 = Krem Muda
+   #DDD5C2 = Krem Gelap */
 
 /* Header */
 header {
@@ -66,7 +58,7 @@ header {
   font-family: 'Playfair Display', serif;
   font-size: 24px;
   font-weight: 600;
-  color: var(--krem);
+  color: #F5F0E8;
   transition: 0.4s ease;
 }
 
@@ -87,7 +79,7 @@ header {
 
 .nav-menu a:hover,
 .nav-menu a.active {
-  color: var(--merah);
+  color: #C0392B;
 }
 
 .menu-btn {
@@ -119,13 +111,13 @@ header {
 }
 
 .mobile-nav a {
-  font-family: 'EB Garamond', serif;
-  font-size: 15px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #ffffff;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.05);
 }
 
 .mobile-nav a:last-child {
@@ -134,12 +126,12 @@ header {
 
 .mobile-nav a:hover,
 .mobile-nav a.active {
-  color: var(--merah);
+  color: #C0392B;
 }
 
 /* GAYA NAVBAR SAAT DI-SCROLL */
 header.scrolled {
-  background-color: var(--krem);
+  background-color: #F5F0E8;
 }
 
 header.scrolled .navbar {
@@ -150,23 +142,23 @@ header.scrolled .navbar {
 }
 
 header.scrolled .logo {
-  color: var(--hitam);
+  color: #1A1612;
 }
 
 header.scrolled .menu-btn {
-  color: var(--hitam);
+  color: #1A1612;
 }
 
 header.scrolled .nav-menu a {
-  color: var(--hitam);
+  color: #1A1612;
 }
 
 header.scrolled .nav-menu a:hover {
-  color: var(--merah);
+  color: #C0392B;
 }
 
 header.scrolled .nav-menu a.active {
-  color: var(--merah);
+  color: #C0392B;
 }
 
 @media(min-width: 768px) {

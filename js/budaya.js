@@ -1,25 +1,18 @@
-// Mengambil elemen tombol pemicu menu berdasarkan class menu-btn
+// Mengambil elemen navigasi
 const menuBtn = document.querySelector(".menu-btn");
-
-// Mengambil elemen kontainer navigasi mobile berdasarkan class mobile-nav
 const mobileNav = document.querySelector(".mobile-nav");
 
-// Fungsi untuk membuka dan menutup menu navigasi pada layar mobile
+// Fungsi buka/tutup saat tombol hamburger diklik
 menuBtn.addEventListener("click", function () {
-    
-    // Menambah atau menghapus class active pada navigasi mobile secara bergantian
     mobileNav.classList.toggle("active");
-
-    // Memeriksa status menu untuk menentukan bentuk ikon tombol
     if (mobileNav.classList.contains("active")) {
-        // Jika menu dalam keadaan terbuka, ikon diubah menjadi tanda silang
-        menuBtn.innerHTML = "&#10006;";
+        menuBtn.innerHTML = "&#10006;"; // Ikon silang
     } else {
-        // Jika menu dalam keadaan tertutup, ikon dikembalikan menjadi garis tiga
-        menuBtn.innerHTML = "&#9776;";
+        menuBtn.innerHTML = "&#9776;"; // Ikon hamburger
     }
 });
 
+// Fungsi untuk menutup menu otomatis saat link diklik (SOLUSI ERROR)
 function tutupMenu() {
     mobileNav.classList.remove("active");
     menuBtn.innerHTML = "&#9776;";

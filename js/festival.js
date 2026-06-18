@@ -204,29 +204,25 @@
         });
 
         // HAMBURGER MENU CONTROL
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        const mobileOverlay = document.getElementById('mobileOverlay');
+        // Mengambil elemen navigasi
+        const menuBtn = document.querySelector(".menu-btn");
+        const mobileNav = document.querySelector(".mobile-nav");
 
-        function toggleMenu(force) {
-            const isOpen = force !== undefined ? force : !mobileNav.classList.contains('active');
-            mobileNav.classList.toggle('active', isOpen);
-            mobileOverlay.classList.toggle('active', isOpen);
-            menuBtn.innerHTML = mobileNav.classList.contains('active') ? "&#10006;" : "&#9776;";
-            menuBtn.setAttribute('aria-expanded', isOpen);
+        // Fungsi buka/tutup saat tombol hamburger diklik
+        menuBtn.addEventListener("click", function () {
+            mobileNav.classList.toggle("active");
+            if (mobileNav.classList.contains("active")) {
+                menuBtn.innerHTML = "&#10006;"; // Ikon silang
+            } else {
+                menuBtn.innerHTML = "&#9776;"; // Ikon hamburger
+            }
+        });
+
+        // Fungsi untuk menutup menu otomatis saat link diklik (SOLUSI ERROR)
+        function tutupMenu() {
+            mobileNav.classList.remove("active");
+            menuBtn.innerHTML = "&#9776;";
         }
-
-        menuBtn.addEventListener('click', () => toggleMenu());
-        mobileOverlay.addEventListener('click', () => toggleMenu(false));
-
-        // =============================================================
-        // BACK TO TOP
-        // =============================================================
-        const backTop = document.getElementById('backTop');
-        window.addEventListener('scroll', () => {
-            backTop.classList.toggle('visible', window.scrollY > 400);
-        }, { passive: true });
-        backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
         // =============================================================
         // INITIALIZATION
