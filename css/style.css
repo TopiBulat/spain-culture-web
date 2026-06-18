@@ -1,3 +1,14 @@
+:root {
+  --krem: #F5F0E8;
+  --hitam: #1A1612;
+  --merah: #C0392B;
+  --merah-gelap: #a93226;
+  --tanah: #8C7B5E;
+  --krem-muda: #E8E0D0;
+  --krem-gelap: #DDD5C2;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -36,9 +47,10 @@ header {
   left: 0;
   width: 100%;
   z-index: 1000;
+  background: transparent;
+  transition: 0.4s ease;
 }
 
-/* Navbar */
 .navbar {
   width: 100%;
   display: flex;
@@ -47,17 +59,17 @@ header {
   padding: 24px 24px;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(1px);
+  transition: 0.4s ease;
 }
 
-/* Logo */
 .logo {
   font-family: 'Playfair Display', serif;
   font-size: 24px;
   font-weight: 600;
-  color:  #F5F0E8 ;
+  color: var(--krem);
+  transition: 0.4s ease;
 }
 
-/* Desktop navigation - Default sembunyi di HP */
 .nav-menu {
   display: none;
 }
@@ -69,73 +81,36 @@ header {
   text-transform: uppercase;
   color: #ffffff;
   transition: 0.3s ease;
+  position: relative;
+  padding-bottom: 4px;
 }
 
-.nav-menu a:hover {
-  color: #C0392B;
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--merah);
 }
 
-/* Efek scroll navbar */
-
-/* Efek transisi untuk header dan elemen di dalamnya */
-header,
-.logo,
-.nav-menu a,
-.menu-btn {
-  transition: 0.4s ease;
-}
-
-/* Gaya header saat di-scroll */
-header.scrolled {
-  background-color: #F5F0E8;
-  /* Berubah jadi Krem Sevilla */
-}
-
-/* Menghilangkan efek blur bawaan saat di-scroll agar warna Krem Sevilla solid */
-header.scrolled .navbar {
-  background: transparent;
-  backdrop-filter: none;
-}
-
-/* Mengubah warna komponen teks menjadi Hitam Andalusia saat di scroll */
-header.scrolled .logo {
-  color: #1A1612;
-}
-
-header.scrolled .nav-menu a {
-  color: #1A1612;
-}
-
-/* Tombol menu mobile juga berubah warna */
-header.scrolled .menu-btn {
-  color: #1A1612;
-}
-
-/* Warna hover link saat navbar sudah di scroll */
-header.scrolled .nav-menu a:hover {
-  color: #C0392B;
-  /* Berubah jadi Merah Flamenco saat di hover */
-}
-
-/* Tombol Hamburger */
 .menu-btn {
   font-size: 32px;
   color: #ffffff;
   z-index: 1001;
+  transition: 0.4s ease;
+  line-height: 1;
 }
 
-/* Kotak Menu Mobile - Default Sembunyi Pakai display: none */
 .mobile-nav {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 24px;
   gap: 20px;
   z-index: 999;
   display: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .mobile-nav.active {
@@ -143,19 +118,109 @@ header.scrolled .nav-menu a:hover {
   flex-direction: column;
 }
 
-/* Gaya Tautan Link di dalamnya */
 .mobile-nav a {
   font-family: 'EB Garamond', serif;
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #ffffff;
-  padding: 12px 0;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.mobile-nav a:hover {
-  color: #C0392B;
+.mobile-nav a:last-child {
+  border-bottom: none;
 }
+
+.mobile-nav a:hover,
+.mobile-nav a.active {
+  color: var(--merah);
+}
+
+/* GAYA NAVBAR SAAT DI-SCROLL */
+header.scrolled {
+  background-color: var(--krem);
+}
+
+header.scrolled .navbar {
+  background: transparent;
+  backdrop-filter: none;
+  padding: 16px 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+header.scrolled .logo {
+  color: var(--hitam);
+}
+
+header.scrolled .menu-btn {
+  color: var(--hitam);
+}
+
+header.scrolled .nav-menu a {
+  color: var(--hitam);
+}
+
+header.scrolled .nav-menu a:hover {
+  color: var(--merah);
+}
+
+header.scrolled .nav-menu a.active {
+  color: var(--merah);
+}
+
+@media(min-width: 768px) {
+  .navbar {
+    padding: 28px 40px;
+  }
+
+  header.scrolled .navbar {
+    padding: 18px 40px;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .menu-btn,
+  .mobile-nav,
+  .mobile-nav.active {
+    display: none !important;
+  }
+}
+
+@media(min-width: 1100px) {
+  .navbar {
+    padding: 32px 80px;
+  }
+
+  header.scrolled .navbar {
+    padding: 20px 80px;
+  }
+
+  .nav-menu {
+    gap: 42px;
+  }
+}
+
+/* Mobile Overlay */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.mobile-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 
 /* Hero */
 .hero {
@@ -190,7 +255,7 @@ header.scrolled .nav-menu a:hover {
   justify-content: center;
   text-align: center;
   padding: 20px;
-  color:  #F5F0E8;
+  color: #F5F0E8;
 }
 
 
@@ -383,7 +448,8 @@ header.scrolled .nav-menu a:hover {
 .preview-section {
   width: 100%;
   position: relative;
-  background-image: url("../image/bg-preview1.jpg"); /* Ganti dengan nama file fotomu */
+  background-image: url("../image/bg-preview1.jpg");
+  /* Ganti dengan nama file fotomu */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -523,8 +589,10 @@ header.scrolled .nav-menu a:hover {
    GAYA MEGA FOOTER (GABUNGAN NEWSLETTER & FOOTER ALA MONARQUE) */
 .mega-footer {
   width: 100%;
-  background-color: #1A1612; /* Warna dasar Hitam Andalusia */
-  color: #F5F0E8; /* Warna teks Krem Sevilla */
+  background-color: #1A1612;
+  /* Warna dasar Hitam Andalusia */
+  color: #F5F0E8;
+  /* Warna teks Krem Sevilla */
   padding: 80px 24px 24px 24px;
   font-family: 'Lato', sans-serif;
 }
@@ -544,7 +612,8 @@ header.scrolled .nav-menu a:hover {
 
 .mega-brand {
   font-family: 'Playfair Display', serif;
-  font-size: 48px; /* Teks besar nan elegan */
+  font-size: 48px;
+  /* Teks besar nan elegan */
   font-weight: 600;
   letter-spacing: -1px;
   margin-bottom: 24px;
@@ -560,8 +629,10 @@ header.scrolled .nav-menu a:hover {
 /* Desain Form Subscribe (Bentuk Kapsul Gelap) */
 .mega-subscribe {
   display: flex;
-  background-color: rgba(255, 255, 255, 0.04); /* Kotak abu-abu transparan super tipis */
-  border-radius: 50px; /* Membuat bentuk kapsul sempurna */
+  background-color: rgba(255, 255, 255, 0.04);
+  /* Kotak abu-abu transparan super tipis */
+  border-radius: 50px;
+  /* Membuat bentuk kapsul sempurna */
   padding: 6px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -578,14 +649,18 @@ header.scrolled .nav-menu a:hover {
 }
 
 .mega-subscribe input::placeholder {
-  color: rgba(245, 240, 232, 0.4); /* Placeholder sedikit memudar */
+  color: rgba(245, 240, 232, 0.4);
+  /* Placeholder sedikit memudar */
 }
 
 .mega-subscribe button {
-  background-color: #C0392B; /* Tombol Merah Flamenco */
+  background-color: #C0392B;
+  /* Tombol Merah Flamenco */
   color: #ffffff;
-  border: none; /* Menghilangkan garis tepi bawaan tombol */
-  border-radius: 50px; /* Tombol kapsul menyesuaikan kotaknya */
+  border: none;
+  /* Menghilangkan garis tepi bawaan tombol */
+  border-radius: 50px;
+  /* Tombol kapsul menyesuaikan kotaknya */
   padding: 12px 32px;
   font-family: 'Lato', sans-serif;
   font-size: 13px;
@@ -601,7 +676,8 @@ header.scrolled .nav-menu a:hover {
 /* --- BAGIAN KANAN (2 Kolom Navigasi Utama) --- */
 .mega-right {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Membagi otomatis menjadi 2 kolom rapi */
+  grid-template-columns: 1fr 1fr;
+  /* Membagi otomatis menjadi 2 kolom rapi */
   gap: 40px;
 }
 
@@ -616,7 +692,8 @@ header.scrolled .nav-menu a:hover {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  opacity: 0.5; /* Dibuat pudar agar menjadi pemisah judul yang elegan */
+  opacity: 0.5;
+  /* Dibuat pudar agar menjadi pemisah judul yang elegan */
   margin-bottom: 8px;
 }
 
@@ -629,7 +706,8 @@ header.scrolled .nav-menu a:hover {
 
 .mega-col a:hover {
   opacity: 1;
-  color: #C0392B; /* Hover teks berubah warna kemerahan */
+  color: #C0392B;
+  /* Hover teks berubah warna kemerahan */
 }
 
 /* --- BAGIAN BAWAH (Garis Pembatas & Copyright) --- */
@@ -637,7 +715,8 @@ header.scrolled .nav-menu a:hover {
   max-width: 1400px;
   margin: 80px auto 0 auto;
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Garis batas tipis */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  /* Garis batas tipis */
   text-align: center;
   font-size: 13px;
   opacity: 0.5;
@@ -652,20 +731,24 @@ header.scrolled .nav-menu a:hover {
   }
 
   .mega-container {
-    flex-direction: row; /* Berubah jadi format berjejer Kiri-Kanan di Laptop */
+    flex-direction: row;
+    /* Berubah jadi format berjejer Kiri-Kanan di Laptop */
     justify-content: space-between;
   }
 
   .mega-brand {
-    font-size: 56px; /* Ukuran font judul brand membesar */
+    font-size: 56px;
+    /* Ukuran font judul brand membesar */
   }
 
   .mega-right {
-    gap: 80px; /* Jarak celah antar 2 kolom navigasi sedikit dilebarkan */
+    gap: 80px;
+    /* Jarak celah antar 2 kolom navigasi sedikit dilebarkan */
   }
 
   .mega-bottom {
-    text-align: left; /* Teks copyright bergeser ke pinggir kiri agar lebih rapi di monitor lebar */
+    text-align: left;
+    /* Teks copyright bergeser ke pinggir kiri agar lebih rapi di monitor lebar */
   }
 }
 
@@ -676,8 +759,9 @@ header.scrolled .nav-menu a:hover {
   .mega-footer {
     padding: 120px 80px 40px 80px;
   }
-  
+
   .mega-right {
-    gap: 120px; /* Jarak maksimal antar kolom jika layar sangat lebar */
+    gap: 120px;
+    /* Jarak maksimal antar kolom jika layar sangat lebar */
   }
 }

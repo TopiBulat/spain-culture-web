@@ -14,28 +14,32 @@
 </head>
 
 <body>
-    <header id="siteHeader">
+   <header id="siteHeader">
         <div class="navbar">
             <a href="index.html" class="logo">Alma de Sevilla</a>
+
             <nav class="nav-menu">
                 <a href="index.html">Home</a>
                 <a href="budaya.html">Culture</a>
-                <a href="festival.html">Festival</a>
+                <a href="festival.html" >Festival</a>
                 <a href="kuliner.html">Culinary</a>
                 <a href="jelajahi.html" class="active">Explore</a>
                 <a href="about.html">About Us</a>
             </nav>
-            <button class="menu-btn" id="menuBtn">&#9776;</button>
+
+            <button class="menu-btn" id="menuBtn" aria-label="Buka Menu" aria-expanded="false">&#9776;</button>
         </div>
+
         <div class="mobile-nav" id="mobileNav">
-            <a href="index.html">Home</a>
-            <a href="budaya.html">Culture</a>
-            <a href="festival.html">Festival</a>
-            <a href="kuliner.html">Culinary</a>
-            <a href="jelajahi.html" class="active">Explore</a>
-            <a href="about.html">About Us</a>
+            <a href="index.html" onclick="tutupMenu(false)">Home</a>
+            <a href="budaya.html" onclick="toggleMenu(false)">Culture</a>
+            <a href="festival.html" onclick="toggleMenu(false)">Festival</a>
+            <a href="kuliner.html" onclick="toggleMenu(false)">Culinary</a>
+            <a href="jelajahi.html" class="active" onclick="toggleMenu(false)">Explore</a>
+            <a href="about.html" onclick="toggleMenu(false)">About Us</a>
         </div>
     </header>
+
 
     <main>
         <section class="hero">
@@ -175,6 +179,7 @@
                     <a href="festival.html" >Festival</a>
                     <a href="kuliner.html">Culinary</a>
                     <a href="jelajahi.html" style="color: var(--merah); font-weight: 700;">Explore</a>
+                    <a href="sejarah.html">History</a>
                 </div>
                 <div class="mega-col">
                     <h4>Information</h4>

@@ -1,582 +1,661 @@
  /* ============================================================
            ROOT VARIABLES — Alma de Sevilla Design System
         ============================================================ */
-        :root {
-            --krem:       #F5F0E8;
-            --hitam:      #1A1612;
-            --merah:      #C0392B;
-            --merah-gelap:#a93226;
-            --tanah:      #8C7B5E;
-            --krem-muda:  #E8E0D0;
-            --krem-gelap: #DDD5C2;
-        }
+ :root {
+     --krem: #F5F0E8;
+     --hitam: #1A1612;
+     --merah: #C0392B;
+     --merah-gelap: #a93226;
+     --tanah: #8C7B5E;
+     --krem-muda: #E8E0D0;
+     --krem-gelap: #DDD5C2;
+ }
 
-        /* ============================================================
+ /* ============================================================
            BASE STYLES
         ============================================================ */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+ *,
+ *::before,
+ *::after {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+ }
 
-        html {
-            scroll-behavior: smooth;
-        }
+ html {
+     scroll-behavior: smooth;
+ }
 
-        body {
-            background-color: var(--krem);
-            color: var(--hitam);
-            font-family: 'Cormorant Garamond', serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+ body {
+     background-color: var(--krem);
+     color: var(--hitam);
+     font-family: 'Cormorant Garamond', serif;
+     overflow-x: hidden;
+     -webkit-font-smoothing: antialiased;
+ }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+ a {
+     text-decoration: none;
+     color: inherit;
+ }
 
-        button {
-            background: none;
-            border: none;
-            font: inherit;
-            cursor: pointer;
-            outline: none;
-        }
+ button {
+     background: none;
+     border: none;
+     font: inherit;
+     cursor: pointer;
+     outline: none;
+ }
 
-        /* Utility Container */
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        @media (min-width: 768px) { .container { padding: 0 40px; } }
-        @media (min-width: 1100px) { .container { padding: 0 80px; } }
+ /* Utility Container */
+ .container {
+     width: 100%;
+     max-width: 1400px;
+     margin: 0 auto;
+     padding: 0 24px;
+ }
 
-        /* ============================================================
+ @media (min-width: 768px) {
+     .container {
+         padding: 0 40px;
+     }
+ }
+
+ @media (min-width: 1100px) {
+     .container {
+         padding: 0 80px;
+     }
+ }
+
+ /* ============================================================
            NAVBAR (SINKRON DENGAN HALAMAN LAINNYA)
         ============================================================ */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: transparent;
-            transition: 0.4s ease;
-        }
+ header {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1000;
+     background: transparent;
+     transition: 0.4s ease;
+ }
 
-        .navbar {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 24px 24px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(1px);
-            transition: 0.4s ease;
-        }
+ .navbar {
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 24px 24px;
+     background: rgba(255, 255, 255, 0.08);
+     backdrop-filter: blur(1px);
+     transition: 0.4s ease;
+ }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--krem);
-            transition: 0.4s ease;
-        }
+ .logo {
+     font-family: 'Playfair Display', serif;
+     font-size: 24px;
+     font-weight: 600;
+     color: var(--krem);
+     transition: 0.4s ease;
+ }
 
-        .nav-menu {
-            display: none;
-        }
+ .nav-menu {
+     display: none;
+ }
 
-        .nav-menu a {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #ffffff;
-            transition: 0.3s ease;
-            position: relative;
-            padding-bottom: 4px;
-        }
+ .nav-menu a {
+     font-family: 'Montserrat', sans-serif;
+     font-size: 12px;
+     letter-spacing: 1.5px;
+     text-transform: uppercase;
+     color: #ffffff;
+     transition: 0.3s ease;
+     position: relative;
+     padding-bottom: 4px;
+ }
 
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: var(--merah);
-        }
+ .nav-menu a:hover,
+ .nav-menu a.active {
+     color: var(--merah);
+ }
 
-        .menu-btn {
-            font-size: 32px;
-            color: #ffffff;
-            z-index: 1001;
-            transition: 0.4s ease;
-            line-height: 1;
-            cursor: pointer;
-            padding: 0;
-        }
+ .menu-btn {
+     font-size: 32px;
+     color: #ffffff;
+     z-index: 1001;
+     transition: 0.4s ease;
+     line-height: 1;
+ }
 
-        .mobile-nav {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 24px;
-            gap: 20px;
-            z-index: 999;
-            display: none;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
+ .mobile-nav {
+     position: absolute;
+     top: 100%;
+     left: 0;
+     width: 100%;
+     background: rgba(0, 0, 0, 0.85);
+     backdrop-filter: blur(12px);
+     -webkit-backdrop-filter: blur(12px);
+     padding: 24px;
+     gap: 20px;
+     z-index: 999;
+     display: none;
+     border-top: 1px solid rgba(255, 255, 255, 0.1);
+ }
 
-        .mobile-nav.active {
-            display: flex;
-            flex-direction: column;
-        }
+ .mobile-nav.active {
+     display: flex;
+     flex-direction: column;
+ }
 
-        .mobile-nav a {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 16px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #ffffff;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .mobile-nav a:last-child { border-bottom: none; }
-        .mobile-nav a:hover, .mobile-nav a.active { color: var(--merah); }
+ .mobile-nav a {
+     font-family: 'EB Garamond', serif;
+     font-size: 15px;
+     letter-spacing: 1px;
+     text-transform: uppercase;
+     color: #ffffff;
+     padding: 10px 0;
+     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+ }
 
-        /* NAVBAR SCROLLED STATE */
-        header.scrolled {
-            background-color: var(--krem);
-        }
+ .mobile-nav a:last-child {
+     border-bottom: none;
+ }
 
-        header.scrolled .navbar {
-            background: transparent;
-            padding: 16px 24px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
+ .mobile-nav a:hover,
+ .mobile-nav a.active {
+     color: var(--merah);
+ }
 
-        header.scrolled .logo { color: var(--hitam); }
-        header.scrolled .menu-btn { color: var(--hitam); }
-        header.scrolled .nav-menu a { color: var(--hitam); }
-        header.scrolled .nav-menu a.active { color: var(--merah); }
+ /* GAYA NAVBAR SAAT DI-SCROLL */
+ header.scrolled {
+     background-color: var(--krem);
+ }
 
-        @media(min-width: 768px) {
-            .navbar { padding: 28px 40px; }
-            header.scrolled .navbar { padding: 18px 40px; }
-            .nav-menu { display: flex; align-items: center; gap: 24px; }
-            .menu-btn, .mobile-nav, .mobile-nav.active { display: none !important; }
-        }
-        @media(min-width: 1100px) {
-            .navbar { padding: 32px 80px; }
-            header.scrolled .navbar { padding: 20px 80px; }
-            .nav-menu { gap: 42px; }
-        }
+ header.scrolled .navbar {
+     background: transparent;
+     backdrop-filter: none;
+     padding: 16px 24px;
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+ }
 
-        /* ============================================================
+ header.scrolled .logo {
+     color: var(--hitam);
+ }
+
+ header.scrolled .menu-btn {
+     color: var(--hitam);
+ }
+
+ header.scrolled .nav-menu a {
+     color: var(--hitam);
+ }
+
+ header.scrolled .nav-menu a:hover {
+     color: var(--merah);
+ }
+
+ header.scrolled .nav-menu a.active {
+     color: var(--merah);
+ }
+
+ @media(min-width: 768px) {
+     .navbar {
+         padding: 28px 40px;
+     }
+
+     header.scrolled .navbar {
+         padding: 18px 40px;
+     }
+
+     .nav-menu {
+         display: flex;
+         align-items: center;
+         gap: 24px;
+     }
+
+     .menu-btn,
+     .mobile-nav,
+     .mobile-nav.active {
+         display: none !important;
+     }
+ }
+
+ @media(min-width: 1100px) {
+     .navbar {
+         padding: 32px 80px;
+     }
+
+     header.scrolled .navbar {
+         padding: 20px 80px;
+     }
+
+     .nav-menu {
+         gap: 42px;
+     }
+ }
+
+ /* Mobile Overlay */
+ .mobile-overlay {
+     position: fixed;
+     inset: 0;
+     background: rgba(0, 0, 0, 0.4);
+     z-index: 998;
+     opacity: 0;
+     pointer-events: none;
+     transition: opacity 0.4s ease;
+ }
+
+ .mobile-overlay.active {
+     opacity: 1;
+     pointer-events: auto;
+ }
+
+ /* ============================================================
            HERO SECTION
         ============================================================ */
-        .hero {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            overflow: hidden;
-        }
+ .hero {
+     height: 100vh;
+     position: relative;
+     display: flex;
+     align-items: flex-end;
+     overflow: hidden;
+ }
 
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background-image: url("../image/metropol.jpg");
-            background-size: cover;
-            background-position: center;
-            transform: scale(1.05);
-        }
+ .hero-bg {
+     position: absolute;
+     inset: 0;
+     background-image: url("../image/metropol.jpg");
+     background-size: cover;
+     background-position: center;
+     transform: scale(1.05);
+ }
 
-        .hero-veil {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(26,22,18,1) 0%, rgba(26,22,18,0.4) 100%);
-        }
+ .hero-veil {
+     position: absolute;
+     inset: 0;
+     background: linear-gradient(to top, rgba(26, 22, 18, 1) 0%, rgba(26, 22, 18, 0.4) 100%);
+ }
 
-        .hero-body {
-            position: relative;
-            z-index: 2;
-            padding-bottom: 60px;
-            max-width: 800px;
-        }
+ .hero-body {
+     position: relative;
+     z-index: 2;
+     padding-bottom: 60px;
+     max-width: 800px;
+ }
 
-        .hero-eyebrow {
-            font-family: 'Lato', sans-serif;
-            font-size: 10px;
-            letter-spacing: .32em;
-            text-transform: uppercase;
-            color: rgba(245, 240, 232, .5);
-            margin-bottom: 20px;
-            display: block;
-        }
+ .hero-eyebrow {
+     font-family: 'Lato', sans-serif;
+     font-size: 10px;
+     letter-spacing: .32em;
+     text-transform: uppercase;
+     color: rgba(245, 240, 232, .5);
+     margin-bottom: 20px;
+     display: block;
+ }
 
-        .hero-h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 1.1;
-            color: var(--krem);
-            margin-bottom: 20px;
-        }
+ .hero-h1 {
+     font-family: 'Playfair Display', serif;
+     font-size: clamp(2.5rem, 5vw, 4.5rem);
+     line-height: 1.1;
+     color: var(--krem);
+     margin-bottom: 20px;
+ }
 
-        .hero-lead {
-            font-size: 18px;
-            font-weight: 300;
-            line-height: 1.8;
-            color: rgba(245, 240, 232, .75);
-        }
+ .hero-lead {
+     font-size: 18px;
+     font-weight: 300;
+     line-height: 1.8;
+     color: rgba(245, 240, 232, .75);
+ }
 
-        /* ============================================================
+ /* ============================================================
            EXPLORE CARDS GRID
         ============================================================ */
-        .explore-section {
-            padding: 100px 0;
-            background-color: var(--krem);
-        }
+ .explore-section {
+     padding: 100px 0;
+     background-color: var(--krem);
+ }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+ .section-header {
+     text-align: center;
+     margin-bottom: 60px;
+ }
 
-        .section-header span {
-            font-family: 'Lato', sans-serif;
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--merah);
-            display: block;
-            margin-bottom: 12px;
-        }
+ .section-header span {
+     font-family: 'Lato', sans-serif;
+     font-size: 10px;
+     letter-spacing: 2px;
+     text-transform: uppercase;
+     color: var(--merah);
+     display: block;
+     margin-bottom: 12px;
+ }
 
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 3.5vw, 2.8rem);
-            color: var(--hitam);
-        }
+ .section-header h2 {
+     font-family: 'Playfair Display', serif;
+     font-size: clamp(2rem, 3.5vw, 2.8rem);
+     color: var(--hitam);
+ }
 
-        .explore-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-        @media (min-width: 768px) {
-            .explore-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+ .explore-grid {
+     display: grid;
+     grid-template-columns: 1fr;
+     gap: 40px;
+ }
 
-        .explore-card {
-            background-color: var(--krem-muda);
-            border-radius: 4px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.02);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
+ @media (min-width: 768px) {
+     .explore-grid {
+         grid-template-columns: repeat(2, 1fr);
+     }
+ }
 
-        .explore-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 40px rgba(26,22,18,0.08);
-        }
+ .explore-card {
+     background-color: var(--krem-muda);
+     border-radius: 4px;
+     overflow: hidden;
+     display: flex;
+     flex-direction: column;
+     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+     transition: transform 0.4s ease, box-shadow 0.4s ease;
+ }
 
-        .card-img-side {
-            position: relative;
-            width: 100%;
-            padding-top: 60px;
-            height: 260px;
-            overflow: hidden;
-        }
+ .explore-card:hover {
+     transform: translateY(-6px);
+     box-shadow: 0 12px 40px rgba(26, 22, 18, 0.08);
+ }
 
-        .card-img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
+ .card-img-side {
+     position: relative;
+     width: 100%;
+     padding-top: 60px;
+     height: 260px;
+     overflow: hidden;
+ }
 
-        .explore-card:hover .card-img {
-            transform: scale(1.03);
-        }
+ .card-img {
+     position: absolute;
+     inset: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     transition: transform 0.6s ease;
+ }
 
-        .explore-card-body {
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
+ .explore-card:hover .card-img {
+     transform: scale(1.03);
+ }
 
-        .explore-card-tag {
-            font-family: 'Lato', sans-serif;
-            font-size: 9px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--merah);
-            margin-bottom: 10px;
-            display: block;
-            font-weight: 700;
-        }
+ .explore-card-body {
+     padding: 32px;
+     display: flex;
+     flex-direction: column;
+     flex-grow: 1;
+ }
 
-        .explore-card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            margin-bottom: 12px;
-            color: var(--hitam);
-        }
+ .explore-card-tag {
+     font-family: 'Lato', sans-serif;
+     font-size: 9px;
+     letter-spacing: 1.5px;
+     text-transform: uppercase;
+     color: var(--merah);
+     margin-bottom: 10px;
+     display: block;
+     font-weight: 700;
+ }
 
-        .explore-card-desc {
-            font-size: 15.5px;
-            line-height: 1.65;
-            color: rgba(26,22,18,0.75);
-            margin-bottom: 24px;
-            flex-grow: 1;
-        }
+ .explore-card-title {
+     font-family: 'Playfair Display', serif;
+     font-size: 24px;
+     margin-bottom: 12px;
+     color: var(--hitam);
+ }
 
-        .maps-btn {
-            align-self: flex-start;
-            font-family: 'Lato', sans-serif;
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: #ffffff;
-            background-color: var(--hitam);
-            padding: 12px 24px;
-            border-radius: 20px;
-            transition: background-color 0.3s ease;
-        }
+ .explore-card-desc {
+     font-size: 15.5px;
+     line-height: 1.65;
+     color: rgba(26, 22, 18, 0.75);
+     margin-bottom: 24px;
+     flex-grow: 1;
+ }
 
-        .explore-card:hover .maps-btn {
-            background-color: var(--merah);
-        }
+ .maps-btn {
+     align-self: flex-start;
+     font-family: 'Lato', sans-serif;
+     font-size: 10px;
+     letter-spacing: 1.5px;
+     text-transform: uppercase;
+     font-weight: 700;
+     color: #ffffff;
+     background-color: var(--hitam);
+     padding: 12px 24px;
+     border-radius: 20px;
+     transition: background-color 0.3s ease;
+ }
 
-        /* ============================================================
+ .explore-card:hover .maps-btn {
+     background-color: var(--merah);
+ }
+
+ /* ============================================================
            SEASONAL TIPS (KONTEN TAMBAHAN BROWSER ITINERARY)
         ============================================================ */
-        .seasonal-tips {
-            background-color: var(--hitam);
-            color: var(--krem);
-            padding: 100px 0;
-        }
+ .seasonal-tips {
+     background-color: var(--hitam);
+     color: var(--krem);
+     padding: 100px 0;
+ }
 
-        .tips-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-            margin-top: 48px;
-        }
-        @media (min-width: 992px) {
-            .tips-grid { grid-template-columns: repeat(3, 1fr); }
-        }
+ .tips-grid {
+     display: grid;
+     grid-template-columns: 1fr;
+     gap: 32px;
+     margin-top: 48px;
+ }
 
-        .tips-box {
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 32px;
-            border-radius: 4px;
-            background: rgba(255,255,255,0.02);
-        }
+ @media (min-width: 992px) {
+     .tips-grid {
+         grid-template-columns: repeat(3, 1fr);
+     }
+ }
 
-        .tips-box h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            margin-bottom: 16px;
-            color: var(--merah);
-        }
+ .tips-box {
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     padding: 32px;
+     border-radius: 4px;
+     background: rgba(255, 255, 255, 0.02);
+ }
 
-        .tips-box p {
-            font-size: 14.5px;
-            line-height: 1.6;
-            opacity: 0.7;
-        }
+ .tips-box h3 {
+     font-family: 'Playfair Display', serif;
+     font-size: 20px;
+     margin-bottom: 16px;
+     color: var(--merah);
+ }
 
-        /* ============================================================
+ .tips-box p {
+     font-size: 14.5px;
+     line-height: 1.6;
+     opacity: 0.7;
+ }
+
+ /* ============================================================
            MEGA FOOTER
         ============================================================ */
-        .mega-footer {
-            width: 100%;
-            background-color: #1A1612;
-            /* Warna dasar Hitam Andalusia */
-            color: #F5F0E8;
-            /* Warna teks Krem Sevilla */
-            padding: 80px 24px 24px 24px;
-            font-family: 'Lato', sans-serif;
-        }
+ .mega-footer {
+     width: 100%;
+     background-color: #1A1612;
+     /* Warna dasar Hitam Andalusia */
+     color: #F5F0E8;
+     /* Warna teks Krem Sevilla */
+     padding: 80px 24px 24px 24px;
+     font-family: 'Lato', sans-serif;
+ }
 
-        .mega-container {
-            max-width: 1400px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
-        }
+ .mega-container {
+     max-width: 1400px;
+     margin: auto;
+     display: flex;
+     flex-direction: column;
+     gap: 60px;
+ }
 
-        /* --- BAGIAN KIRI (Brand, Deskripsi, & Form) --- */
-        .mega-left {
-            max-width: 420px;
-        }
+ /* --- BAGIAN KIRI (Brand, Deskripsi, & Form) --- */
+ .mega-left {
+     max-width: 420px;
+ }
 
-        .mega-brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            /* Teks besar nan elegan */
-            font-weight: 600;
-            letter-spacing: -1px;
-            margin-bottom: 24px;
-        }
+ .mega-brand {
+     font-family: 'Playfair Display', serif;
+     font-size: 48px;
+     /* Teks besar nan elegan */
+     font-weight: 600;
+     letter-spacing: -1px;
+     margin-bottom: 24px;
+ }
 
-        .mega-desc {
-            font-size: 15px;
-            line-height: 1.6;
-            opacity: 0.7;
-            margin-bottom: 32px;
-        }
+ .mega-desc {
+     font-size: 15px;
+     line-height: 1.6;
+     opacity: 0.7;
+     margin-bottom: 32px;
+ }
 
-        /* Desain Form Subscribe (Bentuk Kapsul Gelap) */
-        .mega-subscribe {
-            display: flex;
-            background-color: rgba(255, 255, 255, 0.04);
-            /* Kotak abu-abu transparan super tipis */
-            border-radius: 50px;
-            /* Membuat bentuk kapsul sempurna */
-            padding: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+ /* Desain Form Subscribe (Bentuk Kapsul Gelap) */
+ .mega-subscribe {
+     display: flex;
+     background-color: rgba(255, 255, 255, 0.04);
+     /* Kotak abu-abu transparan super tipis */
+     border-radius: 50px;
+     /* Membuat bentuk kapsul sempurna */
+     padding: 6px;
+     border: 1px solid rgba(255, 255, 255, 0.1);
+ }
 
-        .mega-subscribe input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #F5F0E8;
-            padding: 10px 20px;
-            font-family: 'Lato', sans-serif;
-            font-size: 14px;
-        }
+ .mega-subscribe input {
+     flex: 1;
+     background: transparent;
+     border: none;
+     outline: none;
+     color: #F5F0E8;
+     padding: 10px 20px;
+     font-family: 'Lato', sans-serif;
+     font-size: 14px;
+ }
 
-        .mega-subscribe input::placeholder {
-            color: rgba(245, 240, 232, 0.4);
-            /* Placeholder sedikit memudar */
-        }
+ .mega-subscribe input::placeholder {
+     color: rgba(245, 240, 232, 0.4);
+     /* Placeholder sedikit memudar */
+ }
 
-        .mega-subscribe button {
-            background-color: #C0392B;
-            /* Tombol Merah Flamenco */
-            color: #ffffff;
-            border: none;
-            /* Menghilangkan garis tepi bawaan tombol */
-            border-radius: 50px;
-            /* Tombol kapsul menyesuaikan kotaknya */
-            padding: 12px 32px;
-            font-family: 'Lato', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+ .mega-subscribe button {
+     background-color: #C0392B;
+     /* Tombol Merah Flamenco */
+     color: #ffffff;
+     border: none;
+     /* Menghilangkan garis tepi bawaan tombol */
+     border-radius: 50px;
+     /* Tombol kapsul menyesuaikan kotaknya */
+     padding: 12px 32px;
+     font-family: 'Lato', sans-serif;
+     font-size: 13px;
+     font-weight: 700;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+ }
 
-        .mega-subscribe button:hover {
-            background-color: #a93226;
-        }
+ .mega-subscribe button:hover {
+     background-color: #a93226;
+ }
 
-        /* --- BAGIAN KANAN (2 Kolom Navigasi Utama) --- */
-        .mega-right {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            /* Membagi otomatis menjadi 2 kolom rapi */
-            gap: 40px;
-        }
+ /* --- BAGIAN KANAN (2 Kolom Navigasi Utama) --- */
+ .mega-right {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     /* Membagi otomatis menjadi 2 kolom rapi */
+     gap: 40px;
+ }
 
-        .mega-col {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+ .mega-col {
+     display: flex;
+     flex-direction: column;
+     gap: 16px;
+ }
 
-        .mega-col h4 {
-            font-family: 'Lato', sans-serif;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            opacity: 0.5;
-            /* Dibuat pudar agar menjadi pemisah judul yang elegan */
-            margin-bottom: 8px;
-        }
+ .mega-col h4 {
+     font-family: 'Lato', sans-serif;
+     font-size: 12px;
+     text-transform: uppercase;
+     letter-spacing: 1.5px;
+     opacity: 0.5;
+     /* Dibuat pudar agar menjadi pemisah judul yang elegan */
+     margin-bottom: 8px;
+ }
 
-        .mega-col a {
-            font-size: 14.5px;
-            color: #F5F0E8;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-        }
+ .mega-col a {
+     font-size: 14.5px;
+     color: #F5F0E8;
+     opacity: 0.8;
+     transition: all 0.3s ease;
+ }
 
-        .mega-col a:hover {
-            opacity: 1;
-            color: #C0392B;
-            /* Hover teks berubah warna kemerahan */
-        }
+ .mega-col a:hover {
+     opacity: 1;
+     color: #C0392B;
+     /* Hover teks berubah warna kemerahan */
+ }
 
-        /* --- BAGIAN BAWAH (Garis Pembatas & Copyright) --- */
-        .mega-bottom {
-            max-width: 1400px;
-            margin: 80px auto 0 auto;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            /* Garis batas tipis */
-            text-align: center;
-            font-size: 13px;
-            opacity: 0.5;
-        }
+ /* --- BAGIAN BAWAH (Garis Pembatas & Copyright) --- */
+ .mega-bottom {
+     max-width: 1400px;
+     margin: 80px auto 0 auto;
+     padding-top: 24px;
+     border-top: 1px solid rgba(255, 255, 255, 0.1);
+     /* Garis batas tipis */
+     text-align: center;
+     font-size: 13px;
+     opacity: 0.5;
+ }
 
-        /* ==========================================================================
+ /* ==========================================================================
    MEDIA QUERY DESKTOP / LAPTOP (768px ke atas)
    ========================================================================== */
-        @media(min-width: 768px) {
-            .mega-footer {
-                padding: 100px 40px 30px 40px;
-            }
+ @media(min-width: 768px) {
+     .mega-footer {
+         padding: 100px 40px 30px 40px;
+     }
 
-            .mega-container {
-                flex-direction: row;
-                /* Berubah jadi format berjejer Kiri-Kanan di Laptop */
-                justify-content: space-between;
-            }
+     .mega-container {
+         flex-direction: row;
+         /* Berubah jadi format berjejer Kiri-Kanan di Laptop */
+         justify-content: space-between;
+     }
 
-            .mega-brand {
-                font-size: 56px;
-                /* Ukuran font judul brand membesar */
-            }
+     .mega-brand {
+         font-size: 56px;
+         /* Ukuran font judul brand membesar */
+     }
 
-            .mega-right {
-                gap: 80px;
-                /* Jarak celah antar 2 kolom navigasi sedikit dilebarkan */
-            }
+     .mega-right {
+         gap: 80px;
+         /* Jarak celah antar 2 kolom navigasi sedikit dilebarkan */
+     }
 
-            .mega-bottom {
-                text-align: left;
-                /* Teks copyright bergeser ke pinggir kiri agar lebih rapi di monitor lebar */
-            }
-        }
+     .mega-bottom {
+         text-align: left;
+         /* Teks copyright bergeser ke pinggir kiri agar lebih rapi di monitor lebar */
+     }
+ }
 
-        /* ==========================================================================
+ /* ==========================================================================
    MEDIA QUERY MONITOR LEBAR (1100px ke atas)
    ========================================================================== */
-        @media(min-width: 1100px) {
-            .mega-footer {
-                padding: 120px 80px 40px 80px;
-            }
+ @media(min-width: 1100px) {
+     .mega-footer {
+         padding: 120px 80px 40px 80px;
+     }
 
-            .mega-right {
-                gap: 120px;
-                /* Jarak maksimal antar kolom jika layar sangat lebar */
-            }
-        }
+     .mega-right {
+         gap: 120px;
+         /* Jarak maksimal antar kolom jika layar sangat lebar */
+     }
+ }
